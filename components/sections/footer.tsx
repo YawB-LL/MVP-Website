@@ -1,0 +1,248 @@
+"use client"
+
+import type React from "react"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { ArrowUp, Mail, Phone, MapPin, Twitter, Linkedin, Facebook, Instagram, Globe, Shield, TrendingUp, Users } from "lucide-react"
+import { useState } from "react"
+import { trackNewsletterSubscribe } from "@/lib/analytics"
+import { motion } from "framer-motion"
+import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
+
+export function Footer() {
+  const [email, setEmail] = useState("")
+  const [isSubscribing, setIsSubscribing] = useState(false)
+  const prefersReducedMotion = useReducedMotion()
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubscribing(true)
+
+    trackNewsletterSubscribe("footer")
+
+    // Simulate subscription
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    setEmail("")
+    setIsSubscribing(false)
+    alert("Thank you for subscribing to our newsletter!")
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const footerLinks = {
+    company: [
+      { name: "About Us", href: "#about" },
+      { name: "How It Works", href: "#how-it-works" },
+      { name: "Careers", href: "#careers" },
+      { name: "Press & Media", href: "#press" },
+    ],
+    investors: [
+      { name: "Investment Process", href: "#how-it-works" },
+      { name: "Property Listings", href: "#properties" },
+      { name: "Returns & Performance", href: "#returns" },
+      { name: "Risk Disclosure", href: "#risk" },
+    ],
+    support: [
+      { name: "Help Center", href: "#help" },
+      { name: "Contact Us", href: "#contact" },
+      { name: "Technical Support", href: "#support" },
+      { name: "Community Forum", href: "#forum" },
+    ],
+    legal: [
+      { name: "Terms of Service", href: "#terms" },
+      { name: "Privacy Policy", href: "#privacy" },
+      { name: "Cookie Policy", href: "#cookies" },
+      { name: "Regulatory Compliance", href: "#compliance" },
+    ],
+  }
+
+  const socialLinks = [
+    { name: "Twitter", href: "#", icon: Twitter },
+    { name: "LinkedIn", href: "#", icon: Linkedin },
+    { name: "Facebook", href: "#", icon: Facebook },
+    { name: "Instagram", href: "#", icon: Instagram },
+  ]
+
+  const stats = [
+    { label: "Properties Listed", value: "$2M+", icon: TrendingUp },
+    { label: "Investors Joined", value: "1000+", icon: Users },
+    { label: "Countries Served", value: "25+", icon: Globe },
+    { label: "Regulatory Status", value: "SEC Compliant", icon: Shield },
+  ]
+
+  return (
+    <footer className="bg-base border-t border-white/10 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-highlight/5 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(195,61,143,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(195,61,143,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
+      </div>
+
+      {/* Stats Section */}
+      <div className="relative z-10 border-b border-white/10">
+        <div className="container mx-auto px-6 py-16">
+          <motion.div 
+            className="max-w-6xl mx-auto"
+            initial="initial"
+            animate="animate"
+            variants={staggerChildren}
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  className="text-center"
+                  variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+                  custom={index}
+                >
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-primary/20">
+                    <stat.icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <div className="text-3xl font-bold text-text mb-2">{stat.value}</div>
+                  <div className="text-text-secondary text-sm">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-6 py-20 relative z-10">
+        <motion.div 
+          className="max-w-7xl mx-auto"
+          initial="initial"
+          animate="animate"
+          variants={staggerChildren}
+        >
+          <div className="grid lg:grid-cols-5 gap-16">
+            {/* Company Info & Newsletter */}
+            <div className="lg:col-span-2 space-y-10">
+              <div>
+                <h3 className="text-3xl font-bold text-text mb-6">
+                  <span className="bg-gradient-to-r from-primary to-highlight bg-clip-text text-transparent">
+                    LandLedger
+                  </span>
+                </h3>
+                <p className="text-lg text-text-secondary leading-relaxed mb-8">
+                  Democratizing access to premium Ghana real estate through innovative tokenization, 
+                  transparent investment processes, and institutional-grade technology.
+                </p>
+                <div className="space-y-4 text-base">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20">
+                      <Mail className="w-5 h-5 text-primary" />
+                    </div>
+                    <span className="text-text-secondary">hello@landledger.com</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20">
+                      <Phone className="w-5 h-5 text-primary" />
+                    </div>
+                    <span className="text-text-secondary">+233 24 123 4567</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20">
+                      <MapPin className="w-5 h-5 text-primary" />
+                    </div>
+                    <span className="text-text-secondary">East Legon, Accra, Ghana</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Newsletter Signup */}
+              <div>
+                <h4 className="text-xl font-bold text-text mb-4">Stay Updated</h4>
+                <p className="text-text-secondary mb-6 leading-relaxed">
+                  Get the latest updates on new properties, market insights, and investment opportunities.
+                </p>
+                <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+                  <div className="flex gap-3">
+                  <Input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
+                      className="flex-1 bg-white/5 border-white/20 text-text placeholder:text-text-secondary/50 focus:border-primary"
+                    required
+                  />
+                  <Button
+                    type="submit"
+                    disabled={isSubscribing}
+                      className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary px-6 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
+                  >
+                      {isSubscribing ? "Subscribing..." : "Subscribe"}
+                  </Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            {/* Footer Links */}
+            <div className="grid md:grid-cols-3 gap-8 lg:col-span-3">
+              {Object.entries(footerLinks).map(([category, links]) => (
+                <motion.div
+                  key={category}
+                  variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+                >
+                  <h4 className="text-lg font-bold text-text mb-6 capitalize">{category}</h4>
+                  <ul className="space-y-4">
+                    {links.map((link) => (
+                    <li key={link.name}>
+                        <a
+                          href={link.href}
+                          className="text-text-secondary hover:text-text transition-colors duration-300 hover:translate-x-1 transform inline-block"
+                        >
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                </motion.div>
+              ))}
+        </div>
+      </div>
+
+          {/* Bottom Section */}
+          <motion.div 
+            className="border-t border-white/10 pt-12 mt-16"
+            variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+          >
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="text-text-secondary text-sm">
+                © 2024 LandLedger. All rights reserved. SEC regulated and compliant.
+            </div>
+
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                      className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 hover:border-primary/30 hover:bg-primary/10 transition-all duration-300 group"
+                  >
+                      <social.icon className="w-5 h-5 text-text-secondary group-hover:text-primary transition-colors" />
+                  </a>
+                ))}
+              </div>
+
+                <button
+                onClick={scrollToTop}
+                  className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20 hover:border-primary/40 hover:bg-primary/20 transition-all duration-300 group"
+              >
+                  <ArrowUp className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </footer>
+  )
+}

@@ -1,0 +1,311 @@
+/* Design System - LandLedger Production MVP */
+
+/* ===== COLOR SYSTEM ===== */
+:root {
+  /* Primary Brand Colors */
+  --color-base: #121212;
+  --color-text: #F2F2F2;
+  --color-text-secondary: #E4E4E4;
+  --color-primary: #DE8318;
+  --color-highlight: #C33D8F;
+  
+  /* Semantic Colors */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  
+  /* Background Variations */
+  --color-bg-primary: #121212;
+  --color-bg-secondary: #1A1A1A;
+  --color-bg-tertiary: #2A2A2A;
+  --color-bg-overlay: rgba(18, 18, 18, 0.95);
+  
+  /* Border Colors */
+  --color-border-primary: rgba(255, 255, 255, 0.1);
+  --color-border-secondary: rgba(255, 255, 255, 0.05);
+  --color-border-accent: rgba(222, 131, 24, 0.3);
+  --color-border-highlight: rgba(195, 61, 143, 0.3);
+  
+  /* Shadow Colors */
+  --color-shadow-primary: rgba(222, 131, 24, 0.3);
+  --color-shadow-highlight: rgba(195, 61, 143, 0.3);
+  --color-shadow-dark: rgba(0, 0, 0, 0.5);
+}
+
+/* ===== TYPOGRAPHY SCALE ===== */
+.text-display-1 {
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.text-display-2 {
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.text-headline-1 {
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-headline-2 {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.text-title-1 {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.text-title-2 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.text-body-1 {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.text-body-2 {
+  font-size: clamp(0.875rem, 1.25vw, 1rem);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.text-caption {
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ===== SPACING SCALE ===== */
+.space-xs { gap: 0.5rem; }
+.space-sm { gap: 1rem; }
+.space-md { gap: 1.5rem; }
+.space-lg { gap: 2rem; }
+.space-xl { gap: 3rem; }
+.space-2xl { gap: 4rem; }
+.space-3xl { gap: 6rem; }
+
+.padding-xs { padding: 0.5rem; }
+.padding-sm { padding: 1rem; }
+.padding-md { padding: 1.5rem; }
+.padding-lg { padding: 2rem; }
+.padding-xl { padding: 3rem; }
+.padding-2xl { padding: 4rem; }
+.padding-3xl { padding: 6rem; }
+
+.margin-xs { margin: 0.5rem; }
+.margin-sm { margin: 1rem; }
+.margin-md { margin: 1.5rem; }
+.margin-lg { margin: 2rem; }
+.margin-xl { margin: 3rem; }
+.margin-2xl { margin: 4rem; }
+.margin-3xl { margin: 6rem; }
+
+/* ===== COMPONENT STYLES ===== */
+
+/* Cards */
+.card-primary {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-primary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-border-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-border-highlight);
+  transform: translateY(-2px);
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), #E6942A);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px var(--color-shadow-primary);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--color-shadow-primary);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 0.75rem;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-border-accent);
+  transform: translateY(-1px);
+}
+
+/* Form Elements */
+.input-primary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  color: var(--color-text);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-primary:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(222, 131, 24, 0.1);
+}
+
+.input-primary::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+}
+
+/* ===== ANIMATION CLASSES ===== */
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+.container-responsive {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    padding: 0 2rem;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break {
+    page-break-before: always;
+  }
+}
+
+
+
+

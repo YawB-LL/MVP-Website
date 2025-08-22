@@ -1,0 +1,230 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Menu, X, ChevronDown, Globe, Shield, TrendingUp } from "lucide-react"
+import { Button } from "./button"
+import { trackEvent } from "@/lib/analytics"
+
+export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const handleNavClick = (section: string) => {
+    trackEvent("navbar_click", { section })
+    document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
+    setIsOpen(false)
+    setActiveDropdown(null)
+  }
+
+  const navItems = [
+    { name: "Home", href: "hero" },
+    { 
+      name: "Platform", 
+      href: "how-it-works",
+      dropdown: [
+        { name: "How It Works", href: "how-it-works", icon: TrendingUp },
+        { name: "Investment Process", href: "pain-points", icon: Shield },
+        { name: "Regulatory Compliance", href: "trust", icon: Shield }
+      ]
+    },
+    { name: "About", href: "about" },
+    { name: "Contact", href: "contact" }
+  ]
+
+  return (
+    <>
+      {/* Backdrop for mobile menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Navbar */}
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled 
+            ? "bg-base/95 backdrop-blur-xl border-b border-white/10 shadow-2xl" 
+            : "bg-transparent"
+        }`}
+      >
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-3 cursor-pointer"
+              onClick={() => handleNavClick("hero")}
+            >
+              <div className="w-10 h-10 bg-gradient-to-br from-primary to-highlight rounded-xl flex items-center justify-center">
+                <Globe className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-highlight bg-clip-text text-transparent">
+                LandLedger
+              </span>
+            </motion.div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-8">
+              {navItems.map((item) => (
+                <div key={item.name} className="relative group">
+                  {item.dropdown ? (
+                    <button
+                      className="flex items-center gap-2 text-text hover:text-primary transition-colors duration-300 py-2"
+                      onMouseEnter={() => setActiveDropdown(item.name)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      {item.name}
+                      <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleNavClick(item.href)}
+                      className="text-text hover:text-primary transition-colors duration-300 py-2 relative group"
+                    >
+                      {item.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                    </button>
+                  )}
+
+                  {/* Dropdown Menu */}
+                  {item.dropdown && activeDropdown === item.name && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-64 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden"
+                      onMouseEnter={() => setActiveDropdown(item.name)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      {item.dropdown.map((dropdownItem) => (
+                        <button
+                          key={dropdownItem.name}
+                          onClick={() => handleNavClick(dropdownItem.href)}
+                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-white/10 transition-colors duration-300"
+                        >
+                          <dropdownItem.icon className="w-4 h-4 text-primary" />
+                          {dropdownItem.name}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="hidden lg:block">
+              <Button
+                onClick={() => handleNavClick("waitlist")}
+                className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white px-6 py-3 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:shadow-primary/50"
+              >
+                Join Waitlist
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors duration-300"
+            >
+              {isOpen ? <X className="w-5 h-5 text-text" /> : <Menu className="w-5 h-5 text-text" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden border-t border-white/10 bg-base/95 backdrop-blur-xl"
+            >
+              <div className="container mx-auto px-6 py-6 space-y-4">
+                {navItems.map((item) => (
+                  <div key={item.name}>
+                    {item.dropdown ? (
+                      <div>
+                            <button
+                              onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                              className="flex items-center justify-between w-full text-left text-text hover:text-primary transition-colors duration-300 py-3"
+                            >
+                              {item.name}
+                              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
+                                activeDropdown === item.name ? "rotate-180" : ""
+                              }`} />
+                            </button>
+                            {activeDropdown === item.name && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="ml-4 space-y-2 mt-2"
+                              >
+                                {item.dropdown.map((dropdownItem) => (
+                                  <button
+                                    key={dropdownItem.name}
+                                    onClick={() => handleNavClick(dropdownItem.href)}
+                                    className="flex items-center gap-3 w-full text-left text-text-secondary hover:text-primary transition-colors duration-300 py-2"
+                                  >
+                                    <dropdownItem.icon className="w-4 h-4 text-primary" />
+                                    {dropdownItem.name}
+                                  </button>
+                                ))}
+                              </motion.div>
+                            )}
+                          </div>
+                    ) : (
+                      <button
+                        onClick={() => handleNavClick(item.href)}
+                        className="w-full text-left text-text hover:text-primary transition-colors duration-300 py-3"
+                      >
+                        {item.name}
+                      </button>
+                    )}
+                  </div>
+                ))}
+                
+                <div className="pt-4 border-t border-white/10">
+                  <Button
+                    onClick={() => handleNavClick("waitlist")}
+                    className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white py-3 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300"
+                  >
+                    Join Waitlist
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+
+      {/* Spacer to prevent content from hiding behind navbar */}
+      <div className="h-20" />
+    </>
+  )
+}
+
+
+
+
