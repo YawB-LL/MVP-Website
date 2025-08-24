@@ -8,7 +8,14 @@
     "lint": "next lint",
     "start": "next start",
     "setup:waitlist": "node scripts/setup-waitlist.js",
-    "setup:sanity": "node scripts/setup-sanity.js"
+    "setup:sanity": "node scripts/setup-sanity.js",
+    "sanity:validate": "node scripts/deploy-sanity.js validate",
+    "sanity:deploy": "node scripts/deploy-sanity.js deploy",
+    "sanity:backup": "node scripts/deploy-sanity.js backup",
+    "sanity:rollback": "node scripts/deploy-sanity.js rollback",
+    "sanity:studio": "sanity start",
+    "sanity:build": "sanity build",
+    "sanity:deploy-studio": "sanity deploy"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",

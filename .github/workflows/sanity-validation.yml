@@ -1,0 +1,192 @@
+name: Sanity Schema Validation
+
+on:
+  push:
+    branches: [ main, staging, develop ]
+    paths:
+      - 'lib/sanity-schemas.ts'
+      - 'sanity.config.ts'
+      - 'lib/sanity-production-url.ts'
+      - 'sanity.deploy.config.ts'
+      - 'scripts/deploy-sanity.js'
+  pull_request:
+    branches: [ main, staging, develop ]
+    paths:
+      - 'lib/sanity-schemas.ts'
+      - 'sanity.config.ts'
+      - 'lib/sanity-production-url.ts'
+      - 'sanity.deploy.config.ts'
+      - 'scripts/deploy-sanity.js'
+
+jobs:
+  validate-schemas:
+    name: Validate Sanity Schemas
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Validate schemas
+        run: npm run sanity:validate
+        
+      - name: TypeScript compilation check
+        run: npx tsc --noEmit lib/sanity-schemas.ts
+        
+      - name: Sanity config validation
+        run: npx tsc --noEmit sanity.config.ts
+        
+      - name: Production URL config validation
+        run: npx tsc --noEmit lib/sanity-production-url.ts
+
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    needs: validate-schemas
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run security audit
+        run: npm audit --audit-level=moderate
+        
+      - name: Check for known vulnerabilities
+        run: npm audit --audit-level=high
+
+  deployment-readiness:
+    name: Deployment Readiness Check
+    runs-on: ubuntu-latest
+    needs: [validate-schemas, security-audit]
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Check deployment configuration
+        run: |
+          echo "Checking deployment configuration..."
+          if [ -f "sanity.deploy.config.ts" ]; then
+            echo "✓ Deployment config found"
+          else
+            echo "✗ Deployment config missing"
+            exit 1
+          fi
+          
+          if [ -f "scripts/deploy-sanity.js" ]; then
+            echo "✓ Deployment script found"
+          else
+            echo "✗ Deployment script missing"
+            exit 1
+          fi
+          
+          if [ -f "DEPLOYMENT_WORKFLOW.md" ]; then
+            echo "✓ Deployment documentation found"
+          else
+            echo "✗ Deployment documentation missing"
+            exit 1
+          fi
+          
+      - name: Validate environment files
+        run: |
+          echo "Checking environment configuration..."
+          if [ -f "env.example" ]; then
+            echo "✓ Environment example found"
+          else
+            echo "✗ Environment example missing"
+            exit 1
+          fi
+          
+          if [ -f "env.production.example" ]; then
+            echo "✓ Production env example found"
+          else
+            echo "✗ Production env example missing"
+            exit 1
+          fi
+          
+          if [ -f "env.staging.example" ]; then
+            echo "✓ Staging env example found"
+          else
+            echo "✗ Staging env example missing"
+            exit 1
+          fi
+          
+      - name: Check backup directories
+        run: |
+          echo "Checking backup directory structure..."
+          mkdir -p backups/{development,staging,production}
+          echo "✓ Backup directories created/verified"
+          
+      - name: Deployment readiness summary
+        run: |
+          echo "🎉 Deployment readiness check completed!"
+          echo "✅ Schemas validated"
+          echo "✅ Security audit passed"
+          echo "✅ Configuration files present"
+          echo "✅ Environment files configured"
+          echo "✅ Backup structure ready"
+          echo ""
+          echo "This PR is ready for production deployment review."
+
+  notify-team:
+    name: Notify Team
+    runs-on: ubuntu-latest
+    needs: [validate-schemas, security-audit, deployment-readiness]
+    if: always()
+    
+    steps:
+      - name: Notify on success
+        if: needs.validate-schemas.result == 'success' && needs.security-audit.result == 'success'
+        run: |
+          echo "✅ All validation checks passed!"
+          echo "🚀 Ready for deployment review"
+          
+      - name: Notify on failure
+        if: needs.validate-schemas.result == 'failure' || needs.security-audit.result == 'failure'
+        run: |
+          echo "❌ Validation checks failed!"
+          echo "🔧 Please review and fix issues before deployment"
+          
+      - name: Deployment readiness status
+        if: needs.deployment-readiness.result == 'success'
+        run: |
+          echo "🎯 Production deployment ready!"
+          echo "📋 Requires: Code review + Manual approval"
+          
+      - name: Deployment readiness status
+        if: needs.deployment-readiness.result == 'failure'
+        run: |
+          echo "⚠️ Production deployment not ready!"
+          echo "📋 Missing required configuration or documentation"
