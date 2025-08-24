@@ -5,13 +5,12 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Calendar, Clock, ArrowRight, Mail, ExternalLink } from "lucide-react"
-import { trackNewsletterSubscribe } from "@/lib/analytics"
+import { Calendar, Clock, ArrowRight, ExternalLink } from "lucide-react"
 import type { SanityPost, SanityCategory } from "@/lib/sanity"
 import Link from "next/link"
+import { NewsletterSignup } from "@/components/newsletter-signup"
 
 interface BlogPost {
   _id: string
@@ -51,8 +50,7 @@ export function Blog() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState("All")
-  const [email, setEmail] = useState("")
-  const [isSubscribing, setIsSubscribing] = useState(false)
+
 
   // Fetch blog posts and categories from Sanity CMS
   useEffect(() => {
@@ -88,19 +86,7 @@ export function Blog() {
     ? posts 
     : posts.filter((post) => post.category?.title === selectedCategory)
 
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubscribing(true)
 
-    trackNewsletterSubscribe("blog")
-
-    // Simulate newsletter subscription
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    setEmail("")
-    setIsSubscribing(false)
-    alert("Thank you for subscribing to The Ledger newsletter!")
-  }
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-GB", {
@@ -276,58 +262,12 @@ export function Blog() {
           )}
 
           {/* Newsletter Signup */}
-          <Card className="p-8 bg-primary/10 border-primary/20 text-center">
-            <div className="max-w-2xl mx-auto space-y-6">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto">
-                <Mail className="w-8 h-8 text-base" />
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-semibold text-text mb-4">Stay Informed with The Ledger</h3>
-                <p className="text-text-secondary">
-                  Get weekly insights on Ghana's real estate market, investment opportunities, and industry trends
-                  delivered straight to your inbox.
-                </p>
-              </div>
-
-              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <Input
-                  type="email"
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-base border-text-secondary/20 text-text focus:border-primary flex-1"
-                  required
-                />
-                <Button
-                  type="submit"
-                  disabled={isSubscribing}
-                  className="bg-primary hover:bg-primary/90 text-base px-8 btn-hover focus-ring"
-                >
-                  {isSubscribing ? "Subscribing..." : "Subscribe"}
-                </Button>
-              </form>
-
-              <div className="flex items-center justify-center gap-6 text-sm text-text-secondary">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span>Weekly insights</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span>Market updates</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span>No spam</span>
-                </div>
-              </div>
-
-              <p className="text-xs text-text-secondary">
-                Join 2,500+ investors already subscribed. Unsubscribe anytime.
-              </p>
-            </div>
-          </Card>
+          <NewsletterSignup
+            variant="default"
+            title="Stay Informed with The Ledger"
+            description="Get weekly insights on Ghana's real estate market, investment opportunities, and industry trends delivered straight to your inbox."
+            buttonText="Subscribe"
+          />
         </div>
       </div>
     </section>

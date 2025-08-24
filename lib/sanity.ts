@@ -16,7 +16,7 @@ export interface SanityPost {
   slug: {
     current: string
   }
-  excerpt: string
+  excerpt?: string
   content: any[] // Portable text
   author: {
     name: string
@@ -77,7 +77,7 @@ export interface SanityPressRelease {
   slug: {
     current: string
   }
-  excerpt: string
+  excerpt?: string
   content: any[] // Portable text
   publishedAt: string
   externalLink?: string
@@ -125,7 +125,7 @@ export const POSTS_QUERY = `
     title,
     slug,
     excerpt,
-    author->{
+    "author": author->{
       name,
       avatar{
         asset->{
@@ -134,7 +134,7 @@ export const POSTS_QUERY = `
       }
     },
     publishedAt,
-    category->{
+    "category": category->{
       title,
       slug
     },
@@ -311,5 +311,7 @@ export async function getCompanyInfo(): Promise<SanityCompanyInfo | null> {
 
 // Image URL builder helper
 export function urlFor(source: any) {
-  return sanityClient.image(source)
+  // Note: This function requires @sanity/image-url package for proper image URL building
+  // For now, return the source as-is
+  return source
 }
