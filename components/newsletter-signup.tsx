@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Mail, CheckCircle } from "lucide-react"
 import { trackNewsletterSubscribe } from "@/lib/analytics"
+import { useToast } from "@/hooks/use-toast"
 
 interface NewsletterSignupProps {
   variant?: "default" | "blog-post" | "footer"
@@ -27,23 +28,82 @@ export function NewsletterSignup({
   const [email, setEmail] = useState("")
   const [isSubscribing, setIsSubscribing] = useState(false)
   const [isSubscribed, setIsSubscribed] = useState(false)
+  const { toast } = useToast()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (!email.trim()) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter a valid email address",
+      })
+      return
+    }
+
     setIsSubscribing(true)
 
-    // Track newsletter subscription
-    trackNewsletterSubscribe(variant === "blog-post" ? "blog-post" : "general")
+    try {
+      // Track newsletter subscription
+      trackNewsletterSubscribe(variant === "blog-post" ? "blog-post" : "general")
 
-    // Simulate newsletter subscription
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+      // Call the newsletter API
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          source: variant === "blog-post" ? "blog-post" : "general"
+        }),
+      })
 
-    setEmail("")
-    setIsSubscribing(false)
-    setIsSubscribed(true)
+      const result = await response.json()
 
-    // Reset success state after 5 seconds
-    setTimeout(() => setIsSubscribed(false), 5000)
+      if (result.success) {
+        setEmail("")
+        setIsSubscribed(true)
+        
+        // Show success toast
+        toast({
+          variant: "success",
+          title: "Success!",
+          description: result.message || "You've been successfully subscribed to our newsletter!",
+        })
+
+        // Reset success state after 5 seconds
+        setTimeout(() => setIsSubscribed(false), 5000)
+      } else {
+        // Show error toast
+        toast({
+          variant: "destructive",
+          title: "Subscription Failed",
+          description: result.message || "Unable to subscribe. Please try again.",
+        })
+      }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error)
+      
+      // In development, log detailed error info
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Detailed error:', {
+          message: error instanceof Error ? error.message : 'Unknown error',
+          stack: error instanceof Error ? error.stack : undefined,
+          error
+        })
+      }
+
+      // Show error toast
+      toast({
+        variant: "destructive",
+        title: "Subscription Failed",
+        description: "An unexpected error occurred. Please try again later.",
+      })
+    } finally {
+      setIsSubscribing(false)
+    }
   }
 
   if (isSubscribed) {

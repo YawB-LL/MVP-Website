@@ -5,9 +5,11 @@ export async function GET() {
   try {
     console.log('=== MAIN BLOG API ROUTE STARTED ===')
     
-    console.log('1. Calling Sanity directly...')
-    const posts = await sanityClient.fetch(`
-      *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+    console.log('1. Calling Sanity for ALL posts...')
+    
+    // Fetch ALL posts without any filters - just get everything
+    const allPosts = await sanityClient.fetch(`
+      *[_type == "post"] | order(publishedAt desc) {
         _id,
         title,
         slug,
@@ -36,10 +38,11 @@ export async function GET() {
         seo
       }
     `)
-    console.log(`Direct Sanity query returned: ${posts.length} posts`)
     
-    if (posts.length > 0) {
-      posts.forEach((post, index) => {
+    console.log(`Sanity returned: ${allPosts.length} posts`)
+    
+    if (allPosts.length > 0) {
+      allPosts.forEach((post, index) => {
         console.log(`  Post ${index + 1}: "${post.title}" (ID: ${post._id})`)
       })
     }
@@ -55,21 +58,28 @@ export async function GET() {
     `)
     console.log(`Categories query returned: ${categories.length} categories`)
     
-    console.log('3. Returning response...')
+    console.log('3. Building response...')
     const response = {
-      posts,
+      posts: allPosts,
       categories,
-      success: true
+      success: true,
+      totalPosts: allPosts.length,
+      totalCategories: categories.length
     }
     
     console.log(`Final response has ${response.posts.length} posts`)
     console.log('=== MAIN BLOG API ROUTE COMPLETED ===')
     
     return NextResponse.json(response)
+    
   } catch (error) {
     console.error('=== MAIN BLOG API ROUTE ERROR ===', error)
     return NextResponse.json(
-      { error: 'Failed to fetch blog data' },
+      { 
+        error: 'Failed to fetch blog data',
+        details: error.message,
+        success: false
+      },
       { status: 500 }
     )
   }

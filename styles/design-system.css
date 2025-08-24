@@ -15,6 +15,10 @@
   --color-error: #EF4444;
   --color-info: #3B82F6;
   
+  /* Toast-specific colors */
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: #FEF2F2;
+  
   /* Background Variations */
   --color-bg-primary: #121212;
   --color-bg-secondary: #1A1A1A;
