@@ -8,6 +8,7 @@ import { Trust } from "@/components/sections/trust"
 import { Roadmap } from "@/components/sections/roadmap"
 import { Blog } from "@/components/sections/blog"
 import { Press } from "@/components/sections/press"
+import { Careers } from "@/components/sections/careers"
 import { Contact } from "@/components/sections/contact"
 import { Footer } from "@/components/sections/footer"
 import { ExitIntentPopup } from "@/components/ui/exit-intent-popup"
@@ -27,6 +28,7 @@ export default function HomePage() {
       <Roadmap />
       <Blog />
       <Press />
+      <Careers />
       <Contact />
       <Footer />
       <ExitIntentPopup />
