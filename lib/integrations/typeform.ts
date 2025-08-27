@@ -148,7 +148,7 @@ class TypeformService {
   // Submit talent form to Typeform
   async submitTalentForm(data: TalentFormData): Promise<{ success: boolean; submissionId?: string }> {
     try {
-      const formId = process.env.TYPEFORM_TALENT_FORM_ID || ""
+      const formId = process.env.TYPEFORM_TALENT_FORM_ID || "aAYu9UJb"
 
       const typeformData = {
         answers: [

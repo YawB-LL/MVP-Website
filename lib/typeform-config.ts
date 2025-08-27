@@ -2,7 +2,7 @@
 
 export const TYPEFORM_CONFIG = {
   WAITLIST: "NYKX0LYM",
-  TALENT: "your_talent_form_id_here",
+  TALENT: "aAYu9UJb",
   NEWSLETTER: "your_newsletter_form_id_here",
   CONTACT: "your_contact_form_id_here",
 }

@@ -120,11 +120,12 @@ export function TalentPool() {
                 </div>
                 
                 <TypeformEmbed
-                  formId="YOUR_TALENT_FORM_ID_HERE" // Replace with your actual Typeform ID
-                  height={700}
-                  onSubmission={handleSubmission}
-                  onReady={handleFormReady}
-                  onError={handleFormError}
+                  formId="aAYu9UJb"
+                  height={650}
+                  onSubmission={(data) => {
+                    console.log("Talent form submission:", data)
+                    // You can add additional tracking or redirect logic here
+                  }}
                   className="rounded-2xl overflow-hidden"
                 />
               </Card>
