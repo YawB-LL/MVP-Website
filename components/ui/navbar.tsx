@@ -135,12 +135,17 @@ export function Navbar() {
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <Button
-                onClick={() => handleNavClick("waitlist")}
-                className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white px-6 py-3 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:shadow-primary/50"
+              <a
+                href="https://form.typeform.com/to/NYKX0LYM"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white px-6 py-3 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:shadow-primary/50"
               >
                 Join Waitlist
-              </Button>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -208,12 +213,17 @@ export function Navbar() {
                 ))}
                 
                 <div className="pt-4 border-t border-white/10">
-                  <Button
-                    onClick={() => handleNavClick("waitlist")}
-                    className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white py-3 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300"
+                  <a
+                    href="https://form.typeform.com/to/NYKX0LYM"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white py-3 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 justify-center"
                   >
                     Join Waitlist
-                  </Button>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
                 </div>
               </div>
             </motion.div>

@@ -65,7 +65,7 @@ class TypeformService {
   // Submit waitlist form to Typeform
   async submitWaitlistForm(data: WaitlistFormData): Promise<{ success: boolean; submissionId?: string }> {
     try {
-      const formId = process.env.TYPEFORM_WAITLIST_FORM_ID || "daWhQkob"
+      const formId = process.env.TYPEFORM_WAITLIST_FORM_ID || "NYKX0LYM"
 
       // Map form data to Typeform format
       const typeformData = {

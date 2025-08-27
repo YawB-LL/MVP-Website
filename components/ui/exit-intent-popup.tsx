@@ -140,20 +140,19 @@ export function ExitIntentPopup() {
               className="bg-base border-text-secondary/20 text-text focus:border-primary"
               required
             />
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-primary hover:bg-primary/90 text-base btn-hover focus-ring group"
-            >
-              {isSubmitting ? (
-                "Joining..."
-              ) : (
-                <>
-                  Get Early Access
-                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </>
-              )}
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://form.typeform.com/to/NYKX0LYM"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-semibold rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300"
+              >
+                Join the Waitlist
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
           </form>
 
           <p className="text-xs text-text-secondary text-center">

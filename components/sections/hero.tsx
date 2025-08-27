@@ -84,15 +84,19 @@ export function Hero() {
             className="pt-6"
             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
           >
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <MagneticButton
-              onClick={handleCTAClick}
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-lg px-8 py-4 rounded-xl shadow-lg shadow-primary/30 focus-ring group transition-all duration-300"
-            >
-              Join the Waitlist
-              <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </MagneticButton>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://form.typeform.com/to/NYKX0LYM"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent("hero_cta_click", { action: "open_typeform" })}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40"
+              >
+                Join the Waitlist
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
 
               <button
                 type="button"
