@@ -82,7 +82,7 @@ export function PainPoints() {
   ]
 
   return (
-    <section className="py-24 bg-base relative overflow-hidden">
+    <section id="pain-points" className="py-24 bg-base relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-20 w-96 h-96 bg-highlight/5 rounded-full blur-3xl" />

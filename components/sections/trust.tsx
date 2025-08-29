@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+import NextImage from "next/image"
 import { Card } from "@/components/ui/card"
 import { Shield, FileCheck, Users, Award, CheckCircle, Building, Globe, TrendingUp } from "lucide-react"
 import { motion } from "framer-motion"
@@ -84,7 +84,7 @@ export function Trust() {
   ]
 
   return (
-    <section className="py-24 bg-base relative overflow-hidden">
+    <section id="trust" className="py-24 bg-base relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
@@ -183,7 +183,7 @@ export function Trust() {
                 >
                   <Card className="p-8 bg-base border border-white/20 hover:border-highlight/40 transition-all duration-300 group text-center h-full shadow-xl">
                     <div className="mx-auto mb-6">
-                      <Image
+                      <NextImage
                         src={regulator.logo || "/placeholder.svg"}
                         alt={regulator.name}
                         width={128}
@@ -191,6 +191,7 @@ export function Trust() {
                         sizes="(max-width: 768px) 96px, 128px"
                         className="w-24 h-24 md:w-32 md:h-28 object-contain grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-110"
                         priority={index < 2}
+                        quality={85}
                       />
                     </div>
                     <h4 className="text-xl font-bold text-white mb-3">{regulator.name}</h4>
@@ -221,13 +222,14 @@ export function Trust() {
                 >
                   <Card className="p-8 bg-base border border-white/20 hover:border-primary/40 transition-all duration-300 group text-center h-full shadow-xl">
                     <div className="mx-auto mb-6">
-                      <Image
+                      <NextImage
                         src={partner.logo || "/placeholder.svg"}
                         alt={partner.name}
                         width={112}
                         height={112}
                         sizes="(max-width: 768px) 80px, 112px"
                         className="w-20 h-20 md:w-28 md:h-28 object-contain grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-110"
+                        quality={85}
                       />
                     </div>
                     <h4 className="text-lg font-bold text-white mb-3">{partner.name}</h4>

@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+import NextImage from "next/image"
 import { ArrowRight, Shield, Users, TrendingUp } from "lucide-react"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 import { trackEvent } from "@/lib/analytics"
@@ -18,14 +18,16 @@ export function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-base">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-base">
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
-        <Image
+        <NextImage
           src="/ghana-property-aerial.png"
           alt="Premium Ghana property development"
           fill
           priority
+          quality={90}
+          sizes="100vw"
           className="object-cover scale-105 animate-slow-zoom"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-base/80 via-base/70 to-base/95" />

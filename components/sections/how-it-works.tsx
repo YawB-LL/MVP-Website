@@ -54,7 +54,7 @@ export function HowItWorks() {
   ]
 
   return (
-    <section className="py-24 bg-base relative overflow-hidden">
+    <section id="how-it-works" className="py-24 bg-base relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-40 left-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />

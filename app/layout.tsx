@@ -4,6 +4,7 @@ import { Inter, Newsreader } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/components/ui/navbar"
 import { Toaster } from "@/components/ui/toaster"
+import { PerformanceMonitor } from "@/components/ui/performance-monitor"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,8 +16,6 @@ const newsreader = Newsreader({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-newsreader",
-  // Add fallback fonts to prevent font override issues
-  fallback: ["Georgia", "serif"],
 })
 
 export const metadata: Metadata = {
@@ -42,8 +41,21 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${newsreader.variable} antialiased`}>
       <head>
+        {/* Resource hints for performance optimization */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        
+        {/* Preload critical resources */}
+        <link rel="preload" href="/ghana-property-aerial.png" as="image" type="image/png" />
+        <link rel="preload" href="/sec-ghana-logo.png" as="image" type="image/png" />
+        <link rel="preload" href="/bank-of-ghana-logo.png" as="image" type="image/png" />
+        
+        {/* Prefetch non-critical resources */}
+        <link rel="prefetch" href="/gipc-logo.png" as="image" type="image/png" />
+        <link rel="prefetch" href="/greda-logo.png" as="image" type="image/png" />
+        <link rel="prefetch" href="/gar-logo.png" as="image" type="image/png" />
         {process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID && (
           <>
             <script
@@ -80,8 +92,28 @@ export default function RootLayout({
             }}
           />
         )}
+        
+        {/* Service Worker Registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                      console.log('SW registered: ', registration);
+                    })
+                    .catch(function(registrationError) {
+                      console.log('SW registration failed: ', registrationError);
+                    });
+                });
+              }
+            `,
+          }}
+        />
       </head>
       <body className="min-h-screen bg-base text-text font-sans">
+        <PerformanceMonitor />
         <Navbar />
         {children}
         <Toaster />

@@ -96,7 +96,7 @@ export function Roadmap() {
   }
 
   return (
-    <section className="section-padding bg-base">
+    <section id="roadmap" className="section-padding bg-base">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
