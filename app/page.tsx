@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/hero"
+import { CTASections } from "@/components/sections/cta-sections"
 import { PainPoints } from "@/components/sections/pain-points"
 import { HowItWorks } from "@/components/sections/how-it-works"
 import { Waitlist } from "@/components/sections/waitlist"
@@ -21,6 +22,7 @@ export default function HomePage() {
     <main className="min-h-screen">
       <DynamicScrollProgress />
       <Hero />
+      <CTASections />
       <PainPoints />
       <HowItWorks />
       <Waitlist />

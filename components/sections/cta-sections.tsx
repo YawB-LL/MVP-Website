@@ -1,0 +1,266 @@
+"use client"
+
+import type React from "react"
+import { useState } from "react"
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Modal } from "@/components/ui/modal"
+import { TypeformEmbed } from "@/components/ui/typeform-embed"
+import { Users, Building, Briefcase, Star, TrendingUp, Globe, Shield, Zap, Sparkles, ArrowRight } from "lucide-react"
+import { motion } from "framer-motion"
+import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
+
+export function CTASections() {
+  const prefersReducedMotion = useReducedMotion()
+  const [modalState, setModalState] = useState<{
+    isOpen: boolean
+    type: string | null
+    title: string
+    formId: string
+  }>({
+    isOpen: false,
+    type: null,
+    title: "",
+    formId: ""
+  })
+
+  const sections = [
+    {
+      id: "investors",
+      title: "Investors",
+      icon: Users,
+      headline: "Join the Waitlist",
+      context: "Individual and institutional investors seeking premium real estate opportunities with transparent returns and regulatory compliance.",
+      contribution: "We provide fractional ownership of premium Ghana properties, diversified portfolio options, and regular returns through our tokenized investment platform.",
+      ctaText: "Join Waitlist",
+      formId: "NYKX0LYM",
+      color: "primary",
+      features: ["Fractional ownership", "Diversified portfolio", "Regular returns", "SEC regulated"]
+    },
+    {
+      id: "developers",
+      title: "Developers",
+      icon: Building,
+      headline: "Partner With Us",
+      context: "Property developers looking for innovative funding solutions and access to a global investor base.",
+      contribution: "We offer streamlined capital access, global investor reach, and tokenization expertise to help you bring premium projects to market faster.",
+      ctaText: "Partner With Us",
+      formId: "NYKX0LYM",
+      color: "highlight",
+      features: ["Access to capital", "Global investor base", "Streamlined process", "Tokenization expertise"]
+    },
+    {
+      id: "ecosystem",
+      title: "Ecosystem Stakeholders",
+      icon: Briefcase,
+      headline: "Engage With Us",
+      context: "Partners, advisors, and service providers in the real estate ecosystem seeking collaboration opportunities.",
+      contribution: "We create partnership opportunities, expand your network reach, and foster innovation collaboration in the digital real estate space.",
+      ctaText: "Engage With Us",
+      formId: "NYKX0LYM",
+      color: "primary",
+      features: ["Partnership opportunities", "Network expansion", "Innovation collaboration", "Ecosystem growth"]
+    }
+  ]
+
+  const openModal = (type: string, title: string, formId: string) => {
+    setModalState({
+      isOpen: true,
+      type,
+      title,
+      formId
+    })
+  }
+
+  const closeModal = () => {
+    setModalState({
+      isOpen: false,
+      type: null,
+      title: "",
+      formId: ""
+    })
+  }
+
+  const getIconBgClass = (color: string) => {
+    return color === "primary" ? "bg-primary" : "bg-highlight"
+  }
+
+  const getIconBorderClass = (color: string) => {
+    return color === "primary" ? "border-primary" : "border-highlight"
+  }
+
+  const getIconShadowClass = (color: string) => {
+    return color === "primary" ? "shadow-primary/25" : "shadow-highlight/25"
+  }
+
+  const getCtaBgClass = (color: string) => {
+    return color === "primary" 
+      ? "bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90" 
+      : "bg-gradient-to-r from-highlight to-primary hover:from-highlight/90 hover:to-primary/90"
+  }
+
+  const getCtaBorderClass = (color: string) => {
+    return color === "primary" 
+      ? "border-primary/20 hover:border-primary/40" 
+      : "border-highlight/20 hover:border-highlight/40"
+  }
+
+  const getCtaShadowClass = (color: string) => {
+    return color === "primary" 
+      ? "shadow-primary/30 hover:shadow-primary/50" 
+      : "shadow-highlight/30 hover:shadow-highlight/50"
+  }
+
+  return (
+    <>
+      <section id="cta-sections" className="py-24 bg-base relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-20 w-80 h-80 bg-highlight/5 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(195,61,143,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(195,61,143,0.02)_1px,transparent_1px)] bg-[size:80px_80px]" />
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div 
+            className="max-w-7xl mx-auto"
+            initial="initial"
+            animate="animate"
+            variants={staggerChildren}
+          >
+            {/* Section Header */}
+            <motion.div 
+              className="text-center mb-20"
+              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary text-sm font-medium mb-6">
+                <Star className="w-4 h-4" />
+                Choose Your Path
+              </div>
+              <h2 className="text-4xl md:text-6xl font-newsreader font-bold text-text mb-8 leading-tight">
+                Join the{" "}
+                <span className="bg-gradient-to-r from-primary via-highlight to-primary bg-clip-text text-transparent">
+                  Digital Real Estate
+                </span>{" "}
+                Revolution
+              </h2>
+              <p className="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto leading-relaxed font-light">
+                Whether you're an investor, developer, or ecosystem partner, we have a place for you 
+                in the future of real estate investment and development.
+              </p>
+            </motion.div>
+
+            {/* Three CTA Sections */}
+            <div className="grid lg:grid-cols-3 gap-8">
+              {sections.map((section, index) => (
+                <motion.div
+                  key={section.id}
+                  className="group"
+                  variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Card className="h-full p-8 bg-slate-900/90 backdrop-blur-xl border-2 border-slate-700/50 hover:border-primary/40 shadow-2xl shadow-black/40 transition-all duration-300 hover:scale-[1.02] group-hover:shadow-primary/20">
+                    {/* Icon and Title */}
+                    <div className="text-center mb-8">
+                      <div className={`inline-flex items-center justify-center w-16 h-16 ${getIconBgClass(section.color)} rounded-2xl mb-6 border-2 ${getIconBorderClass(section.color)} shadow-lg ${getIconShadowClass(section.color)}`}>
+                        <section.icon className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-2">{section.title}</h3>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-sm font-medium">
+                        {section.headline}
+                      </div>
+                    </div>
+
+                    {/* The Context */}
+                    <div className="mb-6">
+                      <h4 className="text-lg font-semibold text-white mb-3">The Context</h4>
+                      <p className="text-slate-300 text-sm leading-relaxed">
+                        {section.context}
+                      </p>
+                    </div>
+
+                    {/* Our Contribution / Partnership Approach */}
+                    <div className="mb-8">
+                      <h4 className="text-lg font-semibold text-white mb-3">
+                        {section.id === "investors" ? "Our Contribution" : 
+                         section.id === "developers" ? "Partnership Approach" : 
+                         "Engagement Approach"}
+                      </h4>
+                      <p className="text-slate-300 text-sm leading-relaxed">
+                        {section.contribution}
+                      </p>
+                    </div>
+
+                    {/* Features */}
+                    <div className="mb-8">
+                      <div className="flex flex-wrap gap-2">
+                        {section.features.map((feature, featureIndex) => (
+                          <Badge 
+                            key={featureIndex} 
+                            variant="secondary" 
+                            className="bg-slate-700/80 text-slate-200 border-slate-600 text-xs"
+                          >
+                            {feature}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <div className="text-center">
+                      <button
+                        onClick={() => openModal(section.id, section.headline, section.formId)}
+                        className={`inline-flex items-center gap-3 px-6 py-3 ${getCtaBgClass(section.color)} text-white font-semibold text-base rounded-xl shadow-lg ${getCtaShadowClass(section.color)} transform hover:scale-105 transition-all duration-300 border-2 ${getCtaBorderClass(section.color)}`}
+                      >
+                        <Sparkles className="w-4 h-4" />
+                        {section.ctaText}
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Bottom CTA */}
+            <motion.div 
+              className="text-center mt-16"
+              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-highlight/20 border border-highlight/30 text-highlight text-sm font-medium mb-6">
+                <Zap className="w-4 h-4" />
+                Ready to Get Started?
+              </div>
+              <p className="text-lg text-text-secondary mb-6 max-w-2xl mx-auto">
+                Join thousands of investors, developers, and partners already building the future of real estate
+              </p>
+              <button
+                onClick={() => openModal("general", "Get Started Today", "NYKX0LYM")}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-semibold text-lg rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40"
+              >
+                <Sparkles className="w-5 h-5" />
+                Get Started Today
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Typeform Modal */}
+      <Modal
+        isOpen={modalState.isOpen}
+        onClose={closeModal}
+        size="xl"
+        className="max-h-[90vh] overflow-hidden"
+      >
+        <TypeformEmbed
+          formId={modalState.formId}
+          title={modalState.title}
+          onClose={closeModal}
+        />
+      </Modal>
+    </>
+  )
+}
