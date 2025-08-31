@@ -30,7 +30,7 @@ export function CTASections() {
       id: "investors",
       title: "Investors",
       icon: Users,
-      headline: "Join the Waitlist",
+      headline: "Join Waitlist",
       context: "Individual and institutional investors seeking premium real estate opportunities with transparent returns and regulatory compliance.",
       contribution: "We provide fractional ownership of premium Ghana properties, diversified portfolio options, and regular returns through our tokenized investment platform.",
       ctaText: "Join Waitlist",
@@ -43,8 +43,8 @@ export function CTASections() {
       title: "Developers",
       icon: Building,
       headline: "Partner With Us",
-      context: "Property developers looking for innovative funding solutions and access to a global investor base.",
-      contribution: "We offer streamlined capital access, global investor reach, and tokenization expertise to help you bring premium projects to market faster.",
+      context: "Ghana's nascent mortgage market means most households cannot access home loans, leaving developers with a smaller pool of eligible buyers. This narrows the market to cash buyers, HNWIs, expats, and diaspora — a highly competitive segment. To bridge this gap, many developers turn to pre-sales, but these can create fragile cashflows if uptake is slow or defaults occur. Traditional bank finance is difficult to access, with commercial interest rates among the highest in the region.",
+      contribution: "Fractional investment opens a new channel of capital by connecting you directly to retail and diaspora investors, expanding your buyer base beyond cash-only purchasers. With escrow + milestone disbursements, you gain predictable funding while protecting investor confidence. Transparent SPV-backed structures elevate your credibility, helping you build trust with buyers and partners. Most importantly: faster, more reliable access to funding means projects complete on time, sales grow stronger, and your business becomes less dependent on debt or speculative pre-sales.",
       ctaText: "Partner With Us",
       formId: "NYKX0LYM",
       color: "highlight",
@@ -55,8 +55,8 @@ export function CTASections() {
       title: "Ecosystem Stakeholders",
       icon: Briefcase,
       headline: "Engage With Us",
-      context: "Partners, advisors, and service providers in the real estate ecosystem seeking collaboration opportunities.",
-      contribution: "We create partnership opportunities, expand your network reach, and foster innovation collaboration in the digital real estate space.",
+      context: "Ghana faces a housing deficit of around 2 million units, with demand continuing to outpace supply. With 85% of workers in informal employment, most households cannot access mortgages, limiting the reach of traditional housing finance. Affordable housing projects often face delays due to funding gaps, while universities continue to struggle with a shortage of student accommodation. Across housing, finance, and policy, efforts are ambitious but often operate in parallel, making joined-up collaboration essential to deliver lasting change.",
+      contribution: "LandLedger's role is to engage, listen, and contribute constructively to Ghana's evolving regulatory landscape. We are already proactively engaging with the Bank of Ghana, SEC, and Lands Commission, as well as ministries, unions, NGOs, and universities. Together, we aim to shape a trust-based framework that supports PPP models that de-risk delivery, affordable housing projects that reach completion, student housing that meets rising demand, and a national agenda with financial inclusion and digital participation at its core.",
       ctaText: "Engage With Us",
       formId: "NYKX0LYM",
       color: "primary",
@@ -184,8 +184,8 @@ export function CTASections() {
                     <div className="mb-8">
                       <h4 className="text-lg font-semibold text-white mb-3">
                         {section.id === "investors" ? "Our Contribution" : 
-                         section.id === "developers" ? "Partnership Approach" : 
-                         "Engagement Approach"}
+                         section.id === "developers" ? "Our Contribution" : 
+                         "Our Partnership Approach"}
                       </h4>
                       <p className="text-slate-300 text-sm leading-relaxed">
                         {section.contribution}

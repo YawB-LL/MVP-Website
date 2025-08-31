@@ -8,7 +8,7 @@ import { About } from "@/components/sections/about"
 import { Trust } from "@/components/sections/trust"
 import { Roadmap } from "@/components/sections/roadmap"
 import { 
-  DynamicBlog, 
+  DynamicBlogPreview, 
   DynamicPress, 
   DynamicCareers, 
   DynamicContact, 
@@ -30,7 +30,7 @@ export default function HomePage() {
       <About />
       <Trust />
       <Roadmap />
-      <DynamicBlog />
+      <DynamicBlogPreview />
       <DynamicPress />
       <DynamicCareers />
       <DynamicContact />

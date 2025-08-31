@@ -29,6 +29,32 @@ export const DynamicBlog = dynamic(
   }
 )
 
+// Blog preview section - loaded dynamically for homepage
+export const DynamicBlogPreview = dynamic(
+  () => import('@/components/sections/blog-preview').then(mod => ({ default: mod.BlogPreview })),
+  {
+    loading: () => (
+      <div className="py-24 bg-base">
+        <div className="container mx-auto px-6">
+          <div className="animate-pulse">
+            <div className="h-12 bg-white/10 rounded mb-8 max-w-2xl mx-auto" />
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="bg-white/5 rounded-2xl p-6">
+                  <div className="h-48 bg-white/10 rounded mb-4" />
+                  <div className="h-6 bg-white/10 rounded mb-2" />
+                  <div className="h-4 bg-white/10 rounded w-3/4" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+    ssr: false,
+  }
+)
+
 // Press section - loaded dynamically
 export const DynamicPress = dynamic(
   () => import('@/components/sections/press').then(mod => ({ default: mod.Press })),

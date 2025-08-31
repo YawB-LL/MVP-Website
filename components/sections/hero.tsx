@@ -42,7 +42,7 @@ export function Hero() {
             sizes="100vw"
             className="object-cover scale-105 animate-slow-zoom"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-base/80 via-base/70 to-base/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-base/95 via-base/92 to-base/99" />
         </div>
 
         {/* Content */}

@@ -1,14 +1,18 @@
 import { NextResponse } from 'next/server'
 import { sanityClient } from '@/lib/sanity'
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     console.log('=== MAIN BLOG API ROUTE STARTED ===')
     
-    console.log('1. Calling Sanity for ALL posts...')
+    // Get URL parameters
+    const { searchParams } = new URL(request.url)
+    const limit = searchParams.get('limit')
     
-    // Fetch ALL posts without any filters - just get everything
-    const allPosts = await sanityClient.fetch(`
+    console.log('1. Calling Sanity for posts...')
+    
+    // Build the query with optional limit
+    let query = `
       *[_type == "post"] | order(publishedAt desc) {
         _id,
         title,
@@ -37,12 +41,19 @@ export async function GET() {
         readTime,
         seo
       }
-    `)
+    `
+    
+    // Add limit if specified
+    if (limit) {
+      query = query.replace('}', `}[0...${limit}]`)
+    }
+    
+    const allPosts = await sanityClient.fetch(query)
     
     console.log(`Sanity returned: ${allPosts.length} posts`)
     
     if (allPosts.length > 0) {
-      allPosts.forEach((post, index) => {
+      allPosts.forEach((post: any, index: number) => {
         console.log(`  Post ${index + 1}: "${post.title}" (ID: ${post._id})`)
       })
     }
@@ -77,7 +88,7 @@ export async function GET() {
     return NextResponse.json(
       { 
         error: 'Failed to fetch blog data',
-        details: error.message,
+        details: error instanceof Error ? error.message : 'Unknown error',
         success: false
       },
       { status: 500 }
