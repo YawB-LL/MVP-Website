@@ -10,6 +10,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,11 +20,55 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeout) {
+        clearTimeout(dropdownTimeout)
+      }
+    }
+  }, [dropdownTimeout])
+
   const handleNavClick = (section: string) => {
     trackEvent("navbar_click", { section })
-    document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
+    
+    // Close mobile menu and dropdown
     setIsOpen(false)
     setActiveDropdown(null)
+    
+    // Find the target element
+    const targetElement = document.getElementById(section)
+    
+    if (targetElement) {
+      // Calculate offset for fixed navbar (80px height)
+      const navbarHeight = 80
+      const elementPosition = targetElement.offsetTop - navbarHeight
+      
+      // Smooth scroll to the element
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth"
+      })
+    } else {
+      console.warn(`Section with id "${section}" not found`)
+    }
+  }
+
+  const handleDropdownEnter = (itemName: string) => {
+    // Clear any existing timeout
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout)
+      setDropdownTimeout(null)
+    }
+    setActiveDropdown(itemName)
+  }
+
+  const handleDropdownLeave = () => {
+    // Add a delay before closing the dropdown
+    const timeout = setTimeout(() => {
+      setActiveDropdown(null)
+    }, 150) // 150ms delay
+    setDropdownTimeout(timeout)
   }
 
   const navItems = [
@@ -91,8 +136,8 @@ export function Navbar() {
                   {item.dropdown ? (
                     <button
                       className="flex items-center gap-2 text-text hover:text-primary transition-colors duration-300 py-2"
-                      onMouseEnter={() => setActiveDropdown(item.name)}
-                      onMouseLeave={() => setActiveDropdown(null)}
+                      onMouseEnter={() => handleDropdownEnter(item.name)}
+                      onMouseLeave={handleDropdownLeave}
                     >
                       {item.name}
                       <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
@@ -113,18 +158,18 @@ export function Navbar() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden"
-                      onMouseEnter={() => setActiveDropdown(item.name)}
-                      onMouseLeave={() => setActiveDropdown(null)}
+                      className="absolute top-full left-0 mt-2 w-64 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden z-50"
+                      onMouseEnter={() => handleDropdownEnter(item.name)}
+                      onMouseLeave={handleDropdownLeave}
                     >
                       {item.dropdown.map((dropdownItem) => (
                         <button
                           key={dropdownItem.name}
                           onClick={() => handleNavClick(dropdownItem.href)}
-                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-white/10 transition-colors duration-300"
+                          className="w-full flex items-center gap-3 px-4 py-3 text-left text-text hover:bg-white/10 transition-colors duration-300 cursor-pointer"
                         >
                           <dropdownItem.icon className="w-4 h-4 text-primary" />
-                          {dropdownItem.name}
+                          <span>{dropdownItem.name}</span>
                         </button>
                       ))}
                     </motion.div>
@@ -186,16 +231,16 @@ export function Navbar() {
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: "auto" }}
                                 exit={{ opacity: 0, height: 0 }}
-                                className="ml-4 space-y-2 mt-2"
+                                className="ml-4 space-y-2 mt-2 border-l border-white/10 pl-4"
                               >
                                 {item.dropdown.map((dropdownItem) => (
                                   <button
                                     key={dropdownItem.name}
                                     onClick={() => handleNavClick(dropdownItem.href)}
-                                    className="flex items-center gap-3 w-full text-left text-text-secondary hover:text-primary transition-colors duration-300 py-2"
+                                    className="flex items-center gap-3 w-full text-left text-text-secondary hover:text-primary transition-colors duration-300 py-2 cursor-pointer"
                                   >
                                     <dropdownItem.icon className="w-4 h-4 text-primary" />
-                                    {dropdownItem.name}
+                                    <span>{dropdownItem.name}</span>
                                   </button>
                                 ))}
                               </motion.div>

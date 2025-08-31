@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+import NextImage from "next/image"
 import { Card } from "@/components/ui/card"
 import { Target, Eye, Heart, TrendingUp, Users, MapPin, Award, CheckCircle } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -151,7 +151,7 @@ export function About() {
               >
                 <Card className="p-8 lg:p-10 bg-white/12 backdrop-blur-xl border border-white/20 hover:border-primary/50 transition-all duration-300 group overflow-hidden">
                   <div className="relative w-full h-48 lg:h-56 rounded-2xl overflow-hidden mb-8">
-                    <Image
+                    <NextImage
                       src="/modern-ghana-office-team.png"
                       alt="LandLedger team"
                       fill
