@@ -53,7 +53,7 @@ export function Hero() {
           animate="animate"
           variants={staggerChildren}
         >
-          <div className="max-w-4xl mx-auto space-y-10 backdrop-blur-sm bg-base/30 rounded-2xl p-8 shadow-xl">
+          <div className="max-w-4xl mx-auto space-y-10 backdrop-blur-md bg-black/50 rounded-2xl p-8 shadow-2xl border border-white/10">
             {/* Trust Badges */}
             <motion.div
               className="flex flex-wrap justify-center items-center gap-6 mb-4"
