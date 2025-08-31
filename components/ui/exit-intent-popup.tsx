@@ -14,8 +14,15 @@ export function ExitIntentPopup() {
   const [email, setEmail] = useState("")
   const [hasShown, setHasShown] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isMounted) return
+
     // Check if user has already seen popup or is returning visitor
     const hasSeenPopup = localStorage.getItem("landledger-exit-popup-shown")
     const isReturningVisitor = localStorage.getItem("landledger-visitor-return")
@@ -61,7 +68,7 @@ export function ExitIntentPopup() {
         clearTimeout(returningVisitorTimer)
       }
     }
-  }, [hasShown, isOpen])
+  }, [hasShown, isOpen, isMounted])
 
   const handleClose = () => {
     setIsOpen(false)
@@ -82,6 +89,11 @@ export function ExitIntentPopup() {
     }, 1000)
 
     setIsSubmitting(false)
+  }
+
+  // Don't render anything until mounted to prevent hydration issues
+  if (!isMounted) {
+    return null
   }
 
   return (

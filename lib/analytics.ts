@@ -1,12 +1,15 @@
 // Analytics utilities for GA4 and Facebook Pixel
 export const trackEvent = (eventName: string, parameters?: Record<string, any>) => {
+  // Only run on client side
+  if (typeof window === "undefined") return
+
   // GA4 tracking
-  if (typeof window !== "undefined" && window.gtag) {
+  if (window.gtag) {
     window.gtag("event", eventName, parameters)
   }
 
   // Facebook Pixel tracking
-  if (typeof window !== "undefined" && window.fbq) {
+  if (window.fbq) {
     window.fbq("track", eventName, parameters)
   }
 
@@ -64,5 +67,6 @@ declare global {
   interface Window {
     gtag: (...args: any[]) => void
     fbq: (...args: any[]) => void
+    dataLayer: any[]
   }
 }
