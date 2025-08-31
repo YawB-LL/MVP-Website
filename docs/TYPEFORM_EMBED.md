@@ -1,486 +1,360 @@
-# TypeformEmbed Component Documentation
+# Enhanced Modal & Typeform Integration Guide
 
-A professional, production-ready Typeform embed component for Next.js applications with comprehensive error handling, loading states, and accessibility features.
+This guide covers the enhanced modal system and typeform integration that provides a premium, mobile-first user experience.
 
-## 🚀 Features
+## Overview
 
-- **Professional Embedding**: Seamlessly integrates Typeform into your Next.js app
-- **Error Handling**: Comprehensive error handling with retry mechanisms
-- **Loading States**: Beautiful loading animations and user feedback
-- **Responsive Design**: Automatically adapts to different screen sizes
-- **Accessibility**: Proper ARIA labels and keyboard navigation support
-- **Memory Management**: Proper cleanup to prevent memory leaks
-- **TypeScript Support**: Full TypeScript support with proper type definitions
-- **Customization**: Extensive customization options for styling and behavior
+The enhanced modal system includes:
+- **Sophisticated backdrop** with blur effects and click-to-close
+- **Mobile-first responsive design** with bottom sheet behavior on mobile
+- **Swipe-to-close gestures** for mobile devices
+- **Enhanced accessibility** with keyboard navigation and screen reader support
+- **Professional loading states** and error handling
+- **Seamless typeform integration** with optimized performance
 
-## 📦 Installation
+## Modal Component
 
-The component is already included in your project at `components/ui/typeform-embed.tsx`.
-
-## 🎯 Basic Usage
+### Basic Usage
 
 ```tsx
-import { TypeformEmbed } from "@/components/ui/typeform-embed"
+import { Modal } from "@/components/ui/modal"
 
-export default function MyPage() {
-  return (
-    <TypeformEmbed
-      formId="01K38AHCG70RKEZGD0P5KH7CBY"
-      height={600}
-      onSubmission={(data) => console.log("Form submitted:", data)}
-    />
-  )
-}
-```
-
-## ⚙️ Props Reference
-
-### Required Props
-
-| Prop | Type | Description |
-|------|------|-------------|
-| `formId` | `string` | Your Typeform form ID |
-
-### Optional Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `height` | `number` | `600` | Height of the form in pixels |
-| `width` | `string \| number` | `"100%"` | Width of the form |
-| `className` | `string` | `""` | Additional CSS classes |
-| `onSubmission` | `(data: any) => void` | `undefined` | Callback when form is submitted |
-| `onReady` | `() => void` | `undefined` | Callback when form is ready |
-| `onError` | `(error: Error) => void` | `undefined` | Callback when an error occurs |
-| `showBranding` | `boolean` | `false` | Show Typeform branding |
-| `hideHeaders` | `boolean` | `true` | Hide form headers |
-| `hideFooter` | `boolean` | `true` | Hide form footer |
-| `opacity` | `number` | `0` | Form opacity (0-1) |
-| `disableAutoFocus` | `boolean` | `true` | Disable auto-focus on first field |
-| `enableSandbox` | `boolean` | `false` | Enable sandbox mode |
-| `autoResize` | `boolean` | `true` | Auto-resize on window resize |
-| `fullScreen` | `boolean` | `false` | Enable full-screen mode |
-
-## 🔧 Advanced Usage Examples
-
-### 1. Basic Form with Event Handlers
-
-```tsx
-import { TypeformEmbed } from "@/components/ui/typeform-embed"
-
-export default function WaitlistPage() {
-  const handleSubmission = (data: any) => {
-    console.log("User submitted:", data)
-    // Send to your API
-    // Track analytics
-    // Show success message
-  }
-
-  const handleFormReady = () => {
-    console.log("Form is ready for users")
-  }
-
-  const handleFormError = (error: Error) => {
-    console.error("Form error:", error)
-    // Log error to monitoring service
-  }
-
-  return (
-    <TypeformEmbed
-      formId="01K38AHCG70RKEZGD0P5KH7CBY"
-      height={600}
-      onSubmission={handleSubmission}
-      onReady={handleFormReady}
-      onError={handleFormError}
-    />
-  )
-}
-```
-
-### 2. Customized Styling
-
-```tsx
-<TypeformEmbed
-  formId="01K38AHCG70RKEZGD0P5KH7CBY"
-  height={700}
-  width="90%"
-  className="mx-auto rounded-2xl shadow-2xl"
-  showBranding={false}
-  hideHeaders={true}
-  hideFooter={true}
-  opacity={0}
-  disableAutoFocus={true}
-  autoResize={true}
-/>
-```
-
-### 3. Full-Screen Modal
-
-```tsx
-import { useState } from "react"
-import { TypeformEmbed } from "@/components/ui/typeform-embed"
-
-export default function ModalForm() {
+function MyComponent() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <>
-      <button onClick={() => setIsOpen(true)}>
-        Open Form
-      </button>
-
-      {isOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-4xl w-full mx-4">
-            <div className="flex justify-between items-center mb-4">
-              <h2>Join Our Waitlist</h2>
-              <button onClick={() => setIsOpen(false)}>×</button>
-            </div>
-            
-            <TypeformEmbed
-              formId="01K38AHCG70RKEZGD0P5KH7CBY"
-              height={600}
-              fullScreen={false}
-              onSubmission={(data) => {
-                console.log("Submitted:", data)
-                setIsOpen(false)
-              }}
-            />
-          </div>
-        </div>
-      )}
-    </>
+    <Modal
+      isOpen={isOpen}
+      onClose={() => setIsOpen(false)}
+      title="My Modal"
+      description="Optional description text"
+    >
+      <div>Your content here</div>
+    </Modal>
   )
 }
 ```
 
-### 4. Responsive Design
+### Enhanced Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isOpen` | `boolean` | - | Controls modal visibility |
+| `onClose` | `() => void` | - | Called when modal closes |
+| `title` | `string` | - | Modal title |
+| `description` | `string` | - | Optional description |
+| `size` | `"sm" \| "md" \| "lg" \| "xl" \| "full" \| "typeform"` | `"lg"` | Modal size preset |
+| `showCloseButton` | `boolean` | `true` | Show close button |
+| `showBackdrop` | `boolean` | `true` | Show backdrop |
+| `closeOnBackdropClick` | `boolean` | `true` | Close on backdrop click |
+| `closeOnEscape` | `boolean` | `true` | Close on ESC key |
+| `enableSwipeToClose` | `boolean` | `true` | Enable swipe-to-close on mobile |
+| `loading` | `boolean` | `false` | Show loading state |
+| `error` | `string \| null` | `null` | Show error state |
+
+### Size Presets
+
+- **`sm`**: `max-w-md` - Small modal
+- **`md`**: `max-w-lg` - Medium modal  
+- **`lg`**: `max-w-2xl` - Large modal (default)
+- **`xl`**: `max-w-4xl` - Extra large modal
+- **`full`**: `max-w-7xl` - Full width modal
+- **`typeform`**: Optimized for typeform embedding with responsive sizing
+
+## Typeform Integration
+
+### Basic Typeform Modal
 
 ```tsx
-<TypeformEmbed
-  formId="01K38AHCG70RKEZGD0P5KH7CBY"
-  height={window.innerWidth < 768 ? 400 : 600}
-  width="100%"
-  autoResize={true}
-  className="w-full max-w-4xl mx-auto"
-/>
-```
+import { Modal } from "@/components/ui/modal"
+import { TypeformEmbed } from "@/components/ui/typeform-embed"
 
-## 🎨 Styling and Customization
+function TypeformModal() {
+  const [isOpen, setIsOpen] = useState(false)
 
-### Default Styling
-
-The component uses your existing design system:
-- **Primary Color**: `text-primary` (your brand color)
-- **Background**: `bg-base` (your base background)
-- **Borders**: `border-white/10` (subtle white borders)
-- **Text**: `text-text` and `text-text-secondary`
-
-### Custom Styling
-
-```tsx
-<TypeformEmbed
-  formId="01K38AHCG70RKEZGD0P5KH7CBY"
-  className="
-    custom-form-container
-    border-2 border-blue-500
-    rounded-3xl
-    shadow-blue-500/20
-  "
-/>
-```
-
-### CSS Customization
-
-```css
-/* Custom styles for the form container */
-.custom-form-container {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-/* Style the loading state */
-.custom-form-container .loading-state {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-}
-```
-
-## 🚨 Error Handling
-
-The component includes comprehensive error handling:
-
-### Automatic Retry
-- Attempts to reload the form up to 3 times
-- Configurable retry delay (default: 2 seconds)
-- User-friendly retry button
-
-### Error States
-- Script loading failures
-- Widget creation errors
-- Network issues
-- Typeform API errors
-
-### Error Callbacks
-```tsx
-<TypeformEmbed
-  formId="01K38AHCG70RKEZGD0P5KH7CBY"
-  onError={(error) => {
-    // Log to monitoring service
-    console.error("Typeform error:", error)
-    
-    // Show user-friendly message
-    toast.error("Unable to load form. Please try again.")
-    
-    // Track error analytics
-    analytics.track("typeform_error", { error: error.message })
-  }}
-/>
-```
-
-## 📱 Responsive Behavior
-
-### Auto-Resize
-```tsx
-<TypeformEmbed
-  formId="01K38AHCG70RKEZGD0P5KH7CBY"
-  autoResize={true}
-  height={600}
-/>
-```
-
-### Mobile Optimization
-```tsx
-const [formHeight, setFormHeight] = useState(600)
-
-useEffect(() => {
-  const updateHeight = () => {
-    if (window.innerWidth < 768) {
-      setFormHeight(400) // Mobile
-    } else if (window.innerWidth < 1024) {
-      setFormHeight(500) // Tablet
-    } else {
-      setFormHeight(600) // Desktop
-    }
-  }
-
-  updateHeight()
-  window.addEventListener('resize', updateHeight)
-  return () => window.removeEventListener('resize', updateHeight)
-}, [])
-
-<TypeformEmbed
-  formId="01K38AHCG70RKEZGD0P5KH7CBY"
-  height={formHeight}
-  autoResize={true}
-/>
-```
-
-## 🔒 Security Considerations
-
-### Content Security Policy (CSP)
-Add to your `next.config.js`:
-
-```js
-const nextConfig = {
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: "script-src 'self' 'unsafe-inline' https://embed.typeform.com; frame-src https://form.typeform.com;"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-### Environment Variables
-```env
-# Typeform Configuration
-TYPEFORM_API_TOKEN=your_api_token_here
-TYPEFORM_WAITLIST_FORM_ID=01K38AHCG70RKEZGD0P5KH7CBY
-```
-
-## 📊 Analytics Integration
-
-### Google Analytics
-```tsx
-<TypeformEmbed
-  formId="01K38AHCG70RKEZGD0P5KH7CBY"
-  onSubmission={(data) => {
-    // Track form submission
-    gtag('event', 'form_submit', {
-      form_name: 'waitlist',
-      form_id: '01K38AHCG70RKEZGD0P5KH7CBY'
-    })
-  }}
-  onReady={() => {
-    // Track form view
-    gtag('event', 'form_view', {
-      form_name: 'waitlist',
-      form_id: '01K38AHCG70RKEZGD0P5KH7CBY'
-    })
-  }}
-/>
-```
-
-### Custom Analytics
-```tsx
-const trackFormEvent = (eventName: string, data?: any) => {
-  // Your analytics implementation
-  analytics.track(eventName, {
-    form_id: '01K38AHCG70RKEZGD0P5KH7CBY',
-    timestamp: new Date().toISOString(),
-    ...data
-  })
-}
-
-<TypeformEmbed
-  formId="01K38AHCG70RKEZGD0P5KH7CBY"
-  onSubmission={(data) => trackFormEvent('waitlist_submitted', data)}
-  onReady={() => trackFormEvent('waitlist_loaded')}
-  onError={(error) => trackFormEvent('waitlist_error', { error: error.message })}
-/>
-```
-
-## 🧪 Testing
-
-### Unit Tests
-```tsx
-import { render, screen, waitFor } from '@testing-library/react'
-import { TypeformEmbed } from '@/components/ui/typeform-embed'
-
-describe('TypeformEmbed', () => {
-  it('shows loading state initially', () => {
-    render(<TypeformEmbed formId="test-form" />)
-    expect(screen.getByText('Loading waitlist form...')).toBeInTheDocument()
-  })
-
-  it('handles errors gracefully', async () => {
-    const mockError = jest.fn()
-    render(
-      <TypeformEmbed 
-        formId="invalid-form" 
-        onError={mockError}
+  return (
+    <Modal
+      isOpen={isOpen}
+      onClose={() => setIsOpen(false)}
+      title="Contact Us"
+      description="We'd love to hear from you"
+      size="typeform"
+    >
+      <TypeformEmbed
+        formId="YOUR_FORM_ID"
+        onClose={() => setIsOpen(false)}
       />
-    )
-    
-    await waitFor(() => {
-      expect(mockError).toHaveBeenCalled()
-    })
-  })
-})
-```
-
-### Integration Tests
-```tsx
-it('submits form data correctly', async () => {
-  const mockSubmission = jest.fn()
-  render(
-    <TypeformEmbed 
-      formId="01K38AHCG70RKEZGD0P5KH7CBY"
-      onSubmission={mockSubmission}
-    />
+    </Modal>
   )
-  
-  // Wait for form to load
-  await waitFor(() => {
-    expect(screen.queryByText('Loading waitlist form...')).not.toBeInTheDocument()
-  })
-  
-  // Simulate form submission
-  // Note: This would require mocking the Typeform API
-})
+}
 ```
 
-## 🚀 Performance Optimization
+### Enhanced TypeformEmbed Props
 
-### Lazy Loading
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `formId` | `string` | - | Typeform form ID |
+| `title` | `string` | - | Optional form title |
+| `description` | `string` | - | Optional form description |
+| `onClose` | `() => void` | - | Called when form closes |
+| `onReady` | `() => void` | - | Called when form is ready |
+| `onSubmit` | `(data: any) => void` | - | Called on form submission |
+| `onError` | `(error: any) => void` | - | Called on form error |
+| `height` | `string \| number` | `"600px"` | Form height |
+| `autoResize` | `boolean` | `true` | Auto-resize form |
+| `enableSandbox` | `boolean` | `false` | Enable sandbox mode |
+| `hideHeaders` | `boolean` | `false` | Hide typeform headers |
+| `hideFooter` | `boolean` | `false` | Hide typeform footer |
+| `disableAutoFocus` | `boolean` | `true` | Disable auto-focus |
+| `opacity` | `number` | `0` | Form opacity |
+
+## Complete Example Component
+
 ```tsx
-import dynamic from 'next/dynamic'
+import { useState } from "react"
+import { Modal } from "@/components/ui/modal"
+import { TypeformEmbed } from "@/components/ui/typeform-embed"
+import { Button } from "@/components/ui/button"
 
-const TypeformEmbed = dynamic(
-  () => import('@/components/ui/typeform-embed').then(mod => ({ default: mod.TypeformEmbed })),
-  {
-    loading: () => <div>Loading form...</div>,
-    ssr: false // Disable SSR for Typeform
+export function ContactFormModal() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleOpen = () => {
+    setIsOpen(true)
+    setIsLoading(true)
+    setError(null)
   }
-)
-```
 
-### Preloading
-```tsx
-// In your _app.tsx or layout
-import Head from 'next/head'
+  const handleClose = () => {
+    setIsOpen(false)
+    setIsLoading(false)
+    setError(null)
+  }
 
-export default function Layout({ children }) {
+  const handleFormReady = () => {
+    setIsLoading(false)
+  }
+
+  const handleFormSubmit = (data: any) => {
+    console.log("Form submitted:", data)
+    // Handle form submission
+    setTimeout(() => handleClose(), 1500)
+  }
+
+  const handleFormError = (error: any) => {
+    console.error("Form error:", error)
+    setError(error?.message || "Failed to load form")
+    setIsLoading(false)
+  }
+
   return (
     <>
-      <Head>
-        <link rel="preload" href="//embed.typeform.com/next/embed.js" as="script" />
-      </Head>
-      {children}
+      <Button onClick={handleOpen}>
+        Contact Us
+      </Button>
+
+      <Modal
+        isOpen={isOpen}
+        onClose={handleClose}
+        title="Contact Us"
+        description="We'd love to hear from you. Please fill out the form below."
+        size="typeform"
+        loading={isLoading}
+        error={error}
+      >
+        <TypeformEmbed
+          formId="YOUR_FORM_ID"
+          onReady={handleFormReady}
+          onSubmit={handleFormSubmit}
+          onError={handleFormError}
+          onClose={handleClose}
+        />
+      </Modal>
     </>
   )
 }
 ```
 
-## 🔧 Troubleshooting
+## Mobile-First Features
+
+### Responsive Behavior
+
+- **Mobile (< 768px)**: Bottom sheet style with swipe-to-close
+- **Tablet (768px - 1024px)**: Centered modal with scale animation
+- **Desktop (> 1024px)**: Traditional modal with zoom animation
+
+### Touch Interactions
+
+- **Swipe to close**: Swipe down on mobile to dismiss
+- **Touch-friendly buttons**: Minimum 44px touch targets
+- **Smooth animations**: Optimized for mobile performance
+
+### Mobile Optimizations
+
+- **Safe areas**: Respects device safe areas
+- **Keyboard handling**: Proper virtual keyboard behavior
+- **Orientation support**: Graceful portrait/landscape transitions
+- **Performance**: Optimized rendering for mobile browsers
+
+## Accessibility Features
+
+### Keyboard Navigation
+
+- **ESC key**: Close modal
+- **Tab navigation**: Focus trapping within modal
+- **Focus restoration**: Restore focus when modal closes
+
+### Screen Reader Support
+
+- **ARIA labels**: Proper labeling for all interactive elements
+- **Announcements**: Screen reader announcements for state changes
+- **Semantic structure**: Proper heading hierarchy
+
+### Reduced Motion
+
+- **Respects preferences**: Automatically detects `prefers-reduced-motion`
+- **Instant transitions**: No animations when motion is reduced
+- **Accessible animations**: Smooth, non-disorienting animations
+
+## Animation System
+
+### Timing & Easing
+
+- **Enter**: 300ms with `ease-out` for welcoming feel
+- **Exit**: 200ms with `ease-in` for quick dismissal
+- **Backdrop**: 250ms fade in/out
+- **Micro-interactions**: 150ms for hover states
+
+### Animation Types
+
+- **Mobile**: Slide up from bottom
+- **Desktop**: Scale animation from center
+- **Backdrop**: Fade in/out with blur
+- **Loading**: Spinning with ping effect
+
+## Error Handling
+
+### Loading States
+
+```tsx
+<Modal loading={true}>
+  {/* Shows professional loading spinner */}
+</Modal>
+```
+
+### Error States
+
+```tsx
+<Modal error="Failed to load form">
+  {/* Shows error message with retry button */}
+</Modal>
+```
+
+### Form Error Handling
+
+```tsx
+const handleFormError = (error: any) => {
+  setError(error?.message || "Failed to load form")
+  setIsLoading(false)
+}
+```
+
+## Performance Optimizations
+
+### Lazy Loading
+
+- **Intersection observer**: Load typeform when modal opens
+- **Efficient rendering**: Optimized for mobile browsers
+- **Memory management**: Proper cleanup on unmount
+
+### Mobile Performance
+
+- **Touch optimization**: Efficient touch event handling
+- **Smooth scrolling**: Optimized scroll performance
+- **Reduced repaints**: Efficient DOM updates
+
+## Best Practices
+
+### Modal Usage
+
+1. **Clear purpose**: Use descriptive titles and descriptions
+2. **Consistent sizing**: Use appropriate size presets
+3. **Accessible**: Always provide keyboard and screen reader support
+4. **Mobile-first**: Test on mobile devices first
+
+### Typeform Integration
+
+1. **Form validation**: Handle form errors gracefully
+2. **Loading states**: Show loading indicators
+3. **Success feedback**: Provide clear success messages
+4. **Analytics**: Track form interactions and completions
+
+### Performance
+
+1. **Lazy load**: Load typeform only when needed
+2. **Error boundaries**: Handle errors gracefully
+3. **Memory cleanup**: Proper event listener cleanup
+4. **Mobile testing**: Test on various mobile devices
+
+## Troubleshooting
 
 ### Common Issues
 
-1. **Form not loading**
-   - Check if form ID is correct
-   - Verify network connectivity
-   - Check browser console for errors
+**Modal not opening**
+- Check `isOpen` state
+- Verify event handlers are properly bound
+- Check for console errors
 
-2. **Script loading errors**
-   - Ensure CSP allows Typeform domains
-   - Check if script is blocked by ad blockers
-   - Verify HTTPS is enabled
+**Typeform not loading**
+- Verify form ID is correct
+- Check network connectivity
+- Verify typeform is published and accessible
 
-3. **Styling issues**
-   - Check if CSS classes are properly applied
-   - Verify Tailwind CSS is working
-   - Check for CSS conflicts
+**Mobile issues**
+- Test on actual mobile devices
+- Check viewport meta tag
+- Verify touch event handling
+
+**Accessibility issues**
+- Test with screen readers
+- Verify keyboard navigation
+- Check ARIA labels
 
 ### Debug Mode
+
+Enable debug logging:
+
 ```tsx
-<TypeformEmbed
-  formId="01K38AHCG70RKEZGD0P5KH7CBY"
-  onError={(error) => {
-    console.group('Typeform Debug Info')
-    console.log('Error:', error)
-    console.log('Form ID:', '01K38AHCG70RKEZGD0P5KH7CBY')
-    console.log('User Agent:', navigator.userAgent)
-    console.log('Timestamp:', new Date().toISOString())
-    console.groupEnd()
-  }}
-/>
+const handleFormError = (error: any) => {
+  console.log("Form error details:", error)
+  setError(error?.message || "Failed to load form")
+}
 ```
 
-## 📚 Additional Resources
+## Migration Guide
 
-- [Typeform API Documentation](https://developer.typeform.com/)
-- [Typeform Embed Options](https://developer.typeform.com/embed/)
-- [Next.js Script Component](https://nextjs.org/docs/basic-features/script)
-- [React useEffect Cleanup](https://react.dev/reference/react/useEffect#cleanup)
+### From Basic Modal
 
-## 🤝 Contributing
+1. **Update imports**: Import enhanced modal components
+2. **Add new props**: Include loading, error, and accessibility props
+3. **Test mobile**: Verify mobile behavior works correctly
+4. **Update styling**: Use new size presets and styling
 
-To improve this component:
+### From Basic Typeform
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+1. **Update component**: Use enhanced TypeformEmbed
+2. **Add error handling**: Implement proper error states
+3. **Add loading states**: Show loading indicators
+4. **Test accessibility**: Verify keyboard and screen reader support
 
-## 📄 License
+## Support
 
-This component is part of your LandLedger project and follows the same license terms.
+For issues or questions:
+1. Check the troubleshooting section
+2. Review console errors
+3. Test on different devices and browsers
+4. Verify typeform configuration
+
+The enhanced modal system provides a premium, accessible, and mobile-first experience for typeform integration while maintaining consistency with your application's design system.

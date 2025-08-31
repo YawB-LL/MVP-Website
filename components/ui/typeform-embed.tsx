@@ -1,51 +1,111 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Widget } from "@typeform/embed-react"
 import { Loader2 } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface TypeformEmbedProps {
   formId: string
   title?: string
+  description?: string
   className?: string
   onClose?: () => void
+  onReady?: () => void
+  onError?: (error: any) => void
+  onSubmit?: (data: any) => void
+  height?: string | number
+  autoResize?: boolean
+  enableSandbox?: boolean
+  hideHeaders?: boolean
+  hideFooter?: boolean
+  disableAutoFocus?: boolean
+  opacity?: number
 }
 
-export function TypeformEmbed({ formId, title, className, onClose }: TypeformEmbedProps) {
+export function TypeformEmbed({ 
+  formId, 
+  title, 
+  description,
+  className, 
+  onClose,
+  onReady,
+  onError,
+  onSubmit,
+  height = "600px",
+  autoResize = true,
+  enableSandbox = false,
+  hideHeaders = false,
+  hideFooter = false,
+  disableAutoFocus = true,
+  opacity = 0
+}: TypeformEmbedProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isReady, setIsReady] = useState(false)
 
   const handleReady = () => {
     setIsLoading(false)
     setError(null)
+    setIsReady(true)
+    onReady?.()
   }
 
-  const handleSubmit = () => {
-    console.log("Form submitted")
+  const handleSubmit = (data: any) => {
+    console.log("Form submitted:", data)
+    onSubmit?.(data)
+    // Close modal after submission with a slight delay for UX
     if (onClose) {
-      setTimeout(() => onClose(), 1000) // Close modal after submission
+      setTimeout(() => onClose(), 1500)
     }
   }
 
   const handleError = (error: any) => {
     console.error("Typeform error:", error)
-    setError("Failed to load form. Please try again.")
+    const errorMessage = error?.message || "Failed to load form. Please try again."
+    setError(errorMessage)
     setIsLoading(false)
+    onError?.(error)
   }
 
+  const handleClose = () => {
+    console.log("Form closed")
+    onClose?.()
+  }
+
+  const handleQuestionChanged = (data: any) => {
+    console.log("Question changed:", data)
+  }
+
+  const handleHeightChanged = (data: any) => {
+    console.log("Height changed:", data)
+  }
+
+  // Reset state when formId changes
+  useEffect(() => {
+    setIsLoading(true)
+    setError(null)
+    setIsReady(false)
+  }, [formId])
+
+  // Enhanced error state with retry functionality
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center p-8 text-center">
-        <div className="text-red-400 mb-4">
-          <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="flex flex-col items-center justify-center p-8 text-center min-h-[400px]">
+        <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mb-4">
+          <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
           </svg>
         </div>
         <h3 className="text-lg font-semibold text-white mb-2">Something went wrong</h3>
-        <p className="text-slate-400 mb-4">{error}</p>
+        <p className="text-text-secondary mb-6 max-w-md">{error}</p>
         <button
-          onClick={() => window.location.reload()}
-          className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+          onClick={() => {
+            setError(null)
+            setIsLoading(true)
+            setIsReady(false)
+          }}
+          className="px-6 py-3 bg-primary text-white rounded-xl hover:bg-primary/90 active:bg-primary/80 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-black/50"
         >
           Try Again
         </button>
@@ -54,48 +114,76 @@ export function TypeformEmbed({ formId, title, className, onClose }: TypeformEmb
   }
 
   return (
-    <div className={className}>
-      {title && (
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-white mb-2">{title}</h2>
-          <p className="text-slate-400">Please fill out the form below</p>
+    <div className={cn("w-full h-full flex flex-col", className)}>
+      {/* Optional Header */}
+      {(title || description) && (
+        <div className="text-center p-6 pb-4 border-b border-white/10 bg-black/20">
+          {title && (
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 leading-tight">
+              {title}
+            </h2>
+          )}
+          {description && (
+            <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
+              {description}
+            </p>
+          )}
         </div>
       )}
       
-      {isLoading && (
-        <div className="flex flex-col items-center justify-center p-8">
-          <Loader2 className="w-8 h-8 text-primary animate-spin mb-4" />
-          <p className="text-slate-400">Loading form...</p>
-        </div>
-      )}
-      
-      <div className="min-h-[600px] w-full" style={{ opacity: isLoading ? 0 : 1 }}>
+      {/* Typeform Container */}
+      <div 
+        className="flex-1 w-full relative"
+        style={{ 
+          height: height,
+          minHeight: '400px'
+        }}
+      >
         <Widget
           id={formId}
           style={{
             width: '100%',
-            height: '600px',
+            height: '100%',
+            minHeight: '400px',
           }}
-          className="rounded-xl"
+          className="rounded-xl overflow-hidden"
           onReady={handleReady}
           onSubmit={handleSubmit}
-          onClose={() => {
-            console.log("Form closed")
-          }}
-          onQuestionChanged={() => {
-            console.log("Question changed")
-          }}
-          onHeightChanged={() => {
-            console.log("Height changed")
-          }}
+          onClose={handleClose}
+          onQuestionChanged={handleQuestionChanged}
+          onHeightChanged={handleHeightChanged}
+          enableSandbox={enableSandbox}
+          hideHeaders={hideHeaders}
+          hideFooter={hideFooter}
+          opacity={opacity}
+          disableAutoFocus={disableAutoFocus}
+          autoResize={autoResize}
+          // Enhanced accessibility
           enableSandbox={false}
-          hideHeaders={false}
-          hideFooter={false}
-          opacity={0}
-          disableAutoFocus={true}
-          autoResize={true}
+          // Mobile optimization
+          disableScroll={false}
+          // Performance optimizations
+          lazy={true}
+          // Enhanced styling
+          style={{
+            width: '100%',
+            height: '100%',
+            minHeight: '400px',
+            border: 'none',
+            borderRadius: '12px',
+          }}
         />
       </div>
+
+      {/* Optional Footer with Progress Indicator */}
+      {isReady && !isLoading && (
+        <div className="p-4 border-t border-white/10 bg-black/20">
+          <div className="flex items-center justify-center text-xs text-text-secondary">
+            <div className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse" />
+            <span>Form is ready</span>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

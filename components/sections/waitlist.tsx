@@ -9,6 +9,7 @@ import { Star, TrendingUp, Shield, Globe, Sparkles } from "lucide-react"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
+import { TYPEFORM_CONFIG } from "@/lib/typeform-config"
 
 export function Waitlist() {
   const prefersReducedMotion = useReducedMotion()
@@ -138,18 +139,30 @@ export function Waitlist() {
         </div>
       </section>
 
-      {/* Typeform Modal */}
+      {/* Enhanced Typeform Modal */}
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
-        size="xl"
-        className="max-h-[90vh] overflow-hidden"
+        title="Join the Waitlist"
+        description="Be among the first to experience LandLedger's revolutionary real estate investment platform."
+        size="typeform"
+        showCloseButton={true}
+        closeOnBackdropClick={true}
+        closeOnEscape={true}
+        enableSwipeToClose={true}
+        className="p-0"
       >
-        <TypeformEmbed
-          formId="NYKX0LYM"
-          title="Join the Waitlist"
-          onClose={closeModal}
-        />
+                 <TypeformEmbed
+           formId={TYPEFORM_CONFIG.WAITLIST}
+           onClose={closeModal}
+           height="100%"
+           autoResize={true}
+           enableSandbox={false}
+           hideHeaders={false}
+           hideFooter={false}
+           disableAutoFocus={true}
+           opacity={0}
+         />
       </Modal>
     </>
   )
