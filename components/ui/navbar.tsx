@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ChevronDown, Globe, Shield, TrendingUp } from "lucide-react"
 import { Button } from "./button"
+import { Modal } from "./modal"
+import { TypeformEmbed } from "./typeform-embed"
 import { trackEvent } from "@/lib/analytics"
 
 export function Navbar() {
@@ -11,6 +13,16 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openModal = () => {
+    setIsModalOpen(true)
+    setIsOpen(false) // Close mobile menu if open
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,21 +48,29 @@ export function Navbar() {
     setIsOpen(false)
     setActiveDropdown(null)
     
-    // Find the target element
-    const targetElement = document.getElementById(section)
-    
-    if (targetElement) {
-      // Calculate offset for fixed navbar (80px height)
-      const navbarHeight = 80
-      const elementPosition = targetElement.offsetTop - navbarHeight
-      
-      // Smooth scroll to the element
+    if (section === "hero") {
+      // Scroll to top for home
       window.scrollTo({
-        top: elementPosition,
+        top: 0,
         behavior: "smooth"
       })
     } else {
-      console.warn(`Section with id "${section}" not found`)
+      // Find the target element
+      const targetElement = document.getElementById(section)
+      
+      if (targetElement) {
+        // Calculate offset for fixed navbar (80px height)
+        const navbarHeight = 80
+        const elementPosition = targetElement.offsetTop - navbarHeight
+        
+        // Smooth scroll to the element
+        window.scrollTo({
+          top: elementPosition,
+          behavior: "smooth"
+        })
+      } else {
+        console.warn(`Section with id "${section}" not found`)
+      }
     }
   }
 
@@ -67,7 +87,7 @@ export function Navbar() {
     // Add a delay before closing the dropdown
     const timeout = setTimeout(() => {
       setActiveDropdown(null)
-    }, 150) // 150ms delay
+    }, 300) // 300ms delay for better stability
     setDropdownTimeout(timeout)
   }
 
@@ -180,17 +200,15 @@ export function Navbar() {
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <a
-                href="https://form.typeform.com/to/NYKX0LYM"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={openModal}
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white px-6 py-3 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:shadow-primary/50"
               >
                 Join Waitlist
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
-              </a>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -258,17 +276,15 @@ export function Navbar() {
                 ))}
                 
                 <div className="pt-4 border-t border-white/10">
-                  <a
-                    href="https://form.typeform.com/to/NYKX0LYM"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={openModal}
                     className="inline-flex items-center gap-2 w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white py-3 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 justify-center"
                   >
                     Join Waitlist
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -278,6 +294,20 @@ export function Navbar() {
 
       {/* Spacer to prevent content from hiding behind navbar */}
       <div className="h-20" />
+
+      {/* Typeform Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        size="xl"
+        className="max-h-[90vh] overflow-hidden"
+      >
+        <TypeformEmbed
+          formId="NYKX0LYM"
+          title="Join the Waitlist"
+          onClose={closeModal}
+        />
+      </Modal>
     </>
   )
 }

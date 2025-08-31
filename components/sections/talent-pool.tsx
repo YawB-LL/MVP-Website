@@ -5,30 +5,24 @@ import type React from "react"
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code, Briefcase, Users, Sparkles } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Modal } from "@/components/ui/modal"
 import { TypeformEmbed } from "@/components/ui/typeform-embed"
+import { Code, Briefcase, Users, Sparkles, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 
 export function TalentPool() {
   const prefersReducedMotion = useReducedMotion()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleSubmission = (data: any) => {
-    console.log("Talent application submitted:", data)
-    // You can add additional tracking or redirect logic here
-    // - Send to your API
-    // - Track analytics
-    // - Send confirmation email
-    // - Add to CRM
+  const openModal = () => {
+    setIsModalOpen(true)
   }
 
-  const handleFormReady = () => {
-    console.log("Talent form is ready")
-  }
-
-  const handleFormError = (error: Error) => {
-    console.error("Talent form error:", error)
+  const closeModal = () => {
+    setIsModalOpen(false)
   }
 
   return (
@@ -102,32 +96,31 @@ export function TalentPool() {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Typeform Section */}
+            {/* Application Section */}
             <motion.div 
               className="space-y-8"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
               <Card className="p-8 bg-slate-900/90 backdrop-blur-xl border-2 border-primary/40 shadow-2xl shadow-black/40">
-                <div className="mb-8 text-center">
+                <div className="text-center">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-highlight text-white border border-highlight text-sm font-semibold mb-4">
                     <Sparkles className="w-4 h-4" />
                     Apply Now
                   </div>
                   <h3 className="text-3xl font-bold text-white mb-3">Submit Your Application</h3>
-                  <p className="text-slate-300 text-lg leading-relaxed max-w-2xl mx-auto">
-                    Complete the form below to join our talent pool. We'll review your application and get back to you within 5 business days.
+                  <p className="text-slate-300 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+                    Complete the form to join our talent pool. We'll review your application and get back to you within 5 business days.
                   </p>
+                  
+                  <Button
+                    onClick={openModal}
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40"
+                  >
+                    <Sparkles className="w-5 h-5" />
+                    Start Application
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
                 </div>
-                
-                <TypeformEmbed
-                  formId="aAYu9UJb"
-                  height={650}
-                  onSubmission={(data) => {
-                    console.log("Talent form submission:", data)
-                    // You can add additional tracking or redirect logic here
-                  }}
-                  className="rounded-2xl overflow-hidden"
-                />
               </Card>
             </motion.div>
 
@@ -211,6 +204,20 @@ export function TalentPool() {
           </div>
         </motion.div>
       </div>
+
+      {/* Typeform Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        size="xl"
+        className="max-h-[90vh] overflow-hidden"
+      >
+        <TypeformEmbed
+          formId="aAYu9UJb"
+          title="Join Our Talent Pool"
+          onClose={closeModal}
+        />
+      </Modal>
     </section>
   )
 }
