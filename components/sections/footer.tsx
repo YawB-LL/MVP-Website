@@ -84,34 +84,7 @@ export function Footer() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(195,61,143,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(195,61,143,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
       </div>
 
-      {/* Stats Section */}
-      <div className="relative z-10 border-b border-white/10">
-        <div className="container mx-auto px-6 py-16">
-          <motion.div 
-            className="max-w-6xl mx-auto"
-            initial="initial"
-            animate="animate"
-            variants={staggerChildren}
-          >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  className="text-center"
-                  variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-                  custom={index}
-                >
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-primary/20">
-                    <stat.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <div className="text-3xl font-bold text-text mb-2">{stat.value}</div>
-                  <div className="text-text-secondary text-sm">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </div>
+    
 
       {/* Main Footer Content */}
       <div className="container mx-auto px-6 py-20 relative z-10">

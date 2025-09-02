@@ -14,7 +14,7 @@ import {
 
 export function Careers() {
   return (
-    <section className="section-padding bg-base" id="careers">
+    <section className="section-padding bg-base" >
       <div className="container mx-auto">
         {/* Header */}
         <motion.div

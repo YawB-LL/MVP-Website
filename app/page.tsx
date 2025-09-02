@@ -26,13 +26,12 @@ export default function HomePage() {
       <PainPoints />
       <HowItWorks />
       <Waitlist />
-      <TalentPool />
       <About />
       <Trust />
       <Roadmap />
       <DynamicBlogPreview />
       <DynamicPress />
-      <DynamicCareers />
+      <TalentPool />
       <DynamicContact />
       <DynamicFooter />
       <DynamicExitIntentPopup />

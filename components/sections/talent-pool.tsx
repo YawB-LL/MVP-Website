@@ -1,17 +1,87 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
 import { TypeformEmbed } from "@/components/ui/typeform-embed"
-import { Code, Briefcase, Users, Sparkles, ArrowRight } from "lucide-react"
+import { 
+  Code, 
+  Briefcase, 
+  Users, 
+  Sparkles, 
+  ArrowRight, 
+  CheckCircle,
+  Target,
+  TrendingUp,
+  Clock
+} from "lucide-react"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
+
+interface BenefitItem {
+  icon: React.ComponentType<{ className?: string }>
+  title: string
+  description: string
+  color: "primary" | "highlight"
+}
+
+const benefits: BenefitItem[] = [
+  {
+    icon: Code,
+    title: "Cutting-Edge Technology",
+    description: "Work with modern PropTech, AI, and blockchain technologies shaping the future of real estate",
+    color: "primary"
+  },
+  {
+    icon: TrendingUp,
+    title: "Rapid Growth Opportunity",
+    description: "Join a fast-growing startup with significant career advancement and equity opportunities",
+    color: "highlight"
+  },
+  {
+    icon: Target,
+    title: "Meaningful Impact",
+    description: "Help democratize real estate investment and transform African property markets",
+    color: "primary"
+  },
+  {
+    icon: Users,
+    title: "World-Class Team",
+    description: "Collaborate with experienced professionals, industry veterans, and innovative thinkers",
+    color: "highlight"
+  }
+]
+
+const processSteps = [
+  {
+    step: "01",
+    title: "Submit Application",
+    description: "Complete our comprehensive application form",
+    icon: Sparkles
+  },
+  {
+    step: "02", 
+    title: "Initial Review",
+    description: "Our team reviews your background and experience",
+    icon: CheckCircle
+  },
+  {
+    step: "03",
+    title: "Interview Process", 
+    description: "Technical and cultural fit interviews",
+    icon: Users
+  },
+  {
+    step: "04",
+    title: "Welcome Aboard",
+    description: "Onboarding and integration into the team",
+    icon: Target
+  }
+]
 
 export function TalentPool() {
   const prefersReducedMotion = useReducedMotion()
@@ -26,7 +96,7 @@ export function TalentPool() {
   }
 
   return (
-    <section id="talent-pool" className="py-24 bg-base relative overflow-hidden">
+    <section id="careers" className="py-24 bg-base relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -43,83 +113,81 @@ export function TalentPool() {
         >
           {/* Section Header */}
           <motion.div 
-            className="text-center mb-20"
+            className="text-center mb-16"
             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-highlight/20 border border-highlight/30 text-highlight text-sm font-medium mb-6">
               <Sparkles className="w-4 h-4" />
               Join Our Team
             </div>
-            <h2 className="text-4xl md:text-6xl font-newsreader font-bold text-text mb-8 leading-tight">
+            
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-newsreader font-bold text-text mb-6 leading-tight">
               Join Our{" "}
               <span className="bg-gradient-to-r from-highlight via-primary to-highlight bg-clip-text text-transparent">
                 Talent Pool
               </span>
             </h2>
-            <p className="text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto leading-relaxed font-light">
-              Be part of the team revolutionizing real estate investment in Ghana. We're looking for passionate
-              individuals to help build the future of PropTech.
+            
+            <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed font-light">
+              Be part of the team revolutionizing real estate investment in Ghana. We're looking for 
+              passionate individuals to help build the future of PropTech in Africa.
             </p>
           </motion.div>
 
-          {/* Open Roles Preview */}
-          <motion.div 
-            className="grid md:grid-cols-3 gap-6 mb-20"
-            variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-          >
-            <Card className="p-8 bg-slate-900/80 backdrop-blur-xl border-2 border-primary/40 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:border-primary/60">
-              <Code className="w-16 h-16 text-primary mx-auto mb-6" />
-              <h3 className="text-xl font-bold text-white mb-3">Engineering</h3>
-              <p className="text-slate-300 text-base mb-6 leading-relaxed">Build scalable fintech infrastructure and innovative PropTech solutions</p>
-              <Badge variant="secondary" className="bg-primary text-white border-primary px-4 py-2 text-sm font-semibold">
-                5 positions
-              </Badge>
-            </Card>
-            
-            <Card className="p-8 bg-slate-900/80 backdrop-blur-xl border-2 border-highlight/40 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:border-highlight/60">
-              <Briefcase className="w-16 h-16 text-highlight mx-auto mb-6" />
-              <h3 className="text-xl font-bold text-white mb-3">Business</h3>
-              <p className="text-slate-300 text-base mb-6 leading-relaxed">Drive growth, partnerships, and market expansion strategies</p>
-              <Badge variant="secondary" className="bg-highlight text-white border-highlight px-4 py-2 text-sm font-semibold">
-                3 positions
-              </Badge>
-            </Card>
-            
-            <Card className="p-8 bg-slate-900/80 backdrop-blur-xl border-2 border-primary/40 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:border-primary/60">
-              <Users className="w-16 h-16 text-primary mx-auto mb-6" />
-              <h3 className="text-xl font-bold text-white mb-3">Operations</h3>
-              <p className="text-slate-300 text-base mb-6 leading-relaxed">Ensure smooth platform operations and exceptional user experience</p>
-              <Badge variant="secondary" className="bg-primary text-white border-primary px-4 py-2 text-sm font-semibold">
-                2 positions
-              </Badge>
-            </Card>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Application Section */}
+          <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
+            {/* Call to Action Section */}
             <motion.div 
               className="space-y-8"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-slate-900/90 backdrop-blur-xl border-2 border-primary/40 shadow-2xl shadow-black/40">
-                <div className="text-center">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-highlight text-white border border-highlight text-sm font-semibold mb-4">
-                    <Sparkles className="w-4 h-4" />
-                    Apply Now
+              <Card className="p-8 bg-slate-900/95 backdrop-blur-xl border-2 border-primary/30 shadow-2xl shadow-black/20">
+                <div className="text-center space-y-6">
+                  <div className="w-16 h-16 bg-gradient-to-r from-primary to-highlight rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-primary/25">
+                    <Sparkles className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-3">Submit Your Application</h3>
-                  <p className="text-slate-300 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-                    Complete the form to join our talent pool. We'll review your application and get back to you within 5 business days.
-                  </p>
+                  
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-3">Ready to Make an Impact?</h3>
+                    <p className="text-slate-300 leading-relaxed">
+                      Submit your application to join our talent pool. We review all applications 
+                      carefully and will contact qualified candidates within 5 business days.
+                    </p>
+                  </div>
                   
                   <Button
                     onClick={openModal}
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40"
+                    className="w-full bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-semibold py-4 text-lg rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300"
                   >
-                    <Sparkles className="w-5 h-5" />
-                    Start Application
-                    <ArrowRight className="w-5 h-5" />
+                    <span>Submit Application</span>
+                    <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
+                  
+                  <div className="flex items-center justify-center gap-2 text-sm text-slate-400">
+                    <Clock className="w-4 h-4" />
+                    <span>Response within 5 business days</span>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Process Steps */}
+              <Card className="p-6 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50">
+                <h4 className="text-lg font-semibold text-white mb-6 text-center">Application Process</h4>
+                <div className="space-y-4">
+                  {processSteps.map((step, index) => {
+                    const Icon = step.icon
+                    return (
+                      <div key={index} className="flex items-center gap-4 p-3 rounded-lg bg-slate-900/50 border border-slate-700/30">
+                        <div className="w-10 h-10 bg-gradient-to-r from-primary/20 to-highlight/20 border border-primary/30 rounded-full flex items-center justify-center text-primary font-bold text-sm flex-shrink-0">
+                          {step.step}
+                        </div>
+                        <Icon className="w-5 h-5 text-highlight flex-shrink-0" />
+                        <div>
+                          <p className="font-medium text-white text-sm">{step.title}</p>
+                          <p className="text-slate-400 text-xs">{step.description}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </Card>
             </motion.div>
@@ -129,79 +197,60 @@ export function TalentPool() {
               className="space-y-8"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              {/* Why Join LandLedger */}
-              <div className="space-y-6">
-                <div className="text-center mb-8">
-                  <h3 className="text-3xl font-bold text-white mb-3">Why Join LandLedger?</h3>
-                  <p className="text-slate-300 text-lg">Be part of something revolutionary</p>
-                </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-6 text-center lg:text-left">
+                  Why Choose LandLedger?
+                </h3>
+                
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-6 rounded-2xl bg-slate-800/80 border-2 border-primary/40 hover:border-primary/60 transition-all duration-300 hover:scale-[1.02]">
-                    <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center border-2 border-primary shadow-lg shadow-primary/25">
-                      <Code className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white text-lg">Cutting-Edge Tech</h4>
-                      <p className="text-slate-300">Work with the latest PropTech and fintech technologies</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-4 p-6 rounded-2xl bg-slate-800/80 border-2 border-highlight/40 hover:border-highlight/60 transition-all duration-300 hover:scale-[1.02]">
-                    <div className="w-12 h-12 bg-highlight rounded-2xl flex items-center justify-center border-2 border-highlight shadow-lg shadow-highlight/25">
-                      <Briefcase className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white text-lg">Impact & Growth</h4>
-                      <p className="text-slate-300">Shape the future of real estate investment in Africa</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-4 p-6 rounded-2xl bg-slate-800/80 border-2 border-primary/40 hover:border-primary/60 transition-all duration-300 hover:scale-[1.02]">
-                    <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center border-2 border-primary shadow-lg shadow-primary/25">
-                      <Users className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white text-lg">Great Team</h4>
-                      <p className="text-slate-300">Collaborate with passionate professionals and industry experts</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Application Process */}
-              <div className="space-y-6">
-                <div className="text-center mb-8">
-                  <h3 className="text-3xl font-bold text-white mb-3">Application Process</h3>
-                  <p className="text-slate-300 text-lg">Simple and transparent</p>
-                </div>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-800/80 border border-primary/40">
-                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
-                    <div>
-                      <h4 className="font-semibold text-white">Submit Application</h4>
-                      <p className="text-sm text-slate-300">Complete the form with your details and CV</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-800/80 border border-highlight/40">
-                    <div className="w-8 h-8 bg-highlight rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
-                    <div>
-                      <h4 className="font-semibold text-white">Review Process</h4>
-                      <p className="text-sm text-slate-300">Our team reviews your application within 5 days</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-800/80 border border-primary/40">
-                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
-                    <div>
-                      <h4 className="font-semibold text-white">Interview & Offer</h4>
-                      <p className="text-sm text-slate-300">Qualified candidates proceed to interviews</p>
-                    </div>
-                  </div>
+                  {benefits.map((benefit, index) => {
+                    const Icon = benefit.icon
+                    const colorClasses = benefit.color === 'primary' 
+                      ? 'border-primary/40 hover:border-primary/60 bg-primary/10 text-primary hover:bg-primary hover:text-white' 
+                      : 'border-highlight/40 hover:border-highlight/60 bg-highlight/10 text-highlight hover:bg-highlight hover:text-white'
+                    
+                    return (
+                      <Card 
+                        key={index} 
+                        className={`p-6 bg-slate-800/80 backdrop-blur-xl border-2 ${benefit.color === 'primary' ? 'border-primary/30' : 'border-highlight/30'} hover:${benefit.color === 'primary' ? 'border-primary/50' : 'border-highlight/50'} transition-all duration-300 hover:scale-[1.02] group`}
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${colorClasses} shadow-lg ${benefit.color === 'primary' ? 'shadow-primary/25' : 'shadow-highlight/25'}`}>
+                            <Icon className="w-6 h-6" />
+                          </div>
+                          
+                          <div>
+                            <h4 className="font-semibold text-white mb-2 text-lg">{benefit.title}</h4>
+                            <p className="text-slate-300 leading-relaxed">{benefit.description}</p>
+                          </div>
+                        </div>
+                      </Card>
+                    )
+                  })}
                 </div>
               </div>
             </motion.div>
           </div>
+
+          {/* Equal Opportunity Statement */}
+          <motion.div
+            className="text-center"
+            variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+          >
+            <Card className="p-8 bg-gradient-to-r from-slate-800/80 to-slate-900/80 backdrop-blur-xl border border-slate-700/50">
+              <div className="max-w-2xl mx-auto">
+                <CheckCircle className="w-12 h-12 text-highlight mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-3">
+                  Equal Opportunity Employer
+                </h3>
+                <p className="text-slate-300 leading-relaxed">
+                  LandLedger is committed to creating a diverse and inclusive workplace where all 
+                  qualified applicants are considered regardless of race, gender, age, religion, 
+                  sexual orientation, or disability status.
+                </p>
+              </div>
+            </Card>
+          </motion.div>
         </motion.div>
       </div>
 
@@ -214,7 +263,7 @@ export function TalentPool() {
       >
         <TypeformEmbed
           formId="aAYu9UJb"
-          title="Join Our Talent Pool"
+          title="Join Our Talent Pool - LandLedger Careers"
           onClose={closeModal}
         />
       </Modal>

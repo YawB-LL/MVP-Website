@@ -222,28 +222,6 @@ export function CTASections() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Bottom CTA */}
-            <motion.div 
-              className="text-center mt-16"
-              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-highlight/20 border border-highlight/30 text-highlight text-sm font-medium mb-6">
-                <Zap className="w-4 h-4" />
-                Ready to Get Started?
-              </div>
-              <p className="text-lg text-text-secondary mb-6 max-w-2xl mx-auto">
-                Join thousands of investors, developers, and partners already building the future of real estate
-              </p>
-              <button
-                onClick={() => openModal("general", "Get Started Today", "NYKX0LYM")}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-semibold text-lg rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40"
-              >
-                <Sparkles className="w-5 h-5" />
-                Get Started Today
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </motion.div>
           </motion.div>
         </div>
       </section>

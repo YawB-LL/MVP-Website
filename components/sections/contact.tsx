@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Mail, Phone, MapPin, MessageCircle } from "lucide-react"
+import { Mail, MapPin } from "lucide-react"
 import { trackEvent } from "@/lib/analytics"
 
 export function Contact() {
@@ -53,24 +53,10 @@ export function Contact() {
       action: "mailto:hello@landledger.com",
     },
     {
-      icon: Phone,
-      title: "Call Us",
-      description: "Speak with our team",
-      value: "+233 24 123 4567",
-      action: "tel:+233241234567",
-    },
-    {
       icon: MapPin,
       title: "Visit Us",
       description: "Our office location",
       value: "East Legon, Accra, Ghana",
-      action: "#",
-    },
-    {
-      icon: MessageCircle,
-      title: "Live Chat",
-      description: "Chat with support",
-      value: "Available 9AM-6PM GMT",
       action: "#",
     },
   ]
@@ -171,7 +157,7 @@ export function Contact() {
             {/* Contact Methods */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-semibold text-text mb-6">Other Ways to Reach Us</h3>
+                <h3 className="text-2xl font-semibold text-text mb-6">Contact Information</h3>
                 <div className="grid gap-6">
                   {contactMethods.map((method, index) => (
                     <Card key={index} className="p-6 bg-base border-text-secondary/20 card-hover">
@@ -191,28 +177,6 @@ export function Contact() {
                   ))}
                 </div>
               </div>
-
-              {/* Office Hours */}
-              <Card className="p-6 bg-primary/10 border-primary/20">
-                <h4 className="text-lg font-semibold text-text mb-4">Office Hours</h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Monday - Friday:</span>
-                    <span className="text-text">9:00 AM - 6:00 PM GMT</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Saturday:</span>
-                    <span className="text-text">10:00 AM - 4:00 PM GMT</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-text-secondary">Sunday:</span>
-                    <span className="text-text">Closed</span>
-                  </div>
-                </div>
-                <p className="text-xs text-text-secondary mt-4">
-                  We typically respond to all inquiries within 24 hours during business days.
-                </p>
-              </Card>
             </div>
           </div>
         </div>

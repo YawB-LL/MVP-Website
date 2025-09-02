@@ -83,7 +83,7 @@ export const DynamicPress = dynamic(
 
 // Careers section - loaded dynamically
 export const DynamicCareers = dynamic(
-  () => import('@/components/sections/careers').then(mod => ({ default: mod.Careers })),
+  () => import('@/components/sections/talent-pool').then(mod => ({ default: mod.TalentPool })),
   {
     loading: () => (
       <div className="py-24 bg-base">

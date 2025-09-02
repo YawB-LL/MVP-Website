@@ -1,9 +1,17 @@
 "use client"
 
+import { useState } from "react"
 import { Card } from "@/components/ui/card"
+import { Modal } from "@/components/ui/modal"
+import { TypeformEmbed } from "@/components/ui/typeform-embed"
 import { CheckCircle, Circle, Clock } from "lucide-react"
+import { TYPEFORM_CONFIG } from "@/lib/typeform-config"
 
 export function Roadmap() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
   const roadmapItems = [
     {
       quarter: "Q3 2025",
@@ -96,7 +104,8 @@ export function Roadmap() {
   }
 
   return (
-    <section id="roadmap" className="section-padding bg-base">
+    <>
+      <section id="roadmap" className="section-padding bg-base">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -157,20 +166,45 @@ export function Roadmap() {
             <p className="text-text-secondary mb-6">
               Join our waitlist to get early access to new features and exclusive investment opportunities as we grow.
             </p>
-            <a
-              href="https://form.typeform.com/to/NYKX0LYM"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={openModal}
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-semibold rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300"
             >
               Join the Waitlist
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </div>
     </section>
+
+      {/* Typeform Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="Join the Waitlist"
+        description="Be among the first to experience LandLedger's revolutionary real estate investment platform."
+        size="typeform"
+        showCloseButton={true}
+        closeOnBackdropClick={true}
+        closeOnEscape={true}
+        enableSwipeToClose={true}
+        className="p-0"
+      >
+        <TypeformEmbed
+          formId={TYPEFORM_CONFIG.WAITLIST}
+          onClose={closeModal}
+          height="100%"
+          autoResize={true}
+          enableSandbox={false}
+          hideHeaders={false}
+          hideFooter={false}
+          disableAutoFocus={true}
+          opacity={0}
+        />
+      </Modal>
+    </>
   )
 }

@@ -6,9 +6,13 @@ import { Shield, FileCheck, Users, Award, CheckCircle, Building, Globe, Trending
 import { motion } from "framer-motion"
 import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
+import { useState } from "react"
+import { TypeformEmbed } from "@/components/ui/typeform-embed"
+import { Button } from "@/components/ui/button"
 
 export function Trust() {
   const prefersReducedMotion = useReducedMotion()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const regulators = [
     {
