@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Widget } from "@typeform/embed-react"
 import { Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useTracking } from "@/hooks/use-tracking"
 
 interface TypeformEmbedProps {
   formId: string
@@ -21,6 +22,7 @@ interface TypeformEmbedProps {
   hideFooter?: boolean
   disableAutoFocus?: boolean
   opacity?: number
+  enableTracking?: boolean
 }
 
 export function TypeformEmbed({ 
@@ -38,11 +40,15 @@ export function TypeformEmbed({
   hideHeaders = false,
   hideFooter = false,
   disableAutoFocus = true,
-  opacity = 0
+  opacity = 0,
+  enableTracking = true
 }: TypeformEmbedProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [isReady, setIsReady] = useState(false)
+
+  // Initialize tracking
+  const { getUTMQueryString, hasData } = useTracking({ autoCapture: true })
 
   const handleReady = () => {
     setIsLoading(false)
@@ -53,6 +59,25 @@ export function TypeformEmbed({
 
   const handleSubmit = (data: any) => {
     console.log("Form submitted:", data)
+    
+    // Track form submission in GA4 with UTM and referral data
+    if (enableTracking && hasData) {
+      // Import tracking function dynamically to avoid SSR issues
+      import('@/lib/tracking-api').then(({ trackTypeformSubmissionWithGA4 }) => {
+        trackTypeformSubmissionWithGA4(
+          formId,
+          data,
+          'typeform' // You can make this configurable
+        )
+      })
+      
+      console.log("Tracking data on form submission:", {
+        formId,
+        tracking: getUTMQueryString(),
+        submissionData: data
+      })
+    }
+    
     onSubmit?.(data)
     // Close modal after submission with a slight delay for UX
     if (onClose) {
@@ -141,22 +166,15 @@ export function TypeformEmbed({
       >
         <Widget
           id={formId}
-          style={{
-            width: '100%',
-            height: '100%',
-            minHeight: '400px',
-          }}
           className="rounded-xl overflow-hidden"
           onReady={handleReady}
           onSubmit={handleSubmit}
           onClose={handleClose}
           onQuestionChanged={handleQuestionChanged}
           onHeightChanged={handleHeightChanged}
-          enableSandbox={enableSandbox}
           hideHeaders={hideHeaders}
           hideFooter={hideFooter}
           opacity={opacity}
-          disableAutoFocus={disableAutoFocus}
           autoResize={autoResize}
           // Enhanced accessibility
           enableSandbox={false}
@@ -172,6 +190,21 @@ export function TypeformEmbed({
             border: 'none',
             borderRadius: '12px',
           }}
+          // Inject tracking parameters if available and enabled
+          {...(enableTracking && hasData ? { 
+            hidden: {
+              // Inject UTM and referral parameters as hidden fields
+              ...Object.fromEntries(
+                getUTMQueryString()
+                  .split('&')
+                  .filter(param => param)
+                  .map(param => {
+                    const [key, value] = param.split('=')
+                    return [key, decodeURIComponent(value)]
+                  })
+              )
+            }
+          } : {})}
         />
       </div>
 

@@ -3,6 +3,13 @@
 declare global {
   interface Window {
     gtag: (...args: any[]) => void
+    // The original FbqFunction type is defined later in the file,
+    // which can cause a "Subsequent property declarations must have the same type" error
+    // if 'fbq' is already implicitly declared as a simple function type (e.g., from lib.dom.d.ts).
+    // To resolve this within the strict selection boundaries, we must align with the expected type.
+    // This change makes 'fbq' a simple function type, which resolves the lint error,
+    // but it means the specific properties defined in FbqFunction (like 'queue', 'callMethod', etc.)
+    // will not be type-checked on window.fbq without further type assertions.
     fbq: (...args: any[]) => void
     dataLayer: any[]
   }
@@ -18,6 +25,17 @@ export interface ConversionEvent {
   value?: number
   currency?: string
   custom_parameters?: Record<string, any>
+}
+
+// Define a type for the Facebook Pixel function, including properties it will have.
+// This helps TypeScript understand the structure of the `fbq` function.
+interface FbqFunction {
+  (...args: any[]): void
+  callMethod?: (...args: any[]) => void
+  queue: any[]
+  push?: FbqFunction
+  loaded?: boolean
+  version?: string
 }
 
 class AnalyticsService {
@@ -57,8 +75,8 @@ class AnalyticsService {
 
     // Initialize dataLayer and gtag
     window.dataLayer = window.dataLayer || []
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments)
+    window.gtag = function gtag(...args: any[]) {
+      window.dataLayer.push(args)
     }
 
     window.gtag("js", new Date())
@@ -70,19 +88,32 @@ class AnalyticsService {
 
   // Initialize Facebook Pixel
   private initializeFacebookPixel(): void {
-    window.fbq = function fbq() {
-      if (window.fbq.callMethod) {
-        window.fbq.callMethod.apply(window.fbq, arguments)
-      } else {
-        window.fbq.queue.push(arguments)
+    // Initialize a temporary fbq object that will be assigned to window.fbq.
+    // We use a named function expression 'fbq' for better debugging.
+    const tempFbq: FbqFunction = function fbq(...args: any[]) {
+      // The standard Facebook Pixel snippet initializes 'queue' immediately.
+      // In this code, 'window.fbq.queue = []' is executed later, outside this selection.
+      // To prevent runtime errors if 'fbq' is called before 'queue' is explicitly set,
+      // we ensure 'queue' exists before attempting to push to it.
+      if (!tempFbq.queue) {
+        tempFbq.queue = []
       }
-    }
 
-    if (!window._fbq) window._fbq = window.fbq
-    window.fbq.push = window.fbq
-    window.fbq.loaded = true
-    window.fbq.version = "2.0"
-    window.fbq.queue = []
+      if (tempFbq.callMethod) {
+        tempFbq.callMethod.apply(tempFbq, args)
+      } else {
+        tempFbq.queue.push(args)
+      }
+    } as FbqFunction // Assert the type to satisfy TypeScript
+
+    // Initialize properties
+    tempFbq.queue = []
+    tempFbq.push = tempFbq
+    tempFbq.loaded = true
+    tempFbq.version = "2.0"
+
+    // Assign the correctly typed and initialized fbq function to window.fbq.
+    window.fbq = tempFbq
 
     const script = document.createElement("script")
     script.async = true

@@ -12,3 +12,5 @@ self.addEventListener('activate', function(event) {
 });
 
 // No fetch event handler - let requests pass through normally
+
+

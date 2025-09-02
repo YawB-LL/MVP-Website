@@ -6,6 +6,7 @@ import { Navbar } from "@/components/ui/navbar"
 import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ClientScripts } from "@/components/client-scripts"
+import { TrackingInitializer } from "@/components/tracking-initializer"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,6 +56,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ClientScripts />
+          <TrackingInitializer />
           <Navbar />
           {children}
           <Toaster />
