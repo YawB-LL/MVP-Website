@@ -7,6 +7,7 @@ import { Button } from "./button"
 import { Modal } from "./modal"
 import { TypeformEmbed } from "./typeform-embed"
 import { trackEvent } from "@/lib/analytics"
+import { useRouter, usePathname } from "next/navigation"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,6 +15,8 @@ export function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
 
   const openModal = () => {
     setIsModalOpen(true)
@@ -47,6 +50,18 @@ export function Navbar() {
     // Close mobile menu and dropdown
     setIsOpen(false)
     setActiveDropdown(null)
+    
+    // Handle external page navigation
+    if (section === "blog") {
+      router.push("/blog")
+      return
+    }
+    
+    // If we're not on the homepage, navigate to homepage first
+    if (pathname !== "/") {
+      router.push("/")
+      return
+    }
     
     if (section === "hero") {
       // Scroll to top for home
