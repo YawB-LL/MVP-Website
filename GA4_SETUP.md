@@ -1,6 +1,6 @@
 # GA4 Setup Instructions for LandLedger
 
-## ✅ Your GA4 Measurement ID: G-MZD16YX3R5
+## ✅ Your GA4 Measurement ID: G-DRDMMFDCHE
 
 ## Quick Setup Steps:
 
@@ -9,7 +9,7 @@ Create or update your `.env.local` file in the root directory:
 
 ```bash
 # .env.local
-NEXT_PUBLIC_GA4_MEASUREMENT_ID=G-MZD16YX3R5
+NEXT_PUBLIC_GA4_MEASUREMENT_ID=G-DRDMMFDCHE
 ```
 
 ### 2. Restart Development Server
