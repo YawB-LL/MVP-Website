@@ -42,8 +42,8 @@ export function Hero() {
             sizes="100vw"
             className="object-cover scale-105 animate-slow-zoom"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/75 to-black/90" />
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/60 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/40 to-black/25" />
         </div>
 
         {/* Content */}
@@ -61,15 +61,15 @@ export function Hero() {
             >
               <div className="flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-text hover:bg-white/15 border border-white/20 transition">
                 <Shield className="w-4 h-4" />
-                <span>SEC Regulated</span>
+                <span>Proactive Regulator Engagement</span>
               </div>
               <div className="flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-text hover:bg-white/15 border border-white/20 transition">
-                <Users className="w-4 h-4" />
-                <AnimatedCounter end={1000} suffix="+ Investors" />
+                <Shield className="w-4 h-4" />
+                <span>Grounded in Ghanaian Law</span>
               </div>
               <div className="flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-text hover:bg-white/15 border border-white/20 transition">
-                <TrendingUp className="w-4 h-4" />
-                <AnimatedCounter end={15} suffix="% Avg Returns" />
+                <Shield className="w-4 h-4" />
+                <span>Built for Regulatory Alignment</span>
               </div>
             </motion.div>
 
@@ -79,18 +79,11 @@ export function Hero() {
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
               <h1 className="text-4xl md:text-6xl font-newsreader font-bold leading-tight text-text">
-                Invest in Premium{" "}
-                <span className="bg-gradient-to-r from-highlight to-primary bg-clip-text text-transparent">
-                  Ghana Real Estate
-                </span>{" "}
-                from Anywhere
+                Own a share of Ghana's most sought after properties from anywhere in the world
               </h1>
 
               <p className="text-lg md:text-2xl text-text-secondary tracking-wide leading-relaxed max-w-2xl mx-auto">
-                Tokenized property investments with{" "}
-                <span className="text-text font-medium">transparent returns</span>,{" "}
-                <span className="text-text font-medium">regulatory compliance</span>, and{" "}
-                <span className="text-text font-medium">seamless access</span> for both local and diaspora investors.
+                Invest from just GHS 2,500. No agents. No landguards. No hassle. Just secure, transparent ownership.
               </p>
             </motion.div>
 
@@ -104,7 +97,7 @@ export function Hero() {
                   onClick={openModal}
                   className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40"
                 >
-                  Join the Waitlist
+                  Secure Early Access
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
@@ -112,11 +105,14 @@ export function Hero() {
 
                 <button
                   type="button"
-                  aria-label="Watch demo"
+                  aria-label="Learn How it works"
                   className="group inline-flex items-center gap-2 rounded-xl px-6 py-3 border border-white/25 text-text-secondary hover:text-text hover:border-primary/50 hover:bg-white/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
-                  onClick={() => trackEvent("hero_watch_demo_click")}
+                  onClick={() => {
+                    trackEvent("hero_learn_how_click")
+                    document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
+                  }}
                 >
-                  <span>Watch demo</span>
+                  <span>Learn How it works</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
@@ -127,7 +123,7 @@ export function Hero() {
               className="text-sm text-text-secondary pt-2"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              Early access to exclusive property deals • No minimum investment • Full transparency
+              Be among the first to own a share when we launch
             </motion.p>
           </div>
         </motion.div>

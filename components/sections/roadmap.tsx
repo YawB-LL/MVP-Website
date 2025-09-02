@@ -14,69 +14,56 @@ export function Roadmap() {
   const closeModal = () => setIsModalOpen(false)
   const roadmapItems = [
     {
-      quarter: "Q3 2025",
-      title: "Platform Launch",
+      quarter: "Phase 1",
+      title: "Validation & Foundation",
       status: "active",
+      timeframe: "Now 18 Months",
+      description: "Laying the groundwork for trust",
+      goal: "Prove demand and build credibility",
       items: [
-        "MVP platform launch with first property listings",
-        "Regulatory approvals and compliance framework",
-        "Initial investor onboarding (1000+ users)",
-        "Partnership agreements with 3 major developers",
+        "Grow Our waitlist",
+        "Engage regulators",
+        "Form early developer partnerships",
       ],
     },
     {
-      quarter: "Q4 2025",
-      title: "Market Expansion",
+      quarter: "Phase 2",
+      title: "First Pilot Delivery",
       status: "upcoming",
+      timeframe: "18 30 Months",
+      description: "Proving the model in action",
+      goal: "Demonstrate the model in real world conditions",
       items: [
-        "Launch in Accra, Kumasi, and Takoradi markets",
-        "Secondary marketplace for token trading",
-        "Mobile app release (iOS & Android)",
-        "Integration with local payment systems",
+        "Tokenise first completed property",
+        "Issue SPV backed tokens with transparent reporting",
+        "Showcase pilot through PR & diaspora channels",
       ],
     },
     {
-      quarter: "Q1 2026",
-      title: "Product Enhancement",
+      quarter: "Phase 3",
+      title: "Early Scale",
       status: "upcoming",
+      timeframe: "2.5 4 Years",
+      description: "Expanding adoption and deepening impact",
+      goal: "Broaden participation across projects",
       items: [
-        "Advanced analytics and portfolio management tools",
-        "Automated rental distribution system",
-        "Multi-currency support (GHS, USD, EUR)",
-        "Institutional investor onboarding",
+        "Onboard mid tier & premium developments",
+        "Introduce milestone based funding for off plan builds",
+        "Build controlled resale features (subject to approval)",
+        "Deepen diaspora partnerships",
       ],
     },
     {
-      quarter: "Q2 2026",
-      title: "Regional Growth",
+      quarter: "Phase 4",
+      title: "Regional Expansion",
       status: "upcoming",
+      timeframe: "4 6 Years",
+      description: "From Ghana pioneer to African leader",
+      goal: "Extend reach and build continental influence",
       items: [
-        "Expansion to Nigeria and Kenya markets",
-        "Cross-border investment capabilities",
-        "Enhanced KYC/AML compliance systems",
-        "Partnership with international banks",
-      ],
-    },
-    {
-      quarter: "Q3 2026",
-      title: "Innovation Phase",
-      status: "upcoming",
-      items: [
-        "AI-powered property valuation models",
-        "Blockchain-based property title registry",
-        "DeFi integration for enhanced yields",
-        "Carbon credit integration for green properties",
-      ],
-    },
-    {
-      quarter: "Q4 2026",
-      title: "Scale & Optimize",
-      status: "upcoming",
-      items: [
-        "10,000+ active investors milestone",
-        "$50M+ in tokenized properties",
-        "Advanced institutional features",
-        "Preparation for Series A funding round",
+        "Explore pilots in new African markets",
+        "Build institutional partnerships",
+        "Contribute to tokenisation standards",
       ],
     },
   ]
@@ -110,15 +97,14 @@ export function Roadmap() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-headline text-text mb-6">Product Roadmap</h2>
+            <h2 className="text-headline text-text mb-6">Our Journey Ahead</h2>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-              Our journey to revolutionize real estate investment in Ghana and beyond. Track our progress and upcoming
-              milestones.
+              LandLedger is building Ghana's trusted real estate tokenisation platform in clear phases. From proving demand to piloting our first project, scaling across Ghana, and eventually expanding regionally each step is about strengthening trust, inclusion, and delivery.
             </p>
           </div>
 
           {/* Roadmap Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {roadmapItems.map((item, index) => (
               <Card key={index} className={`p-6 ${getStatusColor(item.status)} card-hover transition-all duration-300`}>
                 {/* Quarter Header */}
@@ -130,6 +116,13 @@ export function Roadmap() {
                       <p className="text-sm text-text-secondary">{item.title}</p>
                     </div>
                   </div>
+                </div>
+
+                {/* Timeframe and Description */}
+                <div className="mb-4">
+                  <p className="text-sm text-highlight font-medium mb-2">{item.timeframe}</p>
+                  <p className="text-sm text-text-secondary mb-2">{item.description}</p>
+                  <p className="text-sm text-text font-medium">Goal: {item.goal}</p>
                 </div>
 
                 {/* Milestone Items */}
@@ -164,7 +157,7 @@ export function Roadmap() {
           <div className="text-center mt-16 p-8 bg-primary/10 rounded-2xl border border-primary/20">
             <h3 className="text-2xl font-semibold text-text mb-4">Be Part of Our Journey</h3>
             <p className="text-text-secondary mb-6">
-              Join our waitlist to get early access to new features and exclusive investment opportunities as we grow.
+              Join our waitlist and help shape the future of transparent, inclusive real estate in Ghana and beyond.
             </p>
             <button
               onClick={openModal}
@@ -175,6 +168,7 @@ export function Roadmap() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </button>
+            <p className="text-sm text-text-secondary mt-4">Early access, regular updates, and a front row seat to innovation</p>
           </div>
         </div>
       </div>

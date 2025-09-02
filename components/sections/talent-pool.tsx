@@ -122,15 +122,14 @@ export function TalentPool() {
             </div>
             
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-newsreader font-bold text-text mb-6 leading-tight">
-              Join Our{" "}
+              Be Part of Africa's Next Big{" "}
               <span className="bg-gradient-to-r from-highlight via-primary to-highlight bg-clip-text text-transparent">
-                Talent Pool
+                Proptech Story
               </span>
             </h2>
             
             <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed font-light">
-              Be part of the team revolutionizing real estate investment in Ghana. We're looking for 
-              passionate individuals to help build the future of PropTech in Africa.
+              We're assembling a Ghanaian led team of builders, creatives, and innovators. Whether you're a developer, marketer, designer, or analyst your skills can help shape the future of transparent, inclusive real estate across Ghana and beyond.
             </p>
           </motion.div>
 
@@ -158,7 +157,7 @@ export function TalentPool() {
                     onClick={openModal}
                     className="w-full bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-semibold py-4 text-lg rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300"
                   >
-                    <span>Submit Application</span>
+                    <span>Join the Team</span>
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                   

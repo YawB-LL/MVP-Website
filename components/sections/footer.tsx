@@ -35,44 +35,33 @@ export function Footer() {
   }
 
   const footerLinks = {
-    company: [
-      { name: "About Us", href: "#about" },
+    explore: [
       { name: "How It Works", href: "#how-it-works" },
+      { name: "Investors", href: "#pain-points" },
+      { name: "Developers", href: "#developers" },
+      { name: "Ecosystem", href: "#ecosystem" },
+      { name: "Roadmap", href: "#roadmap" },
+      { name: "Blog (The Ledger)", href: "#blog" },
+    ],
+    company: [
+      { name: "About", href: "#about" },
       { name: "Careers", href: "#careers" },
-      { name: "Press & Media", href: "#press" },
+      { name: "Contact", href: "#contact" },
     ],
-    investors: [
-      { name: "Investment Process", href: "#how-it-works" },
-      { name: "Property Listings", href: "#properties" },
-      { name: "Returns & Performance", href: "#returns" },
-      { name: "Risk Disclosure", href: "#risk" },
-    ],
-    support: [
-      { name: "Help Center", href: "#help" },
-      { name: "Contact Us", href: "#contact" },
-      { name: "Technical Support", href: "#support" },
-      { name: "Community Forum", href: "#forum" },
-    ],
-    legal: [
-      { name: "Terms of Service", href: "#terms" },
-      { name: "Privacy Policy", href: "#privacy" },
-      { name: "Cookie Policy", href: "#cookies" },
-      { name: "Regulatory Compliance", href: "#compliance" },
+    trust: [
+      { name: "FAQs", href: "/faqs" },
+      { name: "Cookie Policy", href: "/cookie-policy" },
+      { name: "Privacy Policy", href: "/privacy-policy" },
+      { name: "Terms of Service", href: "/terms-of-service" },
+      { name: "Disclaimer & Risk Notice", href: "/disclaimer-risk-notice" },
     ],
   }
 
   const socialLinks = [
-    { name: "Twitter", href: "#", icon: Twitter },
     { name: "LinkedIn", href: "#", icon: Linkedin },
-    { name: "Facebook", href: "#", icon: Facebook },
+    { name: "X", href: "#", icon: Twitter },
     { name: "Instagram", href: "#", icon: Instagram },
-  ]
-
-  const stats = [
-    { label: "Properties Listed", value: "$2M+", icon: TrendingUp },
-    { label: "Investors Joined", value: "1000+", icon: Users },
-    { label: "Countries Served", value: "25+", icon: Globe },
-    { label: "Regulatory Status", value: "SEC Compliant", icon: Shield },
+    { name: "Facebook", href: "#", icon: Facebook },
   ]
 
   return (
@@ -104,8 +93,8 @@ export function Footer() {
                   </span>
                 </h3>
                 <p className="text-lg text-text-secondary leading-relaxed mb-8">
-                  Democratizing access to premium Ghana real estate through innovative tokenization, 
-                  transparent investment processes, and institutional-grade technology.
+                  Democratising access to premium Ghana real estate through innovative tokenisation, 
+                  transparent investment processes, and institutional grade technology.
                 </p>
                 <div className="space-y-4 text-base">
                   <div className="flex items-center gap-4">
@@ -116,24 +105,18 @@ export function Footer() {
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20">
-                      <Phone className="w-5 h-5 text-primary" />
-                    </div>
-                    <span className="text-text-secondary">+233 24 123 4567</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20">
                       <MapPin className="w-5 h-5 text-primary" />
                     </div>
-                    <span className="text-text-secondary">East Legon, Accra, Ghana</span>
+                    <span className="text-text-secondary">Haatso, Accra, Ghana</span>
                   </div>
                 </div>
               </div>
 
               {/* Newsletter Signup */}
               <div>
-                <h4 className="text-xl font-bold text-text mb-4">Stay Updated</h4>
+                <h4 className="text-xl font-bold text-text mb-4">Stay Updated Become a Token Titan</h4>
                 <p className="text-text-secondary mb-6 leading-relaxed">
-                  Get the latest updates on new properties, market insights, and investment opportunities.
+                  Sign up to "The Ledger" Newsletter for educational content, insights & market updates
                 </p>
                 <form onSubmit={handleNewsletterSubmit} className="space-y-4">
                   <div className="flex gap-3">
@@ -189,7 +172,8 @@ export function Footer() {
           >
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
               <div className="text-text-secondary text-sm">
-                © 2024 LandLedger. All rights reserved. SEC regulated and compliant.
+                <p>Disclaimer: LandLedger is a technology platform in development. We are not an issuer, broker, or licensed Virtual Asset Service Provider (VASP), and do not currently offer tokens, securities, or investment products. See our Disclaimer & Risk Notice for details.</p>
+                <p className="mt-2">© 2025 LandLedger Technologies All rights reserved</p>
             </div>
 
             <div className="flex items-center gap-6">

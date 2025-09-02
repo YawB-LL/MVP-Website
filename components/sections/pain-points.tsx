@@ -15,69 +15,79 @@ export function PainPoints() {
   const localPainPoints = [
     {
       icon: DollarSign,
-      title: "High Entry Barriers",
-      description: "Premium properties require significant upfront capital, limiting access to quality investments.",
-      impact: "High capital requirements"
-    },
-    {
-      icon: FileText,
-      title: "Complex Documentation",
-      description: "Lengthy legal processes and paperwork create barriers to property investment.",
-      impact: "Time-consuming processes"
+      title: "High Entry Costs",
+      subline: "Limited mortgage market, cash buyer market",
+      description: "With over 85% of Ghanaians in informal employment, most cannot qualify for a mortgage. Prime property in Accra and Kumasi is effectively cash only, leaving everyday households and many in the diaspora locked out.",
+      impact: "Cash buyer bias"
     },
     {
       icon: Shield,
-      title: "Limited Transparency",
-      description: "Lack of clear information about property performance and market trends.",
-      impact: "Uncertain returns"
+      title: "Landguard & Title Risks",
+      subline: "Title disputes, multiple sales & the threat of landguards",
+      description: "Buyers face the threat of landguards, multiple sales, and title uncertainty. These risks make property acquisition stressful, costly, and time consuming.",
+      impact: "Title uncertainty, Wasted time"
+    },
+    {
+      icon: FileText,
+      title: "Weak Legal Protection",
+      subline: "90% of court cases tied to land",
+      description: "Land disputes dominate Ghana's courts, often dragging for years. For ordinary buyers, the system offers fragile protection and slow enforcement.",
+      impact: "Slow enforcement"
     },
   ]
 
   const diasporaPainPoints = [
     {
-      icon: MapPin,
-      title: "Geographic Distance",
-      description: "Managing property investments from abroad is complex and time-consuming.",
-      impact: "Remote management challenges"
+      icon: Shield,
+      title: "Landguard & Title Risks",
+      subline: "Title disputes, multiple sales & landguard threats",
+      description: "Diaspora buyers often face the same risks as locals disputed titles, fraudulent multiple sales, or harassment by landguards. From afar, these challenges feel even harder to manage.",
+      impact: "Title uncertainty, Wasted time"
+    },
+    {
+      icon: Building,
+      title: "Self Build Challenges & Stalled Off Plan Projects",
+      subline: "Distance makes oversight and delivery difficult",
+      description: "Many diasporans invest in self builds or off plan housing only to face delays, poor quality construction, or projects that never reach completion. Without trusted structures, quality and accountability are hard to guarantee from abroad.",
+      impact: "Lost capital, Quality risk, Broken projects"
     },
     {
       icon: Clock,
-      title: "Time Zone Challenges",
-      description: "Coordinating with local agents and managing properties across different time zones.",
-      impact: "Communication delays"
-    },
-    {
-      icon: TrendingUp,
-      title: "Market Access",
-      description: "Limited access to premium property deals and local market insights.",
-      impact: "Missed opportunities"
+      title: "Accountability Gap",
+      subline: "Hard to track funds and progress from abroad",
+      description: "Remittances are often sent in good faith but misapplied, with little clarity on how money is used. Without trusted reporting, diaspora investors face uncertainty and disappointment.",
+      impact: "Clarity gap"
     },
   ]
 
   const solutions = [
     {
       icon: Zap,
-      title: "Tokenized Access",
-      description: "Invest from $100 with fractional ownership of premium properties",
-      benefit: "Low barrier to entry"
-    },
-    {
-      icon: Building,
-      title: "Digital-First Process",
-      description: "Complete investments online with blockchain-verified documentation",
-      benefit: "Streamlined experience"
-    },
-    {
-      icon: TrendingUp,
-      title: "Real-Time Transparency",
-      description: "Track property performance, rental income, and market value in real-time",
-      benefit: "Complete visibility"
+      title: "Fractional Participation",
+      subline: "Future access from $100",
+      description: "LandLedger lowers the barrier to entry by enabling participation without full cash buyer capital. Over time, we aim to reduce the access points to the GHS equivalent of just $100, expanding access to even more people.",
+      benefit: "Affordable access"
     },
     {
       icon: Globe,
-      title: "Global Accessibility",
-      description: "Invest from anywhere with 24/7 platform access and multi-currency support",
-      benefit: "Borderless investing"
+      title: "Multi Channel Payments",
+      subline: "MoMo, cards, bank transfers",
+      description: "Participation can be completed through the most familiar rails Mobile Money, debit/credit cards, or direct transfers. Designed for both local realities and diaspora convenience, with built in accountability.",
+      benefit: "Safe, convenient, inclusive"
+    },
+    {
+      icon: Shield,
+      title: "Investor Protections Built In",
+      subline: "Ownership caps, lock in, escrow",
+      description: "Protections include 30% ownership caps, 12 month minimum lock in periods, SPV structures under Ghanaian law, participant funds held securely in escrow, complemented by milestone disbursements. Blockchain verified records ensure transparency from day one.",
+      benefit: "Transparency & trust"
+    },
+    {
+      icon: Building,
+      title: "Ring Fenced Companies",
+      subline: "Each project sits within a registered Ghanaian company",
+      description: "Ownership is housed within Special Purpose Vehicles (SPVs) incorporated under Ghanaian law. This provides enforceable rights and reduces the risk of disputes.",
+      benefit: "Legal confidence"
     },
   ]
 
@@ -107,14 +117,13 @@ export function PainPoints() {
               Problem & Solution
             </div>
             <h2 className="text-4xl md:text-6xl font-newsreader font-bold text-text mb-8 leading-tight">
-              Solving Real Estate{" "}
+              Opening Access to Ghana's{" "}
               <span className="bg-gradient-to-r from-highlight via-primary to-highlight bg-clip-text text-transparent">
-                Investment Challenges
+                Prime Real Estate Market
               </span>
             </h2>
             <p className="text-xl md:text-2xl text-text-secondary tracking-wide max-w-4xl mx-auto leading-relaxed font-light">
-              Whether you're local or diaspora, traditional property investment comes with significant barriers. 
-              LandLedger removes them all with institutional-grade technology.
+              Land & Property are Ghana's most trusted asset class. Yet the current system strongly favours cash buyers. Combined with systemic issues, this leaves everyday Ghanaians, and by extension many in the diaspora, locked out. LandLedger is building a safer, structured pathway that opens participation to more people.
             </p>
           </motion.div>
 
@@ -154,7 +163,8 @@ export function PainPoints() {
                         <div className="w-16 h-16 bg-gradient-to-br from-highlight/20 to-highlight/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-highlight/30">
                           <point.icon className="w-8 h-8 text-highlight" />
                         </div>
-                        <h3 className="text-xl font-bold text-text mb-4">{point.title}</h3>
+                        <h3 className="text-xl font-bold text-text mb-2">{point.title}</h3>
+                        <p className="text-sm text-highlight mb-4 font-medium">{point.subline}</p>
                         <p className="text-text-secondary tracking-wide text-base mb-4 leading-relaxed">{point.description}</p>
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-highlight/10 border border-highlight/20 text-highlight text-sm font-medium">
                           <AlertTriangle className="w-3 h-3" />
@@ -179,7 +189,8 @@ export function PainPoints() {
                         <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
                           <point.icon className="w-8 h-8 text-primary" />
                         </div>
-                        <h3 className="text-xl font-bold text-text mb-4">{point.title}</h3>
+                        <h3 className="text-xl font-bold text-text mb-2">{point.title}</h3>
+                        <p className="text-sm text-primary mb-4 font-medium">{point.subline}</p>
                         <p className="text-text-secondary tracking-wide text-base mb-4 leading-relaxed">{point.description}</p>
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
                           <AlertTriangle className="w-3 h-3" />
@@ -206,8 +217,7 @@ export function PainPoints() {
                 </span>
               </h3>
               <p className="text-lg text-text-secondary/90 tracking-wide max-w-3xl mx-auto">
-                LandLedger transforms these challenges into opportunities with cutting-edge technology and 
-                institutional-grade infrastructure.
+                Whether in Accra, Kumasi, London or New York, secure access to prime Ghanaian real estate is no longer just a pipe dream.
               </p>
             </div>
 
@@ -223,7 +233,8 @@ export function PainPoints() {
                     <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
                       <solution.icon className="w-8 h-8 text-primary" />
                     </div>
-                    <h4 className="text-xl font-bold text-white mb-4">{solution.title}</h4>
+                    <h4 className="text-xl font-bold text-white mb-2">{solution.title}</h4>
+                    <p className="text-sm text-primary mb-4 font-medium">{solution.subline}</p>
                     <p className="text-white tracking-wide text-base mb-4 leading-relaxed">{solution.description}</p>
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-white text-sm font-medium">
                       <CheckCircle className="w-3 h-3" />
@@ -241,15 +252,15 @@ export function PainPoints() {
             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
           >
             <div className="max-w-3xl mx-auto p-10 rounded-3xl bg-gradient-to-r from-primary/10 via-highlight/10 to-primary/10 border border-white/15 backdrop-blur-xl">
-              <h3 className="text-3xl font-bold text-text mb-6">Ready to Break Down Barriers?</h3>
+              <h3 className="text-3xl font-bold text-text mb-6">From Dream to Access: The Future Starts Here</h3>
               <p className="text-text-secondary/90 tracking-wide text-xl mb-8 leading-relaxed">
-                Join the revolution in real estate investment. Experience the future of property ownership 
-                with LandLedger's innovative platform.
+                Whether in Accra, Kumasi, London or New York, secure access to prime Ghanaian real estate is no longer just a pipe dream. LandLedger is building a platform that bridges the gap designed in Ghana, for Ghanaians everywhere, built on institutional grade blockchain architecture and aligned with global standards of trust.
               </p>
               <button className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-lg px-10 py-5 rounded-2xl shadow-2xl shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:shadow-primary/50">
-                <span>Start Your Investment Journey</span>
+                <span>Secure Early Access</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
+              <p className="text-sm text-text-secondary mt-4">Be part of reshaping property access in Ghana</p>
             </div>
           </motion.div>
         </motion.div>

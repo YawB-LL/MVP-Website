@@ -14,6 +14,7 @@ import { trackEvent } from "@/lib/analytics"
 export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
+    mobile: "",
     email: "",
     topic: "",
     message: "",
@@ -33,33 +34,16 @@ export function Contact() {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     // Reset form
-    setFormData({ name: "", email: "", topic: "", message: "" })
+    setFormData({ name: "", mobile: "", email: "", topic: "", message: "" })
     setIsSubmitting(false)
 
     // Show success message (in real app, use toast)
-    alert("Thank you for your message! We'll get back to you within 24 hours.")
+    alert("Thanks for reaching out! We'll reply within 24 hours (Mon Fri, GMT)")
   }
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
-
-  const contactMethods = [
-    {
-      icon: Mail,
-      title: "Email Us",
-      description: "Get in touch via email",
-      value: "hello@landledger.com",
-      action: "mailto:hello@landledger.com",
-    },
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      description: "Our office location",
-      value: "East Legon, Accra, Ghana",
-      action: "#",
-    },
-  ]
 
   return (
     <section className="section-padding bg-base" id="contact">
@@ -67,10 +51,9 @@ export function Contact() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-headline text-text mb-6">Get in Touch</h2>
+            <h2 className="text-headline text-text mb-6">We'd Love to Hear From You</h2>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-              Have questions about LandLedger? We'd love to hear from you. Send us a message and we'll respond as soon
-              as possible.
+              Have questions about LandLedger or want to learn more? Send us a message and our team will get back to you typically within 24 hours (Mon Fri, GMT)
             </p>
           </div>
 
@@ -95,18 +78,31 @@ export function Contact() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-text mb-2">
-                        Email Address
+                      <label htmlFor="mobile" className="block text-sm font-medium text-text mb-2">
+                        Mobile Number (Optional)
                       </label>
                       <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange("email", e.target.value)}
+                        id="mobile"
+                        type="tel"
+                        value={formData.mobile}
+                        onChange={(e) => handleInputChange("mobile", e.target.value)}
                         className="bg-base border-text-secondary/20 text-text focus:border-primary"
-                        required
                       />
                     </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-text mb-2">
+                      Email Address
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      className="bg-base border-text-secondary/20 text-text focus:border-primary"
+                      required
+                    />
                   </div>
 
                   <div>
@@ -118,12 +114,12 @@ export function Contact() {
                         <SelectValue placeholder="Select a topic" />
                       </SelectTrigger>
                       <SelectContent className="bg-base border-text-secondary/20">
-                        <SelectItem value="general">General Inquiry</SelectItem>
-                        <SelectItem value="investment">Investment Questions</SelectItem>
-                        <SelectItem value="partnership">Partnership Opportunities</SelectItem>
-                        <SelectItem value="press">Press & Media</SelectItem>
-                        <SelectItem value="support">Technical Support</SelectItem>
+                        <SelectItem value="investor">Investor</SelectItem>
+                        <SelectItem value="developer">Developer</SelectItem>
+                        <SelectItem value="ecosystem">Ecosystem Stakeholder</SelectItem>
+                        <SelectItem value="media">Media</SelectItem>
                         <SelectItem value="careers">Careers</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -143,6 +139,22 @@ export function Contact() {
                     />
                   </div>
 
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <input type="checkbox" id="privacy" className="rounded border-text-secondary/20" required />
+                      <label htmlFor="privacy" className="text-sm text-text-secondary">
+                        I agree to the Privacy Policy
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input type="checkbox" id="newsletter" className="rounded border-text-secondary/20" />
+                      <label htmlFor="newsletter" className="text-sm text-text-secondary">
+                        Also subscribe to The Ledger newsletter
+                      </label>
+                    </div>
+                    <p className="text-xs text-text-secondary">Privacy note: We'll only use your information to respond</p>
+                  </div>
+
                   <Button
                     type="submit"
                     disabled={isSubmitting}
@@ -154,30 +166,7 @@ export function Contact() {
               </Card>
             </div>
 
-            {/* Contact Methods */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-semibold text-text mb-6">Contact Information</h3>
-                <div className="grid gap-6">
-                  {contactMethods.map((method, index) => (
-                    <Card key={index} className="p-6 bg-base border-text-secondary/20 card-hover">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                          <method.icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-text mb-1">{method.title}</h4>
-                          <p className="text-sm text-text-secondary mb-2">{method.description}</p>
-                          <a href={method.action} className="text-primary hover:text-primary/80 font-medium text-sm">
-                            {method.value}
-                          </a>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>

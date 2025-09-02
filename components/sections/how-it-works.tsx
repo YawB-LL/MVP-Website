@@ -15,40 +15,40 @@ export function HowItWorks() {
       icon: Search,
       title: "Choose Project",
       description:
-        "Browse verified premium properties with detailed analytics, location insights, and projected returns.",
-      details: ["Due diligence reports", "Market analysis", "Property photos & videos"],
+        "Browse Prime Ghanaian properties with due diligence, independent valuation, and projected performance.",
+      details: ["Independent due diligence reports", "Market analysis by trusted partners", "Location insights & property media"],
       color: "primary"
     },
     {
       number: "02",
       icon: CreditCard,
-      title: "Buy Tokens",
-      description: "Purchase property tokens starting from $100 with secure payment methods and instant confirmation.",
-      details: ["Multiple payment options", "Instant token issuance", "Blockchain verification"],
+      title: "Onboard & Buy Tokens",
+      description: "Complete a quick ID check and compliance screening (Know Your Customer KYC, Anti Money Laundering AML, and Counter Terrorist Financing CTF) and purchase fractional ownership from as little as $250.",
+      details: ["Secure digital onboarding", "Pay with MoMo, cards, or bank transfer", "Instant equity uplift: tokens are issued at a discounted entry price compared to the property's verified market value"],
       color: "highlight"
     },
     {
       number: "03",
       icon: BarChart3,
-      title: "Track Investment",
-      description: "Monitor your portfolio performance with real-time updates on property value and rental income.",
-      details: ["Live dashboard", "Performance metrics", "Monthly reports"],
+      title: "Benefit from Ownership",
+      description: "Your tokens give you a beneficial interest in the property under Ghanaian company law, granting you clear legal rights to share in income and value growth.",
+      details: ["Pro rata share of rental income (where applicable)", "Ownership protected under Ghanaian company law", "Transparent reporting of property performance"],
       color: "primary"
     },
     {
       number: "04",
       icon: DollarSign,
-      title: "Earn Returns",
-      description: "Receive quarterly rental distributions and benefit from property appreciation over time.",
-      details: ["Automated distributions", "Tax documentation", "Reinvestment options"],
+      title: "Track Investment",
+      description: "Stay informed with digital tools that show how your property interest is performing over time.",
+      details: ["Real time dashboard access", "Rental performance metrics", "Verified monthly reports"],
       color: "highlight"
     },
     {
       number: "05",
       icon: LogOut,
-      title: "Exit Strategy",
-      description: "Sell your tokens on the secondary market or during property exit events with transparent pricing.",
-      details: ["Secondary marketplace", "Exit notifications", "Capital gains tracking"],
+      title: "Controlled Resale Pathway",
+      description: "After a minimum holding period, tokens can be resold through a structured process, with existing investors given the Right of First Refusal. A secondary market is planned, subject to regulatory approval.",
+      details: ["Structured resale process", "Transparent pricing information", "Ongoing ownership value tracking"],
       color: "primary"
     },
   ]
@@ -86,8 +86,7 @@ export function HowItWorks() {
               Works
             </h2>
             <p className="text-xl md:text-2xl text-text-secondary/90 tracking-wide max-w-4xl mx-auto leading-relaxed font-light">
-              A sophisticated yet simple process that makes premium real estate investment accessible to everyone, 
-              from anywhere in the world, with institutional-grade infrastructure.
+              We've designed a clear, step by step process that makes premium property ownership simple, transparent, and safe. Every stage from choosing a project to reselling your tokens is built on Ghanaian company law, independent due diligence, and secure digital systems.
             </p>
           </motion.div>
 
@@ -184,14 +183,15 @@ export function HowItWorks() {
             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
           >
             <div className="max-w-2xl mx-auto p-8 rounded-3xl bg-gradient-to-r from-primary/10 via-highlight/10 to-primary/10 border border-white/15 backdrop-blur-xl">
-              <h3 className="text-2xl font-bold text-text mb-4">Ready to Get Started?</h3>
+              <h3 className="text-2xl font-bold text-text mb-4">Your Ownership Journey Starts Here</h3>
               <p className="text-text-secondary/90 tracking-wide text-lg mb-6">
-                Join thousands of investors already building wealth through premium Ghana real estate.
+                From verified projects to secure onboarding, instant equity uplift, and a clear resale pathway LandLedger gives you the confidence to invest in Ghanaian property with clarity and control.
               </p>
               <button className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-lg px-8 py-4 rounded-2xl shadow-2xl shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:shadow-primary/50">
-                <span>Start Investing Today</span>
+                <span>Secure Early Access</span>
                 <ArrowRight className="w-5 h-5" />
             </button>
+            <p className="text-sm text-text-secondary mt-4">Be among the first to unlock a safer, smarter way to own property in Ghana</p>
           </div>
           </motion.div>
         </motion.div>

@@ -38,14 +38,13 @@ export function About() {
               About LandLedger
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-newsreader font-bold text-text mb-8 lg:mb-12 leading-tight px-4 tracking-tight">
-              Democratizing Access to{" "}
+              Democratising Access to{" "}
               <span className="bg-gradient-to-r from-highlight via-primary to-highlight bg-clip-text text-transparent">
-                Premium Real Estate
+                Prime Real Estate
               </span>
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-5xl mx-auto leading-relaxed font-light px-4 tracking-wide">
-              We're revolutionizing Ghana real estate investment through innovative technology, transparent processes, 
-              and regulatory compliance that opens doors for investors worldwide.
+              LandLedger is a Ghanaian born digital platform making participation in property markets more open, transparent, and inclusive. By leveraging blockchain based tokenisation, we create new pathways for Ghanaians and the diaspora to take part in fractional ownership of verified properties with governance and investor protection built into the foundation.
             </p>
           </motion.div>
 
@@ -67,8 +66,7 @@ export function About() {
                    <div className="space-y-4 lg:space-y-6">
                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text">Our Mission</h3>
                      <p className="text-base lg:text-lg text-text-secondary leading-relaxed tracking-wide">
-                       To democratize access to premium Ghana real estate investment, making it available to everyone 
-                       regardless of location or capital size, through transparent tokenization and regulatory compliance.
+                       To open secure and transparent pathways into real estate giving Ghanaians and the diaspora a trusted way to participate in fractional ownership of prime, verified properties.
                  </p>
                </div>
                  </motion.div>
@@ -84,8 +82,7 @@ export function About() {
                    <div className="space-y-4 lg:space-y-6">
                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text">Our Vision</h3>
                      <p className="text-base lg:text-lg text-text-secondary leading-relaxed tracking-wide">
-                   To become the leading platform connecting global investors with Ghana's real estate opportunities,
-                   fostering economic growth and creating wealth for communities worldwide.
+                   To build Ghana's trusted real estate infrastructure for fractional ownership connecting people at home and abroad, expanding financial inclusion, and setting a benchmark for transparent property participation across Africa and beyond.
                  </p>
                    </div>
                  </motion.div>
@@ -154,8 +151,8 @@ export function About() {
                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-primary/30 rounded-lg flex items-center justify-center mb-3 lg:mb-4 group-hover:scale-110 transition-transform">
                    <CheckCircle className="w-4 h-4 lg:w-6 lg:h-6 text-primary" />
                  </div>
-                 <h4 className="font-bold text-white text-sm lg:text-lg mb-2 lg:mb-3">Transparency</h4>
-                 <p className="text-xs lg:text-sm text-text-secondary leading-relaxed">Open, honest communication in all dealings.</p>
+                 <h4 className="font-bold text-white text-sm lg:text-lg mb-2 lg:mb-3">Trust Through Clarity</h4>
+                 <p className="text-xs lg:text-sm text-text-secondary leading-relaxed">Blockchain backed transparency and institutional grade digital infrastructure that build lasting confidence across the ecosystem.</p>
                </motion.div>
                
                <motion.div 
@@ -166,8 +163,8 @@ export function About() {
                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-highlight/30 rounded-lg flex items-center justify-center mb-3 lg:mb-4 group-hover:scale-110 transition-transform">
                    <TrendingUp className="w-4 h-4 lg:w-6 lg:h-6 text-highlight" />
                  </div>
-                 <h4 className="font-bold text-white text-sm lg:text-lg mb-2 lg:mb-3">Innovation</h4>
-                 <p className="text-xs lg:text-sm text-text-secondary leading-relaxed">Leveraging technology for better outcomes.</p>
+                 <h4 className="font-bold text-white text-sm lg:text-lg mb-2 lg:mb-3">Inclusion</h4>
+                 <p className="text-xs lg:text-sm text-text-secondary leading-relaxed">Expanding access to property ownership for Ghanaians and the diaspora making participation possible for more people.</p>
                </motion.div>
                
                <motion.div 
@@ -178,8 +175,8 @@ export function About() {
                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-primary/30 rounded-lg flex items-center justify-center mb-3 lg:mb-4 group-hover:scale-110 transition-transform">
                    <Users className="w-4 h-4 lg:w-6 lg:h-6 text-primary" />
                  </div>
-                 <h4 className="font-bold text-white text-sm lg:text-lg mb-2 lg:mb-3">Accessibility</h4>
-                 <p className="text-xs lg:text-sm text-text-secondary leading-relaxed">Making opportunities available to all.</p>
+                 <h4 className="font-bold text-white text-sm lg:text-lg mb-2 lg:mb-3">Innovation</h4>
+                 <p className="text-xs lg:text-sm text-text-secondary leading-relaxed">Harnessing tokenisation and digital infrastructure to unlock new opportunities and reimagine how capital flows into real estate.</p>
                </motion.div>
                
                <motion.div 
@@ -191,7 +188,7 @@ export function About() {
                    <Award className="w-4 h-4 lg:w-6 lg:h-6 text-highlight" />
                  </div>
                  <h4 className="font-bold text-white text-sm lg:text-lg mb-2 lg:mb-3">Integrity</h4>
-                 <p className="text-xs lg:text-sm text-text-secondary leading-relaxed">Maintaining highest ethical standards.</p>
+                 <p className="text-xs lg:text-sm text-text-secondary leading-relaxed">Upholding the highest ethical standards, with governance and regulatory alignment at the heart of everything we do.</p>
                </motion.div>
              </div>
            </motion.div>

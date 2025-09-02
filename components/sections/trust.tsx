@@ -80,11 +80,11 @@ export function Trust() {
     },
   ]
 
-  const complianceMetrics = [
-    { label: "Regulatory Licenses", value: "3", icon: Shield },
-    { label: "Industry Certifications", value: "5+", icon: Award },
-    { label: "Legal Compliance", value: "100%", icon: FileCheck },
-    { label: "Audit Frequency", value: "Quarterly", icon: CheckCircle },
+  const stats = [
+    { label: "Token Titans on Waitlist", value: "500+", icon: Users, tooltip: "Engaged subscribers registered for early access to projects and platform updates" },
+    { label: "Developers in Talks", value: "5+", icon: Building, tooltip: "Active conversations with developers exploring pilots, NDAs, or MoUs" },
+    { label: "Countries Reached", value: "25+", icon: Globe, tooltip: "Count of countries represented in our waitlist and community signups" },
+    { label: "Regulatory Engagements", value: "3+", icon: Shield, tooltip: "Ongoing dialogue with SEC, Bank of Ghana, and Lands Commission to align innovation with policy" },
   ]
 
   return (
@@ -124,23 +124,6 @@ export function Trust() {
             </p>
           </motion.div>
 
-          {/* Compliance Metrics */}
-          <motion.div 
-            className="mb-20"
-            variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-          >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {complianceMetrics.map((metric, index) => (
-                <div key={index} className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/20 hover:border-primary/30 transition-all duration-300 group">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
-                    <metric.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <div className="text-3xl font-bold text-text mb-2">{metric.value}</div>
-                  <div className="text-text-secondary text-sm">{metric.label}</div>
-                </div>
-              ))}
-          </div>
-          </motion.div>
 
           {/* Trust Factors */}
           <motion.div 
@@ -171,12 +154,15 @@ export function Trust() {
           </div>
           </motion.div>
 
-          {/* Regulatory Partners */}
+          {/* Memberships & Affiliations */}
           <motion.div 
             className="mb-20"
             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
           >
-            <h3 className="text-3xl font-bold text-text text-center mb-12">Regulatory Partners</h3>
+            <h3 className="text-3xl font-bold text-text text-center mb-6">Memberships & Affiliations</h3>
+            <p className="text-text-secondary text-center mb-12 max-w-3xl mx-auto">
+              We are actively engaging with regulators and ecosystem partners to align innovation with Ghanaian law and industry best practice.
+            </p>
             <div className="grid md:grid-cols-3 gap-8">
               {regulators.map((regulator, index) => (
                 <motion.div
@@ -208,43 +194,7 @@ export function Trust() {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
-
-          {/* Ecosystem Partners */}
-          <motion.div 
-            className="mb-20"
-            variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-          >
-            <h3 className="text-3xl font-bold text-text text-center mb-12">Ecosystem Partners</h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {ecosystemPartners.map((partner, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card className="p-8 bg-base border border-white/20 hover:border-primary/40 transition-all duration-300 group text-center h-full shadow-xl">
-                    <div className="mx-auto mb-6">
-                      <NextImage
-                        src={partner.logo || "/placeholder.svg"}
-                        alt={partner.name}
-                        width={112}
-                        height={112}
-                        sizes="(max-width: 768px) 80px, 112px"
-                        className="w-20 h-20 md:w-28 md:h-28 object-contain grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-110"
-                        quality={85}
-                      />
-                    </div>
-                    <h4 className="text-lg font-bold text-white mb-3">{partner.name}</h4>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-white text-sm font-medium">
-                      <Building className="w-3 h-3" />
-                      {partner.type}
-                </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+            <p className="text-sm text-text-secondary text-center mt-6">Disclaimer: Logos shown for context formal approvals pending</p>
           </motion.div>
 
           {/* Trust Call to Action */}

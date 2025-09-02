@@ -1,0 +1,343 @@
+"use client"
+
+import { Card } from "@/components/ui/card"
+import { Shield, Settings, Eye, BarChart3, ArrowLeft, FileText, Clock, CheckCircle, AlertTriangle, Download } from "lucide-react"
+import { Footer } from "@/components/sections/footer"
+import { Navbar } from "@/components/ui/navbar"
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
+
+const cookieTypes = [
+  {
+    name: "Essential cookies",
+    description: "Required for secure, core site functions (navigation, form submission).",
+    icon: Shield,
+    color: "primary",
+    examples: ["Session management", "Security tokens", "Form validation"],
+    duration: "Session",
+    required: true
+  },
+  {
+    name: "Performance cookies",
+    description: "Help us analyse how visitors use our website.",
+    icon: BarChart3,
+    color: "highlight",
+    examples: ["Analytics data", "Performance metrics", "Error tracking"],
+    duration: "2 years",
+    required: false
+  },
+  {
+    name: "Functionality cookies",
+    description: "Remember preferences such as language and location.",
+    icon: Settings,
+    color: "primary",
+    examples: ["Language settings", "Theme preferences", "Location data"],
+    duration: "1 year",
+    required: false
+  },
+  {
+    name: "Advertising cookies",
+    description: "Used, with your consent, to deliver relevant adverts and measure campaign performance.",
+    icon: Eye,
+    color: "highlight",
+    examples: ["Ad targeting", "Campaign tracking", "Conversion metrics"],
+    duration: "90 days",
+    required: false
+  }
+]
+
+const complianceInfo = [
+  {
+    title: "Ghana Data Protection Act, 2012 (Act 843)",
+    description: "Primary compliance framework for data protection in Ghana",
+    status: "Compliant",
+    icon: CheckCircle
+  },
+  {
+    title: "EU General Data Protection Regulation (GDPR)",
+    description: "Applies to EU residents and data processing",
+    status: "Compliant",
+    icon: CheckCircle
+  },
+  {
+    title: "UK GDPR",
+    description: "Post-Brexit UK data protection framework",
+    status: "Compliant",
+    icon: CheckCircle
+  },
+  {
+    title: "California Consumer Privacy Act (CCPA)",
+    description: "California state privacy law for residents",
+    status: "Compliant",
+    icon: CheckCircle
+  }
+]
+
+export default function CookiePolicyPage() {
+  const prefersReducedMotion = useReducedMotion()
+
+  return (
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-base relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-20 w-80 h-80 bg-highlight/5 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(195,61,143,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(195,61,143,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
+        </div>
+
+        <div className="container mx-auto px-6 py-24 relative z-10">
+          <motion.div 
+            className="max-w-6xl mx-auto"
+            initial="initial"
+            animate="animate"
+            variants={staggerChildren}
+          >
+            {/* Back to Home Button */}
+            <motion.div 
+              className="mb-8"
+              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+            >
+              <Link 
+                href="/"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/20 rounded-xl text-text-secondary hover:text-text transition-all duration-300 backdrop-blur-xl"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Home
+              </Link>
+            </motion.div>
+
+            {/* Header */}
+            <motion.div 
+              className="text-center mb-16"
+              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+                <Shield className="w-4 h-4" />
+                Legal & Compliance
+              </div>
+              <h1 className="text-5xl md:text-6xl font-newsreader font-bold text-text mb-6">
+                Cookie Policy
+              </h1>
+              <p className="text-text-secondary text-xl max-w-3xl mx-auto leading-relaxed mb-8">
+                Understanding how we use cookies and similar technologies to enhance your experience while protecting your privacy.
+              </p>
+              <div className="flex items-center justify-center gap-6 text-sm text-text-secondary">
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
+                  Last updated: 1st Sep 2025
+                </div>
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4" />
+                  Version 2.1
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Quick Summary */}
+            <motion.div 
+              className="mb-16"
+              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+            >
+              <Card className="p-8 bg-gradient-to-r from-primary/10 to-highlight/10 border border-primary/20 backdrop-blur-xl">
+                <div className="grid md:grid-cols-3 gap-8">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Shield className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-text mb-2">Essential Only</h3>
+                    <p className="text-text-secondary">Core functionality cookies are always active</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-highlight/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Settings className="w-8 h-8 text-highlight" />
+                    </div>
+                    <h3 className="text-xl font-bold text-text mb-2">Consent Required</h3>
+                    <p className="text-text-secondary">Optional cookies need your explicit permission</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Eye className="w-8 h-8 text-text" />
+                    </div>
+                    <h3 className="text-xl font-bold text-text mb-2">Full Control</h3>
+                    <p className="text-text-secondary">Manage preferences anytime in settings</p>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+
+            {/* Compliance Status */}
+            <motion.div 
+              className="mb-16"
+              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+            >
+              <h2 className="text-3xl font-bold text-text mb-8 text-center">Compliance Framework</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {complianceInfo.map((item, index) => (
+                  <Card key={index} className="p-6 bg-white/5 backdrop-blur-xl border border-white/20">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-6 h-6 text-green-500" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <h3 className="text-lg font-semibold text-text">{item.title}</h3>
+                          <span className="px-2 py-1 bg-green-500/10 text-green-500 text-xs rounded-full">
+                            {item.status}
+                          </span>
+                        </div>
+                        <p className="text-text-secondary">{item.description}</p>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Cookie Types */}
+            <motion.div 
+              className="mb-16"
+              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+            >
+              <h2 className="text-3xl font-bold text-text mb-8 text-center">Types of Cookies We Use</h2>
+              <div className="space-y-6">
+                {cookieTypes.map((cookie, index) => (
+                  <Card key={index} className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                    <div className="flex items-start gap-6">
+                      <div className={`w-16 h-16 bg-${cookie.color}/20 rounded-xl flex items-center justify-center flex-shrink-0`}>
+                        <cookie.icon className={`w-8 h-8 text-${cookie.color}`} />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-3">
+                          <h3 className="text-xl font-bold text-text">{cookie.name}</h3>
+                          {cookie.required && (
+                            <span className="px-3 py-1 bg-red-500/10 text-red-500 text-sm rounded-full">
+                              Required
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-text-secondary text-lg mb-4">{cookie.description}</p>
+                        <div className="grid md:grid-cols-3 gap-4">
+                          <div>
+                            <h4 className="font-semibold text-text mb-2">Examples</h4>
+                            <ul className="space-y-1">
+                              {cookie.examples.map((example, i) => (
+                                <li key={i} className="text-sm text-text-secondary">• {example}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-text mb-2">Duration</h4>
+                            <p className="text-sm text-text-secondary">{cookie.duration}</p>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-text mb-2">Consent</h4>
+                            <p className="text-sm text-text-secondary">
+                              {cookie.required ? "Always active" : "Requires consent"}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Management Section */}
+            <motion.div 
+              className="mb-16"
+              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+            >
+              <Card className="p-8 bg-gradient-to-r from-highlight/10 to-primary/10 border border-highlight/20 backdrop-blur-xl">
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl font-bold text-text mb-4">Managing Your Cookie Preferences</h2>
+                  <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+                    You have full control over your cookie preferences. Here's how to manage them effectively.
+                  </p>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-bold text-text mb-4">Browser Settings</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-primary" />
+                        </div>
+                        <span className="text-text-secondary">Access browser privacy settings</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-primary" />
+                        </div>
+                        <span className="text-text-secondary">Disable specific cookie types</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-primary" />
+                        </div>
+                        <span className="text-text-secondary">Clear existing cookies</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-text mb-4">Important Notes</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 bg-highlight/20 rounded-full flex items-center justify-center mt-1">
+                          <AlertTriangle className="w-4 h-4 text-highlight" />
+                        </div>
+                        <span className="text-text-secondary">Disabling essential cookies may affect site functionality</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 bg-highlight/20 rounded-full flex items-center justify-center mt-1">
+                          <AlertTriangle className="w-4 h-4 text-highlight" />
+                        </div>
+                        <span className="text-text-secondary">Changes take effect immediately</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 bg-highlight/20 rounded-full flex items-center justify-center mt-1">
+                          <AlertTriangle className="w-4 h-4 text-highlight" />
+                        </div>
+                        <span className="text-text-secondary">Preferences are stored locally on your device</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+
+            {/* Contact & Download */}
+            <motion.div 
+              className="text-center"
+              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+            >
+              <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                <h2 className="text-2xl font-bold text-text mb-4">Questions About Cookies?</h2>
+                <p className="text-text-secondary mb-6">
+                  Our privacy team is here to help with any questions about our cookie policy.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link 
+                    href="mailto:privacy@landledger.com" 
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all duration-300"
+                  >
+                    Contact Privacy Team
+                  </Link>
+                  <button className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/20 text-text font-semibold rounded-xl transition-all duration-300">
+                    <Download className="w-4 h-4" />
+                    Download PDF
+                  </button>
+                </div>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  )
+}
