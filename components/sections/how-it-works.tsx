@@ -1,13 +1,25 @@
 "use client"
 
+import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Search, CreditCard, BarChart3, DollarSign, LogOut, ArrowRight, CheckCircle, TrendingUp } from "lucide-react"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
+import { Modal } from "@/components/ui/modal"
+import { TypeformEmbed } from "@/components/ui/typeform-embed"
+import { trackEvent } from "@/lib/analytics"
 
 export function HowItWorks() {
   const prefersReducedMotion = useReducedMotion()
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openModal = () => {
+    setIsModalOpen(true)
+    trackEvent("how_it_works_cta_click", { action: "open_typeform" })
+  }
+
+  const closeModal = () => setIsModalOpen(false)
 
   const steps = [
     {
@@ -54,6 +66,7 @@ export function HowItWorks() {
   ]
 
   return (
+    <>
     <section id="how-it-works" className="py-24 bg-base relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
@@ -187,15 +200,33 @@ export function HowItWorks() {
               <p className="text-text-secondary/90 tracking-wide text-lg mb-6">
                 From verified projects to secure onboarding, instant equity uplift, and a clear resale pathway LandLedger gives you the confidence to invest in Ghanaian property with clarity and control.
               </p>
-              <button className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-lg px-8 py-4 rounded-2xl shadow-2xl shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:shadow-primary/50">
+              <button 
+                onClick={openModal}
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-lg px-8 py-4 rounded-2xl shadow-2xl shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:shadow-primary/50"
+              >
                 <span>Secure Early Access</span>
                 <ArrowRight className="w-5 h-5" />
-            </button>
+              </button>
             <p className="text-sm text-text-secondary mt-4">Be among the first to unlock a safer, smarter way to own property in Ghana</p>
           </div>
           </motion.div>
         </motion.div>
       </div>
     </section>
+
+    {/* Typeform Modal */}
+    <Modal
+      isOpen={isModalOpen}
+      onClose={closeModal}
+      size="xl"
+      className="max-h-[90vh] overflow-hidden"
+    >
+      <TypeformEmbed
+        formId="NYKX0LYM"
+        title="Secure Early Access"
+        onClose={closeModal}
+      />
+    </Modal>
+    </>
   )
 }

@@ -57,60 +57,65 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="max-w-4xl mx-auto">
             {/* Contact Form */}
-            <div>
-              <Card className="p-8 bg-base border-text-secondary/20">
-                <h3 className="text-2xl font-semibold text-text mb-6">Send us a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-text mb-2">
-                        Full Name
-                      </label>
-                      <Input
-                        id="name"
-                        type="text"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
-                        className="bg-base border-text-secondary/20 text-text focus:border-primary"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="mobile" className="block text-sm font-medium text-text mb-2">
-                        Mobile Number (Optional)
-                      </label>
-                      <Input
-                        id="mobile"
-                        type="tel"
-                        value={formData.mobile}
-                        onChange={(e) => handleInputChange("mobile", e.target.value)}
-                        className="bg-base border-text-secondary/20 text-text focus:border-primary"
-                      />
-                    </div>
+            <Card className="p-8 md:p-12 bg-base border-text-secondary/20 shadow-xl">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl font-bold text-text mb-4">Send us a Message</h3>
+                <p className="text-text-secondary">
+                  Have questions about LandLedger or want to learn more? Send us a message and our team will get back to you typically within 24 hours (Mon Fri, GMT)
+                </p>
+              </div>
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-text mb-2">
+                      Full Name *
+                    </label>
+                    <Input
+                      id="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      className="bg-base border-text-secondary/20 text-text focus:border-primary h-12"
+                      required
+                    />
                   </div>
+                  <div>
+                    <label htmlFor="mobile" className="block text-sm font-medium text-text mb-2">
+                      Mobile Number
+                    </label>
+                    <Input
+                      id="mobile"
+                      type="tel"
+                      value={formData.mobile}
+                      onChange={(e) => handleInputChange("mobile", e.target.value)}
+                      className="bg-base border-text-secondary/20 text-text focus:border-primary h-12"
+                    />
+                  </div>
+                </div>
 
+                <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-text mb-2">
-                      Email Address
+                      Email Address *
                     </label>
                     <Input
                       id="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
-                      className="bg-base border-text-secondary/20 text-text focus:border-primary"
+                      className="bg-base border-text-secondary/20 text-text focus:border-primary h-12"
                       required
                     />
                   </div>
-
                   <div>
                     <label htmlFor="topic" className="block text-sm font-medium text-text mb-2">
-                      Topic
+                      Topic *
                     </label>
                     <Select value={formData.topic} onValueChange={(value) => handleInputChange("topic", value)}>
-                      <SelectTrigger className="bg-base border-text-secondary/20 text-text focus:border-primary">
+                      <SelectTrigger className="bg-base border-text-secondary/20 text-text focus:border-primary h-12">
                         <SelectValue placeholder="Select a topic" />
                       </SelectTrigger>
                       <SelectContent className="bg-base border-text-secondary/20">
@@ -123,50 +128,51 @@ export function Contact() {
                       </SelectContent>
                     </Select>
                   </div>
+                </div>
 
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-text mb-2">
-                      Message
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-text mb-2">
+                    Message *
+                  </label>
+                  <Textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => handleInputChange("message", e.target.value)}
+                    rows={6}
+                    className="bg-base border-text-secondary/20 text-text focus:border-primary resize-none"
+                    placeholder="Tell us more about your inquiry..."
+                    required
+                  />
+                </div>
+
+                <div className="space-y-4 bg-primary/5 p-6 rounded-xl border border-primary/10">
+                  <div className="flex items-center gap-3">
+                    <input type="checkbox" id="privacy" className="rounded border-text-secondary/20 w-4 h-4" required />
+                    <label htmlFor="privacy" className="text-sm text-text">
+                      I agree to the <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a> *
                     </label>
-                    <Textarea
-                      id="message"
-                      value={formData.message}
-                      onChange={(e) => handleInputChange("message", e.target.value)}
-                      rows={5}
-                      className="bg-base border-text-secondary/20 text-text focus:border-primary resize-none"
-                      placeholder="Tell us more about your inquiry..."
-                      required
-                    />
                   </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <input type="checkbox" id="privacy" className="rounded border-text-secondary/20" required />
-                      <label htmlFor="privacy" className="text-sm text-text-secondary">
-                        I agree to the Privacy Policy
-                      </label>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <input type="checkbox" id="newsletter" className="rounded border-text-secondary/20" />
-                      <label htmlFor="newsletter" className="text-sm text-text-secondary">
-                        Also subscribe to The Ledger newsletter
-                      </label>
-                    </div>
-                    <p className="text-xs text-text-secondary">Privacy note: We'll only use your information to respond</p>
+                  <div className="flex items-center gap-3">
+                    <input type="checkbox" id="newsletter" className="rounded border-text-secondary/20 w-4 h-4" />
+                    <label htmlFor="newsletter" className="text-sm text-text">
+                      Also subscribe to The Ledger newsletter for updates
+                    </label>
                   </div>
+                  <p className="text-xs text-text-secondary mt-2">
+                    <Mail className="w-3 h-3 inline mr-1" />
+                    Privacy note: We'll only use your information to respond to your inquiry
+                  </p>
+                </div>
 
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-primary hover:bg-primary/90 text-base py-3 btn-hover focus-ring"
-                  >
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
-              </Card>
-            </div>
-
-            
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary hover:bg-primary/90 text-base py-4 btn-hover focus-ring text-lg font-semibold"
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </Button>
+              </form>
+            </Card>
           </div>
         </div>
       </div>

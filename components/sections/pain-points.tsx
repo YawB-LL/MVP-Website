@@ -103,6 +103,7 @@ export function PainPoints() {
   ]
 
   return (
+    <>
     <section id="pain-points" className="py-24 bg-base relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
@@ -294,5 +295,6 @@ export function PainPoints() {
         onClose={closeModal}
       />
     </Modal>
+    </>
   )
 }
