@@ -117,8 +117,10 @@ LandLedger is an early-stage technology platform. We are not currently offering,
 Our Services are available to individuals aged 18 and above.
 3. No financial advice or offer
 Nothing on this Site constitutes investment advice, legal advice, or an offer to sell securities under Ghana’s Securities Industry Act, 2016 (Act 929) or any international securities law.
-4. Future compliance
+4. Future Compliance
 We are closely monitoring Ghana’s forthcoming Virtual Asset Service Provider (VASP) regulations. While our platform is not currently operational as a trading or issuing service, LandLedger intends to align fully with the applicable VASP framework once implemented.
+4a. Currency risk and settlement
+All LandLedger tokens will be issued and settled in Ghana Cedis (GHS), which is the sole legal tender under the Foreign Exchange Act, 2006 (Act 723) and Bank of Ghana directives. Certain developer leases may reference USD values, but any USD figures provided on this Site are for guidance only. All payments will be made in GHS, converted at the official Bank of Ghana reference rate at the time of settlement.
 5. Intellectual property
 All content, branding, and materials on this Site are the property of LandLedger Technologies.
 6. Limitation of liability
@@ -176,7 +178,7 @@ International AML/CTF standards, including the Financial Action Task Force (FATF
 
 
 We also align with international Anti-Money Laundering (AML) and Counter-Terrorist Financing (CTF) standards, including guidelines from the Financial Action Task Force (FATF).
-4. Risk factors
+4. Risk Factors 
 Investing in real estate and emerging technologies involves significant risks, including:
 Capital loss — you may lose all or part of your investment.
 
@@ -190,7 +192,19 @@ Project risks, including delays or failures.
 Liquidity risk, including difficulty selling tokens.
 
 
-Currency risk for international investors.
+Currency risk — All LandLedger tokens are issued and settled in Ghana Cedis (GHS), which is the sole legal tender in Ghana under the Foreign Exchange Act, 2006 (Act 723) and Bank of Ghana directives. Certain developer lease agreements in Ghana may reference or benchmark USD values. In such cases:
+
+
+Investor returns may be benchmarked to USD performance for guidance, but all payments will always be made in GHS.
+
+
+Conversion will use the Bank of Ghana’s published reference rate at the time of settlement.
+
+
+This ensures that while settlement occurs in GHS, investor payouts reflect the USD-linked terms of underlying leases, reducing exposure to Cedi depreciation risk.
+
+
+Foreign currency figures displayed on our Site are illustrative only and do not represent invoicing or settlement in USD.
 
 
 Regulatory risk, as frameworks evolve in Ghana and abroad.

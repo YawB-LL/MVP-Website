@@ -1,19 +1,13 @@
 import { Hero } from "@/components/sections/hero"
-import { CTASections } from "@/components/sections/cta-sections"
 import { PainPoints } from "@/components/sections/pain-points"
 import { HowItWorks } from "@/components/sections/how-it-works"
 import { Developers } from "@/components/sections/developers"
 import { EcosystemPartners } from "@/components/sections/ecosystem-partners"
 import { Waitlist } from "@/components/sections/waitlist"
-import { TalentPool } from "@/components/sections/talent-pool"
 import { About } from "@/components/sections/about"
 import { Trust } from "@/components/sections/trust"
 import { Roadmap } from "@/components/sections/roadmap"
 import { 
-  DynamicBlogPreview, 
-  DynamicPress, 
-  DynamicCareers, 
-  DynamicContact, 
   DynamicFooter, 
   DynamicExitIntentPopup, 
   DynamicScrollProgress 
@@ -28,14 +22,9 @@ export default function HomePage() {
       <HowItWorks />
       <Developers />
       <EcosystemPartners />
-      <Waitlist />
       <About />
       <Trust />
       <Roadmap />
-      <DynamicBlogPreview />
-      <DynamicPress />
-      <TalentPool />
-      <DynamicContact />
       <DynamicFooter />
       <DynamicExitIntentPopup />
     </main>

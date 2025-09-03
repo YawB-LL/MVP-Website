@@ -137,36 +137,115 @@ export default function CookiePolicyPage() {
               </div>
             </motion.div>
 
-            {/* Quick Summary */}
+            {/* Key Facts Summary */}
             <motion.div 
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
               <Card className="p-8 bg-gradient-to-r from-primary/10 to-highlight/10 border border-primary/20 backdrop-blur-xl">
+                <h2 className="text-2xl font-bold text-text mb-6 text-center">Key Facts Summary</h2>
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Shield className="w-8 h-8 text-primary" />
                     </div>
                     <h3 className="text-xl font-bold text-text mb-2">Essential Only</h3>
-                    <p className="text-text-secondary">Core functionality cookies are always active</p>
+                    <p className="text-text-secondary">We use cookies to keep the site secure and functional</p>
                   </div>
                   <div className="text-center">
                     <div className="w-16 h-16 bg-highlight/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Settings className="w-8 h-8 text-highlight" />
                     </div>
                     <h3 className="text-xl font-bold text-text mb-2">Consent Required</h3>
-                    <p className="text-text-secondary">Optional cookies need your explicit permission</p>
+                    <p className="text-text-secondary">Non-essential cookies (analytics, advertising) require your consent</p>
                   </div>
                   <div className="text-center">
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Eye className="w-8 h-8 text-text" />
                     </div>
                     <h3 className="text-xl font-bold text-text mb-2">Full Control</h3>
-                    <p className="text-text-secondary">Manage preferences anytime in settings</p>
+                    <p className="text-text-secondary">You can disable cookies in your browser settings at any time</p>
                   </div>
                 </div>
               </Card>
+            </motion.div>
+
+            {/* Main Content */}
+            <motion.div 
+              className="mb-16"
+              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+            >
+              <div className="space-y-8">
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">1. What are cookies?</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    Cookies are small text files placed on your device when you visit a website. They help us recognise your device, store preferences, and improve your experience.
+                  </p>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-6">2. Types of cookies we use</h2>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Essential cookies</h3>
+                        <p className="text-text-secondary">Required for secure, core site functions (navigation, form submission).</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-highlight rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Performance cookies</h3>
+                        <p className="text-text-secondary">Help us analyse how visitors use our website.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Functionality cookies</h3>
+                        <p className="text-text-secondary">Remember preferences such as language and location.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-highlight rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Advertising cookies</h3>
+                        <p className="text-text-secondary">Used, with your consent, to deliver relevant adverts and measure campaign performance.</p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">3. Consent</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    We only use non-essential cookies with your explicit consent, in line with Act 843 and GDPR requirements.
+                  </p>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">4. Managing cookies</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    Most browsers allow you to control cookies through settings. Disabling cookies may affect site functionality.
+                  </p>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">5. Updates</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    This Cookie Policy may be updated periodically. Please review it regularly for the latest version.
+                  </p>
+                </Card>
+              </div>
             </motion.div>
 
             {/* Compliance Status */}
@@ -195,119 +274,6 @@ export default function CookiePolicyPage() {
                   </Card>
                 ))}
               </div>
-            </motion.div>
-
-            {/* Cookie Types */}
-            <motion.div 
-              className="mb-16"
-              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-            >
-              <h2 className="text-3xl font-bold text-text mb-8 text-center">Types of Cookies We Use</h2>
-              <div className="space-y-6">
-                {cookieTypes.map((cookie, index) => (
-                  <Card key={index} className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                    <div className="flex items-start gap-6">
-                      <div className={`w-16 h-16 bg-${cookie.color}/20 rounded-xl flex items-center justify-center flex-shrink-0`}>
-                        <cookie.icon className={`w-8 h-8 text-${cookie.color}`} />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-3">
-                          <h3 className="text-xl font-bold text-text">{cookie.name}</h3>
-                          {cookie.required && (
-                            <span className="px-3 py-1 bg-red-500/10 text-red-500 text-sm rounded-full">
-                              Required
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-text-secondary text-lg mb-4">{cookie.description}</p>
-                        <div className="grid md:grid-cols-3 gap-4">
-                          <div>
-                            <h4 className="font-semibold text-text mb-2">Examples</h4>
-                            <ul className="space-y-1">
-                              {cookie.examples.map((example, i) => (
-                                <li key={i} className="text-sm text-text-secondary">• {example}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-text mb-2">Duration</h4>
-                            <p className="text-sm text-text-secondary">{cookie.duration}</p>
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-text mb-2">Consent</h4>
-                            <p className="text-sm text-text-secondary">
-                              {cookie.required ? "Always active" : "Requires consent"}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Management Section */}
-            <motion.div 
-              className="mb-16"
-              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-            >
-              <Card className="p-8 bg-gradient-to-r from-highlight/10 to-primary/10 border border-highlight/20 backdrop-blur-xl">
-                <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-text mb-4">Managing Your Cookie Preferences</h2>
-                  <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-                    You have full control over your cookie preferences. Here's how to manage them effectively.
-                  </p>
-                </div>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h3 className="text-xl font-bold text-text mb-4">Browser Settings</h3>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                          <CheckCircle className="w-4 h-4 text-primary" />
-                        </div>
-                        <span className="text-text-secondary">Access browser privacy settings</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                          <CheckCircle className="w-4 h-4 text-primary" />
-                        </div>
-                        <span className="text-text-secondary">Disable specific cookie types</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                          <CheckCircle className="w-4 h-4 text-primary" />
-                        </div>
-                        <span className="text-text-secondary">Clear existing cookies</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-text mb-4">Important Notes</h3>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 bg-highlight/20 rounded-full flex items-center justify-center mt-1">
-                          <AlertTriangle className="w-4 h-4 text-highlight" />
-                        </div>
-                        <span className="text-text-secondary">Disabling essential cookies may affect site functionality</span>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 bg-highlight/20 rounded-full flex items-center justify-center mt-1">
-                          <AlertTriangle className="w-4 h-4 text-highlight" />
-                        </div>
-                        <span className="text-text-secondary">Changes take effect immediately</span>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 bg-highlight/20 rounded-full flex items-center justify-center mt-1">
-                          <AlertTriangle className="w-4 h-4 text-highlight" />
-                        </div>
-                        <span className="text-text-secondary">Preferences are stored locally on your device</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
             </motion.div>
 
             {/* Contact & Download */}

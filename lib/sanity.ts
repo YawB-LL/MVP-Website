@@ -39,7 +39,7 @@ export interface SanityPost {
     }
     alt: string
   }
-  tags: string[]
+  tags: SanityTag[]
   readTime: number
   seo: {
     title: string
@@ -69,6 +69,23 @@ export interface SanityCategory {
     current: string
   }
   description: string
+}
+
+export interface SanityTag {
+  _id: string
+  title: string
+  slug: {
+    current: string
+  }
+  description?: string
+  category?: {
+    title: string
+    slug: {
+      current: string
+    }
+  }
+  usage?: number
+  featured?: boolean
 }
 
 export interface SanityPressRelease {
@@ -144,7 +161,18 @@ export const POSTS_QUERY = `
       },
       alt
     },
-    tags,
+    "tags": tags[]->{
+      _id,
+      title,
+      slug,
+      description,
+      "category": category->{
+        title,
+        slug
+      },
+      usage,
+      featured
+    },
     readTime,
     seo
   }
@@ -178,7 +206,18 @@ export const POST_BY_SLUG_QUERY = `
       },
       alt
     },
-    tags,
+    "tags": tags[]->{
+      _id,
+      title,
+      slug,
+      description,
+      "category": category->{
+        title,
+        slug
+      },
+      usage,
+      featured
+    },
     readTime,
     seo
   }
@@ -190,6 +229,21 @@ export const CATEGORIES_QUERY = `
     title,
     slug,
     description
+  }
+`
+
+export const TAGS_QUERY = `
+  *[_type == "tag"] | order(title asc) {
+    _id,
+    title,
+    slug,
+    description,
+    "category": category->{
+      title,
+      slug
+    },
+    usage,
+    featured
   }
 `
 
@@ -269,6 +323,15 @@ export async function getCategories(): Promise<SanityCategory[]> {
     return await sanityClient.fetch(CATEGORIES_QUERY)
   } catch (error) {
     console.error("Error fetching categories:", error)
+    return []
+  }
+}
+
+export async function getTags(): Promise<SanityTag[]> {
+  try {
+    return await sanityClient.fetch(TAGS_QUERY)
+  } catch (error) {
+    console.error("Error fetching tags:", error)
     return []
   }
 }

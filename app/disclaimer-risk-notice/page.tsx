@@ -203,195 +203,236 @@ export default function DisclaimerRiskNoticePage() {
               </div>
             </motion.div>
 
-            {/* Critical Warning */}
+            {/* Key Facts Summary */}
             <motion.div 
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
               <Card className="p-8 bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 backdrop-blur-xl">
-                <div className="text-center mb-8">
-                  <div className="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <AlertTriangle className="w-10 h-10 text-red-500" />
-                  </div>
-                  <h2 className="text-3xl font-bold text-text mb-4">⚠️ Important Risk Warning</h2>
-                  <p className="text-text-secondary text-lg max-w-3xl mx-auto">
-                    Tokenized real estate investments carry significant risks. You may lose some or all of your invested capital. 
-                    These investments are not suitable for all investors and should only be considered by those who understand the risks involved.
-                  </p>
-                </div>
-                <div className="grid md:grid-cols-3 gap-6">
+                <h2 className="text-2xl font-bold text-text mb-6 text-center">Key Facts Summary</h2>
+                <div className="grid md:grid-cols-4 gap-8">
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <TrendingDown className="w-6 h-6 text-red-500" />
+                    <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <AlertTriangle className="w-8 h-8 text-red-500" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Capital at Risk</h3>
-                    <p className="text-text-secondary text-sm">You may lose your investment</p>
+                    <h3 className="text-xl font-bold text-text mb-2">Informational Only</h3>
+                    <p className="text-text-secondary">The Site is informational only — no tokens are for sale</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <Clock className="w-6 h-6 text-yellow-500" />
+                    <div className="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Shield className="w-8 h-8 text-yellow-500" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Long-term Investment</h3>
-                    <p className="text-text-secondary text-sm">Not suitable for short-term trading</p>
+                    <h3 className="text-xl font-bold text-text mb-2">Future KYC/AML</h3>
+                    <p className="text-text-secondary">Future participation will require KYC/AML checks</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <Scale className="w-6 h-6 text-blue-500" />
+                    <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <TrendingDown className="w-8 h-8 text-red-500" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Regulatory Status</h3>
-                    <p className="text-text-secondary text-sm">Subject to regulatory approval</p>
+                    <h3 className="text-xl font-bold text-text mb-2">High Risk</h3>
+                    <p className="text-text-secondary">All investments carry risk, including the possibility of losing your entire capital</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Scale className="w-8 h-8 text-blue-500" />
+                    </div>
+                    <h3 className="text-xl font-bold text-text mb-2">Regulatory Status</h3>
+                    <p className="text-text-secondary">Platform does not constitute a regulated investment marketplace</p>
                   </div>
                 </div>
               </Card>
             </motion.div>
 
-            {/* Risk Categories */}
+            {/* Main Content */}
             <motion.div 
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <h2 className="text-3xl font-bold text-text mb-8 text-center">Investment Risks</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {riskCategories.map((risk, index) => (
-                  <Card key={index} className="p-6 bg-white/5 backdrop-blur-xl border border-white/20">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <risk.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="text-lg font-semibold text-text">{risk.title}</h3>
-                          <span className={`px-2 py-1 text-xs rounded-full ${
-                            risk.level === 'High' 
-                              ? 'bg-red-500/10 text-red-500' 
-                              : 'bg-yellow-500/10 text-yellow-500'
-                          }`}>
-                            {risk.level}
-                          </span>
-                        </div>
-                        <p className="text-text-secondary text-sm">{risk.description}</p>
-                      </div>
-                    </div>
-                    <div className="space-y-3">
-                      <div>
-                        <h4 className="font-semibold text-text text-sm mb-2">Key Risks:</h4>
-                        <div className="space-y-2">
-                          {risk.details.map((detail, i) => (
-                            <div key={i} className="flex items-start gap-2">
-                              <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0" />
-                              <p className="text-text-secondary text-sm">{detail}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-text text-sm mb-1">Mitigation:</h4>
-                        <p className="text-text-secondary text-sm">{risk.mitigation}</p>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Investment Considerations */}
-            <motion.div 
-              className="mb-16"
-              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-            >
-              <h2 className="text-3xl font-bold text-text mb-8 text-center">Investment Considerations</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {investmentConsiderations.map((consideration, index) => (
-                  <Card key={index} className="p-6 bg-white/5 backdrop-blur-xl border border-white/20">
-                    <div className="text-center mb-4">
-                      <div className="w-12 h-12 bg-highlight/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                        <consideration.icon className="w-6 h-6 text-highlight" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-text mb-1">{consideration.title}</h3>
-                      <p className="text-text-secondary text-sm mb-2">{consideration.description}</p>
-                      <span className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">
-                        {consideration.timeframe}
-                      </span>
-                    </div>
-                    <p className="text-text-secondary text-sm text-center">{consideration.details}</p>
-                  </Card>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Regulatory Compliance */}
-            <motion.div 
-              className="mb-16"
-              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-            >
-              <Card className="p-8 bg-gradient-to-r from-blue-500/10 to-primary/10 border border-blue-500/20 backdrop-blur-xl">
-                <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Scale className="w-8 h-8 text-blue-500" />
-                  </div>
-                  <h2 className="text-3xl font-bold text-text mb-4">Regulatory Compliance Status</h2>
-                  <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-                    LandLedger is actively working to obtain all necessary regulatory approvals and maintain compliance with applicable laws.
+              <div className="space-y-8">
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">1. Informational purpose only</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    LandLedger Technologies is a technology company in development. This Site is for educational and informational purposes only. We do not currently issue, sell, or broker tokens, securities, or investment products.
                   </p>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {regulatoryCompliance.map((compliance, index) => (
-                    <div key={index} className="p-6 bg-white/5 rounded-xl">
-                      <div className="flex items-center gap-3 mb-4">
-                        <h3 className="text-lg font-semibold text-text">{compliance.jurisdiction}</h3>
-                        <span className={`px-3 py-1 text-xs rounded-full ${
-                          compliance.status === 'In Progress' 
-                            ? 'bg-yellow-500/10 text-yellow-500' 
-                            : 'bg-blue-500/10 text-blue-500'
-                        }`}>
-                          {compliance.status}
-                        </span>
-                      </div>
-                      <div className="space-y-2">
-                        {compliance.requirements.map((requirement, i) => (
-                          <div key={i} className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
-                            <p className="text-text-secondary text-sm">{requirement}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-            </motion.div>
+                </Card>
 
-            {/* Disclaimers */}
-            <motion.div 
-              className="mb-16"
-              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-            >
-              <h2 className="text-3xl font-bold text-text mb-8 text-center">Legal Disclaimers</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {disclaimers.map((disclaimer, index) => (
-                  <Card key={index} className="p-6 bg-white/5 backdrop-blur-xl border border-white/20">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <disclaimer.icon className="w-6 h-6 text-primary" />
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">2. Regulatory engagement</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                    LandLedger is engaging with:
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className="text-lg font-semibold text-text">{disclaimer.type}</h3>
-                          <span className={`px-2 py-1 text-xs rounded-full ${
-                            disclaimer.importance === 'Critical' 
-                              ? 'bg-red-500/10 text-red-500' 
-                              : disclaimer.importance === 'High'
-                              ? 'bg-yellow-500/10 text-yellow-500'
-                              : 'bg-green-500/10 text-green-500'
-                          }`}>
-                            {disclaimer.importance}
-                          </span>
-                        </div>
-                        <p className="text-text-secondary text-sm">{disclaimer.content}</p>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">The Securities and Exchange Commission of Ghana (SEC)</h3>
+                        <p className="text-text-secondary">Under the Securities Industry Act, 2016 (Act 929)</p>
                       </div>
                     </div>
-                  </Card>
-                ))}
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-highlight rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">The Bank of Ghana (BoG)</h3>
+                        <p className="text-text-secondary">Under the Payment Systems and Services Act, 2019 (Act 987)</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">The Registrar General's Department (RGD)</h3>
+                        <p className="text-text-secondary">For company registration and compliance</p>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-text-secondary text-lg leading-relaxed mt-4">
+                    We are also closely monitoring Ghana's forthcoming Virtual Asset Service Provider (VASP) regulations and intend to align fully with the framework once implemented.
+                  </p>
+                  <p className="text-text-secondary text-lg leading-relaxed mt-4">
+                    Until regulatory processes are complete, our platform does not constitute a regulated investment marketplace.
+                  </p>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">3. Future compliance & KYC/AML</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                    If future products are launched, participation will require Know-Your-Customer (KYC) and Anti-Money Laundering (AML) verification. This will be implemented in line with:
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Ghana's Anti-Money Laundering Act, 2020 (Act 1044)</h3>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-highlight rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Bank of Ghana's tiered KYC framework:</h3>
+                        <div className="ml-4 mt-2 space-y-2">
+                          <p className="text-text-secondary">Tier 1: Basic KYC for mobile money users (low limits, USSD access)</p>
+                          <p className="text-text-secondary">Tier 2: Enhanced KYC for higher-value transactions</p>
+                          <p className="text-text-secondary">Tier 3: Full KYC for advanced services and diaspora participation</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">International AML/CTF standards</h3>
+                        <p className="text-text-secondary">Including the Financial Action Task Force (FATF) guidelines</p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">4. Risk Factors</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                    Investing in real estate and emerging technologies involves significant risks, including:
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Capital loss</h3>
+                        <p className="text-text-secondary">You may lose all or part of your investment</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Market fluctuations</h3>
+                        <p className="text-text-secondary">In property values</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Project risks</h3>
+                        <p className="text-text-secondary">Including delays or failures</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Liquidity risk</h3>
+                        <p className="text-text-secondary">Including difficulty selling tokens</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Currency risk</h3>
+                        <p className="text-text-secondary">All LandLedger tokens are issued and settled in Ghana Cedis (GHS), which is the sole legal tender in Ghana under the Foreign Exchange Act, 2006 (Act 723) and Bank of Ghana directives. Certain developer lease agreements in Ghana may reference or benchmark USD values. In such cases:</p>
+                        <div className="ml-4 mt-2 space-y-2">
+                          <p className="text-text-secondary">• Investor returns may be benchmarked to USD performance for guidance, but all payments will always be made in GHS</p>
+                          <p className="text-text-secondary">• Conversion will use the Bank of Ghana's published reference rate at the time of settlement</p>
+                          <p className="text-text-secondary">• This ensures that while settlement occurs in GHS, investor payouts reflect the USD-linked terms of underlying leases, reducing exposure to Cedi depreciation risk</p>
+                          <p className="text-text-secondary">• Foreign currency figures displayed on our Site are illustrative only and do not represent invoicing or settlement in USD</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Regulatory risk</h3>
+                        <p className="text-text-secondary">As frameworks evolve in Ghana and abroad</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">•</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text mb-1">Platform risk</h3>
+                        <p className="text-text-secondary">As LandLedger remains in early development</p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-8 bg-red-500/10 backdrop-blur-xl border border-red-500/20">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <AlertTriangle className="w-8 h-8 text-red-500" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-text mb-4">⚠️ Risk Warning</h2>
+                    <p className="text-text-secondary text-lg leading-relaxed">
+                      Investments in tokenised real estate are high-risk. You may lose your entire investment. Tokens, if and when offered, will not be insured deposits and will be subject to market, liquidity, regulatory, and platform risks. Only invest money you can afford to lose. Seek independent professional advice before making financial decisions.
+                    </p>
+                  </div>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">5. Updates</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    This Disclaimer & Risk Notice may be updated periodically. Please review it regularly for the latest version.
+                  </p>
+                </Card>
               </div>
             </motion.div>
 

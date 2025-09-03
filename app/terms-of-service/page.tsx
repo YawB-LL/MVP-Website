@@ -195,130 +195,112 @@ export default function TermsOfServicePage() {
               </div>
             </motion.div>
 
-            {/* Quick Summary */}
+            {/* Key Facts Summary */}
             <motion.div 
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
               <Card className="p-8 bg-gradient-to-r from-primary/10 to-highlight/10 border border-primary/20 backdrop-blur-xl">
+                <h2 className="text-2xl font-bold text-text mb-6 text-center">Key Facts Summary</h2>
                 <div className="grid md:grid-cols-4 gap-8">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Shield className="w-8 h-8 text-primary" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">We Protect</h3>
-                    <p className="text-text-secondary">Your rights and data security</p>
+                    <h3 className="text-xl font-bold text-text mb-2">No Tokens Yet</h3>
+                    <p className="text-text-secondary">We are not currently offering, brokering, or issuing tokens</p>
                   </div>
                   <div className="text-center">
                     <div className="w-16 h-16 bg-highlight/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Scale className="w-8 h-8 text-highlight" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">We Comply</h3>
-                    <p className="text-text-secondary">With all applicable laws</p>
+                    <h3 className="text-xl font-bold text-text mb-2">Not Financial Advice</h3>
+                    <p className="text-text-secondary">Nothing here is financial advice or an offer of securities</p>
                   </div>
                   <div className="text-center">
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Users className="w-8 h-8 text-text" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">You Agree</h3>
-                    <p className="text-text-secondary">To use services responsibly</p>
+                    <h3 className="text-xl font-bold text-text mb-2">Informational Only</h3>
+                    <p className="text-text-secondary">The Site is informational only</p>
                   </div>
                   <div className="text-center">
                     <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle className="w-8 h-8 text-green-500" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">We Serve</h3>
-                    <p className="text-text-secondary">With transparency and fairness</p>
+                    <h3 className="text-xl font-bold text-text mb-2">Future Compliance</h3>
+                    <p className="text-text-secondary">We will align with VASP regulations when implemented</p>
                   </div>
                 </div>
               </Card>
             </motion.div>
 
-            {/* Service Terms */}
+            {/* Main Content */}
             <motion.div 
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <h2 className="text-3xl font-bold text-text mb-8 text-center">What We Provide</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {serviceTerms.map((service, index) => (
-                  <Card key={index} className="p-6 bg-white/5 backdrop-blur-xl border border-white/20">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <service.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-text mb-1">{service.title}</h3>
-                        <p className="text-text-secondary text-sm">{service.description}</p>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      {service.details.map((detail, i) => (
-                        <div key={i} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-highlight rounded-full mt-2 flex-shrink-0" />
-                          <p className="text-text-secondary text-sm">{detail}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* User Obligations */}
-            <motion.div 
-              className="mb-16"
-              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-            >
-              <h2 className="text-3xl font-bold text-text mb-8 text-center">Your Responsibilities</h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {userObligations.map((obligation, index) => (
-                  <Card key={index} className="p-6 bg-white/5 backdrop-blur-xl border border-white/20">
-                    <div className="text-center mb-4">
-                      <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                        <obligation.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-text mb-1">{obligation.title}</h3>
-                      <p className="text-text-secondary text-sm mb-3">{obligation.description}</p>
-                      <span className={`px-3 py-1 text-xs rounded-full ${
-                        obligation.importance === 'Critical' 
-                          ? 'bg-red-500/10 text-red-500' 
-                          : obligation.importance === 'High'
-                          ? 'bg-yellow-500/10 text-yellow-500'
-                          : 'bg-green-500/10 text-green-500'
-                      }`}>
-                        {obligation.importance}
-                      </span>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Prohibited Activities */}
-            <motion.div 
-              className="mb-16"
-              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-            >
-              <Card className="p-8 bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 backdrop-blur-xl">
-                <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <AlertTriangle className="w-8 h-8 text-red-500" />
-                  </div>
-                  <h2 className="text-3xl font-bold text-text mb-4">Prohibited Activities</h2>
-                  <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-                    The following activities are strictly prohibited and may result in account termination and legal action.
+              <div className="space-y-8">
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">1. Current status</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    LandLedger is an early-stage technology platform. We are not currently offering, brokering, or issuing tokens, securities, or investment products. Our Services are limited to providing information, collecting waitlist registrations, and engaging stakeholders.
                   </p>
-                </div>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {prohibitedActivities.map((activity, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 bg-white/5 rounded-xl">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
-                      <p className="text-text-secondary">{activity}</p>
-                    </div>
-                  ))}
-                </div>
-              </Card>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">2. Eligibility</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    Our Services are available to individuals aged 18 and above.
+                  </p>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">3. No financial advice or offer</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    Nothing on this Site constitutes investment advice, legal advice, or an offer to sell securities under Ghana's Securities Industry Act, 2016 (Act 929) or any international securities law.
+                  </p>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">4. Future Compliance</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                    We are closely monitoring Ghana's forthcoming Virtual Asset Service Provider (VASP) regulations. While our platform is not currently operational as a trading or issuing service, LandLedger intends to align fully with the applicable VASP framework once implemented.
+                  </p>
+                  <h3 className="text-xl font-bold text-text mb-3">4a. Currency risk and settlement</h3>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    All LandLedger tokens will be issued and settled in Ghana Cedis (GHS), which is the sole legal tender under the Foreign Exchange Act, 2006 (Act 723) and Bank of Ghana directives. Certain developer leases may reference USD values, but any USD figures provided on this Site are for guidance only. All payments will be made in GHS, converted at the official Bank of Ghana reference rate at the time of settlement.
+                  </p>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">5. Intellectual property</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    All content, branding, and materials on this Site are the property of LandLedger Technologies.
+                  </p>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">6. Limitation of liability</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    To the fullest extent permitted by Ghana's Contracts Act, 1960 (Act 25), LandLedger is not liable for losses or damages arising from your use of this Site.
+                  </p>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">7. Governing law and jurisdiction</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    These Terms are governed by the laws of Ghana, including the Electronic Transactions Act, 2008 (Act 772). Disputes shall be subject to the exclusive jurisdiction of the courts of Accra, Ghana.
+                  </p>
+                </Card>
+
+                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <h2 className="text-2xl font-bold text-text mb-4">8. Updates</h2>
+                  <p className="text-text-secondary text-lg leading-relaxed">
+                    These Terms may be updated periodically. Please review them regularly for the latest version.
+                  </p>
+                </Card>
+              </div>
             </motion.div>
 
             {/* Legal Jurisdictions */}

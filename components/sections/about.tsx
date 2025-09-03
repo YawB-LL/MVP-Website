@@ -2,7 +2,7 @@
 
 import NextImage from "next/image"
 import { Card } from "@/components/ui/card"
-import { Target, Eye, Heart, TrendingUp, Users, MapPin, Award, CheckCircle } from "lucide-react"
+import { Target, Eye, Heart, TrendingUp, Users, MapPin, Award, CheckCircle, Building, Globe, Shield } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
@@ -120,6 +120,36 @@ export function About() {
                </motion.div>
              </motion.div>
            </div>
+
+           {/* Stats Section */}
+           <motion.div 
+             className="mt-16 lg:mt-24 mb-16 lg:mb-24"
+             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+           >
+             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+               {[
+                 { label: "Token Titans on Waitlist", value: "500+", icon: Building, tooltip: "Engaged subscribers registered for early access to projects and platform updates" },
+                 { label: "Developers in Talks", value: "5+", icon: Building, tooltip: "Active conversations with developers exploring pilots, NDAs, or MoUs" },
+                 { label: "Countries Reached", value: "25+", icon: Globe, tooltip: "Count of countries represented in our waitlist and community signups" },
+                 { label: "Regulatory Engagements", value: "3+", icon: Shield, tooltip: "Ongoing dialogue with SEC, Bank of Ghana, and Lands Commission to align innovation with policy" },
+               ].map((stat, index) => (
+                 <motion.div
+                   key={index}
+                   initial={{ opacity: 0, y: 20 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ delay: index * 0.1 }}
+                 >
+                   <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-primary/40 transition-all duration-300 group h-full text-center">
+                     <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
+                       <stat.icon className="w-8 h-8 text-primary" />
+                     </div>
+                     <div className="text-3xl font-bold text-text mb-2">{stat.value}</div>
+                     <p className="text-text-secondary/90 tracking-wide text-base leading-relaxed">{stat.label}</p>
+                   </Card>
+                 </motion.div>
+               ))}
+             </div>
+           </motion.div>
 
            {/* Values Section - Full Width */}
            <motion.div 

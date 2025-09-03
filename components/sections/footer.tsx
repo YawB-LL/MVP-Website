@@ -4,16 +4,17 @@ import type React from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ArrowUp, Mail, Phone, MapPin, Twitter, Linkedin, Facebook, Instagram, Globe, Shield, TrendingUp, Users } from "lucide-react"
+import { ArrowUp, Mail, Phone, MapPin, Twitter, Linkedin, Facebook, Instagram, Globe, Shield, TrendingUp, Users, ChevronDown } from "lucide-react"
 import { useState } from "react"
 import { trackNewsletterSubscribe } from "@/lib/analytics"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 
 export function Footer() {
   const [email, setEmail] = useState("")
   const [isSubscribing, setIsSubscribing] = useState(false)
+  const [openAccordions, setOpenAccordions] = useState<string[]>([])
   const prefersReducedMotion = useReducedMotion()
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
@@ -32,6 +33,14 @@ export function Footer() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const toggleAccordion = (category: string) => {
+    setOpenAccordions(prev => 
+      prev.includes(category) 
+        ? prev.filter(item => item !== category)
+        : [...prev, category]
+    )
   }
 
   const footerLinks = {
@@ -147,22 +156,62 @@ export function Footer() {
                   key={category}
                   variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
                 >
-                  <h4 className="text-lg font-bold text-text mb-6 capitalize">{category}</h4>
-                  <ul className="space-y-4">
+                  {/* Desktop Header */}
+                  <h4 className="text-lg font-bold text-text mb-6 capitalize hidden md:block">{category}</h4>
+                  
+                  {/* Mobile Accordion Header */}
+                  <button
+                    onClick={() => toggleAccordion(category)}
+                    className="flex items-center justify-between w-full text-lg font-bold text-text mb-4 md:hidden"
+                  >
+                    <span className="capitalize">{category}</span>
+                    <ChevronDown 
+                      className={`w-5 h-5 text-text transition-transform duration-300 ${
+                        openAccordions.includes(category) ? 'rotate-180' : ''
+                      }`} 
+                    />
+                  </button>
+                  
+                  {/* Desktop Links */}
+                  <ul className="space-y-4 hidden md:block">
                     {links.map((link) => (
-                    <li key={link.name}>
+                      <li key={link.name}>
                         <a
                           href={link.href}
                           className="text-text-secondary hover:text-text transition-colors duration-300 hover:translate-x-1 transform inline-block"
                         >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                          {link.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  {/* Mobile Accordion Content */}
+                  <AnimatePresence>
+                    {openAccordions.includes(category) && (
+                      <motion.ul
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="space-y-4 md:hidden overflow-hidden"
+                      >
+                        {links.map((link) => (
+                          <li key={link.name}>
+                            <a
+                              href={link.href}
+                              className="text-text-secondary hover:text-text transition-colors duration-300 hover:translate-x-1 transform inline-block"
+                            >
+                              {link.name}
+                            </a>
+                          </li>
+                        ))}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
               ))}
-        </div>
+            </div>
       </div>
 
           {/* Bottom Section */}

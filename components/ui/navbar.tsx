@@ -52,8 +52,8 @@ export function Navbar() {
     setActiveDropdown(null)
     
     // Handle external page navigation
-    if (section === "blog") {
-      router.push("/blog")
+    if (section === "blog" || section === "press" || section === "careers" || section === "contact") {
+      router.push(`/${section}`)
       return
     }
     
@@ -217,7 +217,7 @@ export function Navbar() {
             <div className="hidden lg:block">
               <button
                 onClick={openModal}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white px-6 py-3 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:shadow-primary/50"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-bold rounded-xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40"
               >
                 Join Waitlist
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -293,7 +293,7 @@ export function Navbar() {
                 <div className="pt-4 border-t border-white/10">
                   <button
                     onClick={openModal}
-                    className="inline-flex items-center gap-2 w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white py-3 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 justify-center"
+                    className="inline-flex items-center gap-3 w-full bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-bold py-3 rounded-xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transition-all duration-300 justify-center border-2 border-primary/20 hover:border-primary/40"
                   >
                     Join Waitlist
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

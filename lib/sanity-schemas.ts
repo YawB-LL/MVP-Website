@@ -126,15 +126,14 @@ export const postSchema = {
       type: "reference",
       to: [{ type: "category" }],
       validation: (Rule: any) => Rule.required(),
+      description: "Main category for navigation and organization",
     },
     {
       name: "tags",
       title: "Tags",
       type: "array",
-      of: [{ type: "string" }],
-      options: {
-        layout: "tags",
-      },
+      of: [{ type: "reference", to: [{ type: "tag" }] }],
+      description: "Flexible labels for cross-category filtering and SEO",
     },
     {
       name: "featuredImage",
@@ -306,6 +305,72 @@ export const categorySchema = {
     select: {
       title: "title",
       subtitle: "description",
+    },
+  },
+}
+
+export const tagSchema = {
+  name: "tag",
+  title: "Tag",
+  type: "document",
+  fields: [
+    {
+      name: "title",
+      title: "Tag Name",
+      type: "string",
+      validation: (Rule: any) => Rule.required().max(50),
+      description: "Short, descriptive tag name (e.g., 'PPP', 'Student Housing', 'Diaspora Capital')",
+    },
+    {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+        maxLength: 50,
+      },
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "text",
+      rows: 2,
+      description: "Brief description of what this tag represents",
+    },
+    {
+      name: "category",
+      title: "Primary Category",
+      type: "reference",
+      to: [{ type: "category" }],
+      description: "The main category this tag is most associated with (optional)",
+    },
+    {
+      name: "usage",
+      title: "Usage Count",
+      type: "number",
+      readOnly: true,
+      description: "Automatically tracked usage count",
+    },
+    {
+      name: "featured",
+      title: "Featured Tag",
+      type: "boolean",
+      description: "Show this tag prominently in tag clouds and filters",
+    },
+  ],
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "description",
+      category: "category.title",
+    },
+    prepare(selection: any) {
+      const { title, subtitle, category } = selection
+      return {
+        title: title,
+        subtitle: category ? `${subtitle} (${category})` : subtitle,
+      }
     },
   },
 }
@@ -578,6 +643,7 @@ export const schemas = [
   postSchema, 
   authorSchema, 
   categorySchema, 
+  tagSchema,
   pressReleaseSchema, 
   mediaKitSchema, 
   companyInfoSchema

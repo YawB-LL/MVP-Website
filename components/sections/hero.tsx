@@ -2,7 +2,7 @@
 
 import NextImage from "next/image"
 import { useState } from "react"
-import { ArrowRight, Shield, Users, TrendingUp } from "lucide-react"
+import { ArrowRight, Shield, Users, TrendingUp, Scale, Handshake } from "lucide-react"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 import { trackEvent } from "@/lib/analytics"
 import { motion } from "framer-motion"
@@ -59,17 +59,17 @@ export function Hero() {
               className="flex flex-wrap justify-center items-center gap-6 mb-4"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <div className="flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-text hover:bg-white/15 border border-white/20 transition">
-                <Shield className="w-4 h-4" />
-                <span>Proactive Regulator Engagement</span>
+              <div className="flex items-center gap-2 text-sm px-4 py-2 rounded-full bg-primary/10 backdrop-blur-md text-primary hover:bg-primary/20 border border-primary/20 transition-all duration-300 hover:scale-105">
+                <Handshake className="w-4 h-4" />
+                <span className="font-medium">Proactive Regulator Engagement</span>
               </div>
-              <div className="flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-text hover:bg-white/15 border border-white/20 transition">
-                <Shield className="w-4 h-4" />
-                <span>Grounded in Ghanaian Law</span>
+              <div className="flex items-center gap-2 text-sm px-4 py-2 rounded-full bg-highlight/10 backdrop-blur-md text-highlight hover:bg-highlight/20 border border-highlight/20 transition-all duration-300 hover:scale-105">
+                <Scale className="w-4 h-4" />
+                <span className="font-medium">Grounded in Ghanaian Law</span>
               </div>
-              <div className="flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-text hover:bg-white/15 border border-white/20 transition">
+              <div className="flex items-center gap-2 text-sm px-4 py-2 rounded-full bg-green-500/10 backdrop-blur-md text-green-400 hover:bg-green-500/20 border border-green-500/20 transition-all duration-300 hover:scale-105">
                 <Shield className="w-4 h-4" />
-                <span>Built for Regulatory Alignment</span>
+                <span className="font-medium">Built for Regulatory Alignment</span>
               </div>
             </motion.div>
 

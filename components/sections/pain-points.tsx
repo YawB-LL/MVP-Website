@@ -270,12 +270,72 @@ export function PainPoints() {
               </p>
               <button 
                 onClick={openModal}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-lg px-10 py-5 rounded-2xl shadow-2xl shadow-primary/30 transition-all duration-300 transform hover:scale-105 hover:shadow-primary/50"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40"
               >
                 <span>Secure Early Access</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
               <p className="text-sm text-text-secondary mt-4">Be part of reshaping property access in Ghana</p>
+            </div>
+          </motion.div>
+
+          {/* FAQ Signpost */}
+          <motion.div
+            className="mt-20 text-center"
+            variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
+          >
+            <div className="max-w-3xl mx-auto p-8 rounded-3xl bg-gradient-to-r from-slate-800/80 to-slate-900/80 backdrop-blur-xl border border-slate-700/50 hover:border-primary/30 transition-all duration-300">
+              <div className="w-16 h-16 bg-gradient-to-r from-highlight to-primary rounded-2xl mx-auto flex items-center justify-center mb-6 shadow-lg shadow-highlight/25">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Have Questions About Investing?
+              </h3>
+              
+              <p className="text-slate-300 text-lg mb-6 leading-relaxed">
+                Get answers to common questions about fractional ownership, blockchain technology, 
+                regulatory compliance, and more in our comprehensive FAQ section.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a
+                  href="/faqs"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-semibold rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Browse FAQs
+                </a>
+                
+                <span className="text-slate-400 text-sm">
+                  or contact our support team
+                </span>
+              </div>
+              
+              <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-slate-400">
+                <span className="flex items-center gap-1">
+                  <svg className="w-4 h-4 text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  12+ Questions Answered
+                </span>
+                <span className="flex items-center gap-1">
+                  <svg className="w-4 h-4 text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  6 Categories
+                </span>
+                <span className="flex items-center gap-1">
+                  <svg className="w-4 h-4 text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Updated Regularly
+                </span>
+              </div>
             </div>
           </motion.div>
         </motion.div>

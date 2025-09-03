@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Newsreader } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/components/ui/navbar"
+import { Footer } from "@/components/sections/footer"
 import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ClientScripts } from "@/components/client-scripts"
@@ -29,8 +30,8 @@ export const metadata: Metadata = {
   keywords: "Ghana real estate, property investment, tokenization, diaspora investment, land investment",
   authors: [{ name: "LandLedger" }],
   openGraph: {
-    title: "LandLedger - Premium Ghana Real Estate Investment",
-    description: "Invest in premium Ghana real estate through tokenized properties.",
+    title: "Ghana's First Tokenised Real Estate Platform",
+    description: "Unlock access to prime Ghanaian real estate, transparent, secure, and built for Ghanaians across the globe.",
     type: "website",
     locale: "en_GB",
   },
@@ -59,6 +60,7 @@ export default function RootLayout({
           <TrackingInitializer />
           <Navbar />
           {children}
+          <Footer />
           <Toaster />
         </ThemeProvider>
       </body>

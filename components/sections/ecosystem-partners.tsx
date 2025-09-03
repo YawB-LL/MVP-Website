@@ -217,7 +217,7 @@ export function EcosystemPartners() {
                  </p>
                 <button 
                   onClick={openModal}
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-highlight to-primary hover:from-highlight/90 hover:to-primary/90 text-lg px-10 py-5 rounded-2xl shadow-2xl shadow-highlight/30 transition-all duration-300 transform hover:scale-105 hover:shadow-highlight/50"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40"
                 >
                   <span>Engage With Us</span>
                   <ArrowRight className="w-5 h-5" />

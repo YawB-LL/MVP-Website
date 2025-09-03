@@ -37,7 +37,18 @@ export async function GET(request: Request) {
           },
           alt
         },
-        tags,
+        "tags": tags[]->{
+          _id,
+          title,
+          slug,
+          description,
+          "category": category->{
+            title,
+            slug
+          },
+          usage,
+          featured
+        },
         readTime,
         seo
       }
@@ -69,13 +80,32 @@ export async function GET(request: Request) {
     `)
     console.log(`Categories query returned: ${categories.length} categories`)
     
-    console.log('3. Building response...')
+    console.log('3. Getting tags...')
+    const tags = await sanityClient.fetch(`
+      *[_type == "tag"] | order(title asc) {
+        _id,
+        title,
+        slug,
+        description,
+        "category": category->{
+          title,
+          slug
+        },
+        usage,
+        featured
+      }
+    `)
+    console.log(`Tags query returned: ${tags.length} tags`)
+    
+    console.log('4. Building response...')
     const response = {
       posts: allPosts,
       categories,
+      tags,
       success: true,
       totalPosts: allPosts.length,
-      totalCategories: categories.length
+      totalCategories: categories.length,
+      totalTags: tags.length
     }
     
     console.log(`Final response has ${response.posts.length} posts`)

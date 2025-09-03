@@ -52,6 +52,9 @@ export default defineConfig({
                     S.listItem()
                       .title('Categories')
                       .child(S.documentTypeList('category')),
+                    S.listItem()
+                      .title('Tags')
+                      .child(S.documentTypeList('tag')),
                   ])
               ),
             // Press & Media
