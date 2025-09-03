@@ -8,7 +8,6 @@ import { About } from "@/components/sections/about"
 import { Trust } from "@/components/sections/trust"
 import { Roadmap } from "@/components/sections/roadmap"
 import { 
-  DynamicFooter, 
   DynamicExitIntentPopup, 
   DynamicScrollProgress 
 } from "@/lib/dynamic-imports"
@@ -25,7 +24,6 @@ export default function HomePage() {
       <About />
       <Trust />
       <Roadmap />
-      <DynamicFooter />
       <DynamicExitIntentPopup />
     </main>
   )
