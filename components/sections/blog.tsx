@@ -50,37 +50,48 @@ export function Blog() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState("All")
-
+  const [refreshing, setRefreshing] = useState(false)
 
   // Fetch blog posts and categories from Sanity CMS
-  useEffect(() => {
-    const fetchBlogData = async () => {
-      try {
-        setLoading(true)
-        setError(null)
-        
-        const response = await fetch('/api/blog')
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog data')
-        }
-        
-        const data = await response.json()
-        if (data.success) {
-          setPosts(data.posts || [])
-          setCategories(data.categories || [])
-        } else {
-          throw new Error('Invalid response format')
-        }
-      } catch (err) {
-        console.error('Error fetching blog data:', err)
-        setError(err instanceof Error ? err.message : 'Failed to fetch blog data')
-      } finally {
-        setLoading(false)
+  const fetchBlogData = async (forceRefresh = false) => {
+    try {
+      setLoading(true)
+      setError(null)
+      
+      const url = forceRefresh ? '/api/blog?refresh=true' : '/api/blog'
+      const response = await fetch(url)
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch blog data: ${response.status}`)
       }
+      
+      const data = await response.json()
+      if (data.success) {
+        setPosts(data.posts || [])
+        setCategories(data.categories || [])
+        console.log(`Blog data fetched successfully: ${data.posts?.length || 0} posts`)
+      } else {
+        throw new Error(data.error || 'Invalid response format')
+      }
+    } catch (err) {
+      console.error('Error fetching blog data:', err)
+      setError(err instanceof Error ? err.message : 'Failed to fetch blog data')
+    } finally {
+      setLoading(false)
+      setRefreshing(false)
     }
+  }
 
+  // Initial fetch
+  useEffect(() => {
     fetchBlogData()
   }, [])
+
+  // Refresh function for manual refresh
+  const handleRefresh = async () => {
+    setRefreshing(true)
+    await fetchBlogData(true)
+  }
 
   const filteredPosts = selectedCategory === "All" 
     ? posts 
@@ -114,7 +125,7 @@ export function Blog() {
             <div className="bg-red-50 border border-red-200 rounded-lg p-6">
               <p className="text-red-600 mb-4">Unable to load blog content</p>
               <Button 
-                onClick={() => window.location.reload()} 
+                onClick={handleRefresh} 
                 variant="outline"
                 className="border-red-200 text-red-600 hover:bg-red-50"
               >
@@ -133,7 +144,18 @@ export function Blog() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-headline text-text mb-6">The Ledger</h2>
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <h2 className="text-headline text-text">The Ledger</h2>
+              <Button
+                onClick={handleRefresh}
+                disabled={refreshing}
+                variant="outline"
+                size="sm"
+                className="border-text-secondary/20 text-text-secondary hover:text-text hover:border-primary/50"
+              >
+                {refreshing ? 'Refreshing...' : 'Refresh'}
+              </Button>
+            </div>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto">
               Insights, analysis, and updates on Ghana's real estate market, investment trends, and the future of
               property technology.

@@ -1,11 +1,19 @@
 // Sanity CMS configuration and client setup
 import { createClient } from "@sanity/client"
 
-// Sanity client configuration
+// Sanity client configuration for CDN (cached) requests
 export const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "c2l4eenw",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   useCdn: true,
+  apiVersion: "2024-01-01",
+})
+
+// Sanity client configuration for live (uncached) requests
+export const sanityClientLive = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "c2l4eenw",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+  useCdn: false, // Disable CDN for live data
   apiVersion: "2024-01-01",
 })
 
@@ -300,36 +308,40 @@ export const COMPANY_INFO_QUERY = `
 `
 
 // Helper functions for fetching data
-export async function getPosts(): Promise<SanityPost[]> {
+export async function getPosts(useLive = false): Promise<SanityPost[]> {
   try {
-    return await sanityClient.fetch(POSTS_QUERY)
+    const client = useLive ? sanityClientLive : sanityClient
+    return await client.fetch(POSTS_QUERY)
   } catch (error) {
     console.error("Error fetching posts:", error)
     return []
   }
 }
 
-export async function getPostBySlug(slug: string): Promise<SanityPost | null> {
+export async function getPostBySlug(slug: string, useLive = false): Promise<SanityPost | null> {
   try {
-    return await sanityClient.fetch(POST_BY_SLUG_QUERY, { slug })
+    const client = useLive ? sanityClientLive : sanityClient
+    return await client.fetch(POST_BY_SLUG_QUERY, { slug })
   } catch (error) {
     console.error("Error fetching post:", error)
     return null
   }
 }
 
-export async function getCategories(): Promise<SanityCategory[]> {
+export async function getCategories(useLive = false): Promise<SanityCategory[]> {
   try {
-    return await sanityClient.fetch(CATEGORIES_QUERY)
+    const client = useLive ? sanityClientLive : sanityClient
+    return await client.fetch(CATEGORIES_QUERY)
   } catch (error) {
     console.error("Error fetching categories:", error)
     return []
   }
 }
 
-export async function getTags(): Promise<SanityTag[]> {
+export async function getTags(useLive = false): Promise<SanityTag[]> {
   try {
-    return await sanityClient.fetch(TAGS_QUERY)
+    const client = useLive ? sanityClientLive : sanityClient
+    return await client.fetch(TAGS_QUERY)
   } catch (error) {
     console.error("Error fetching tags:", error)
     return []

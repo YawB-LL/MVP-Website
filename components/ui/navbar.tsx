@@ -15,6 +15,7 @@ export function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [pendingNavigation, setPendingNavigation] = useState<string | null>(null)
   const router = useRouter()
   const pathname = usePathname()
 
@@ -44,49 +45,119 @@ export function Navbar() {
     }
   }, [dropdownTimeout])
 
+  // Handle pending navigation after route changes
+  useEffect(() => {
+    if (pendingNavigation && pathname === "/") {
+      // Wait for the page to fully load, then scroll to section
+      const timer = setTimeout(() => {
+        scrollToSection(pendingNavigation)
+        setPendingNavigation(null)
+      }, 500) // Increased delay for better reliability
+      
+      return () => clearTimeout(timer)
+    }
+  }, [pathname, pendingNavigation])
+
+  // Define which sections are pages vs homepage sections
+  const pageRoutes = ["blog", "press", "careers", "contact"]
+  const homepageSections = ["hero", "how-it-works", "pain-points", "trust", "about"]
+
   const handleNavClick = (section: string) => {
     trackEvent("navbar_click", { section })
     
-    // Close mobile menu and dropdown
+    // Always close mobile menu and dropdown
     setIsOpen(false)
     setActiveDropdown(null)
     
     // Handle external page navigation
-    if (section === "blog" || section === "press" || section === "careers" || section === "contact") {
+    if (pageRoutes.includes(section)) {
+      console.log(`Navigating to page: /${section}`)
       router.push(`/${section}`)
       return
     }
     
-    // If we're not on the homepage, navigate to homepage first
-    if (pathname !== "/") {
-      router.push("/")
-      return
+    // Handle homepage sections
+    if (homepageSections.includes(section)) {
+      // If we're not on homepage, navigate there first
+      if (pathname !== "/") {
+        console.log(`Navigating from ${pathname} to homepage, then to section: ${section}`)
+        setPendingNavigation(section)
+        router.push("/")
+        return
+      }
+      
+      // If already on homepage, scroll directly to section
+      console.log(`Already on homepage, scrolling to section: ${section}`)
+      // Add small delay to ensure mobile menu animation completes
+      setTimeout(() => {
+        scrollToSection(section)
+      }, 100)
     }
-    
+  }
+
+  const scrollToSection = (section: string) => {
     if (section === "hero") {
       // Scroll to top for home
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       })
-    } else {
-      // Find the target element
+      return
+    }
+
+    // Find the target element with retry logic
+    const attemptScroll = (attempts = 0) => {
       const targetElement = document.getElementById(section)
       
+      console.log(`Attempt ${attempts + 1}: Looking for section: ${section}, found:`, targetElement)
+      
       if (targetElement) {
-        // Calculate offset for fixed navbar (80px height)
-        const navbarHeight = 80
-        const elementPosition = targetElement.offsetTop - navbarHeight
+        scrollToElement(targetElement)
+      } else if (attempts < 5) {
+        // Retry up to 5 times with increasing delays
+        const delay = 200 + (attempts * 100)
+        console.log(`Section ${section} not found, retrying in ${delay}ms...`)
+        setTimeout(() => attemptScroll(attempts + 1), delay)
+      } else {
+        console.warn(`Section with id "${section}" not found after ${attempts + 1} attempts`)
+        // Debug: List all sections on the page
+        const allSections = document.querySelectorAll('section[id], div[id]')
+        console.log('Available sections on page:', Array.from(allSections).map(s => s.id))
         
-        // Smooth scroll to the element
+        // Fallback: scroll to top if section not found
         window.scrollTo({
-          top: elementPosition,
+          top: 0,
           behavior: "smooth"
         })
-      } else {
-        console.warn(`Section with id "${section}" not found`)
       }
     }
+    
+    attemptScroll()
+  }
+
+  const scrollToElement = (element: HTMLElement) => {
+    // Get the actual navbar height dynamically
+    const navbarElement = document.querySelector('nav')
+    const navbarHeight = navbarElement ? navbarElement.offsetHeight : 80
+    
+    // Add some extra padding for better visual spacing
+    const extraPadding = 20
+    const elementPosition = element.offsetTop - navbarHeight - extraPadding
+    
+    console.log(`Scrolling to element at position: ${elementPosition}`)
+    console.log(`Element offsetTop: ${element.offsetTop}`)
+    console.log(`Navbar height: ${navbarHeight}`)
+    
+    // Ensure we don't scroll to negative positions
+    const finalPosition = Math.max(0, elementPosition)
+    
+    console.log(`Final scroll position: ${finalPosition}`)
+    
+    // Smooth scroll to the element
+    window.scrollTo({
+      top: finalPosition,
+      behavior: "smooth"
+    })
   }
 
   const handleDropdownEnter = (itemName: string) => {
@@ -250,35 +321,37 @@ export function Navbar() {
                   <div key={item.name}>
                     {item.dropdown ? (
                       <div>
-                            <button
-                              onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-                              className="flex items-center justify-between w-full text-left text-text hover:text-primary transition-colors duration-300 py-3"
+                        <button
+                          onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                          className="flex items-center justify-between w-full text-left text-text hover:text-primary transition-colors duration-300 py-3"
+                        >
+                          {item.name}
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
+                            activeDropdown === item.name ? "rotate-180" : ""
+                          }`} />
+                        </button>
+                        <AnimatePresence>
+                          {activeDropdown === item.name && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="ml-4 space-y-2 mt-2 border-l border-white/10 pl-4"
                             >
-                              {item.name}
-                              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
-                                activeDropdown === item.name ? "rotate-180" : ""
-                              }`} />
-                            </button>
-                            {activeDropdown === item.name && (
-                              <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                className="ml-4 space-y-2 mt-2 border-l border-white/10 pl-4"
-                              >
-                                {item.dropdown.map((dropdownItem) => (
-                                  <button
-                                    key={dropdownItem.name}
-                                    onClick={() => handleNavClick(dropdownItem.href)}
-                                    className="flex items-center gap-3 w-full text-left text-text-secondary hover:text-primary transition-colors duration-300 py-2 cursor-pointer"
-                                  >
-                                    <dropdownItem.icon className="w-4 h-4 text-primary" />
-                                    <span>{dropdownItem.name}</span>
-                                  </button>
-                                ))}
-                              </motion.div>
-                            )}
-                          </div>
+                              {item.dropdown.map((dropdownItem) => (
+                                <button
+                                  key={dropdownItem.name}
+                                  onClick={() => handleNavClick(dropdownItem.href)}
+                                  className="flex items-center gap-3 w-full text-left text-text-secondary hover:text-primary transition-colors duration-300 py-2 cursor-pointer"
+                                >
+                                  <dropdownItem.icon className="w-4 h-4 text-primary" />
+                                  <span>{dropdownItem.name}</span>
+                                </button>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     ) : (
                       <button
                         onClick={() => handleNavClick(item.href)}
@@ -326,7 +399,3 @@ export function Navbar() {
     </>
   )
 }
-
-
-
-

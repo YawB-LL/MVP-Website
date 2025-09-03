@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { sanityClient } from '@/lib/sanity'
+import { sanityClient, sanityClientLive } from '@/lib/sanity'
 
 export async function GET(request: Request) {
   try {
@@ -8,12 +8,13 @@ export async function GET(request: Request) {
     // Get URL parameters
     const { searchParams } = new URL(request.url)
     const limit = searchParams.get('limit')
+    const forceRefresh = searchParams.get('refresh') === 'true'
     
     console.log('1. Calling Sanity for posts...')
     
     // Build the query with optional limit
     let query = `
-      *[_type == "post"] | order(publishedAt desc) {
+      *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
         _id,
         title,
         slug,
@@ -59,7 +60,9 @@ export async function GET(request: Request) {
       query = query.replace('}', `}[0...${limit}]`)
     }
     
-    const allPosts = await sanityClient.fetch(query)
+    // Use live client for force refresh or fallback to CDN
+    const client = forceRefresh ? sanityClientLive : sanityClient
+    const allPosts = await client.fetch(query)
     
     console.log(`Sanity returned: ${allPosts.length} posts`)
     
@@ -67,10 +70,12 @@ export async function GET(request: Request) {
       allPosts.forEach((post: any, index: number) => {
         console.log(`  Post ${index + 1}: "${post.title}" (ID: ${post._id})`)
       })
+    } else {
+      console.log('  No posts found - this might indicate a caching issue')
     }
     
     console.log('2. Getting categories...')
-    const categories = await sanityClient.fetch(`
+    const categories = await client.fetch(`
       *[_type == "category"] | order(title asc) {
         _id,
         title,
@@ -81,7 +86,7 @@ export async function GET(request: Request) {
     console.log(`Categories query returned: ${categories.length} categories`)
     
     console.log('3. Getting tags...')
-    const tags = await sanityClient.fetch(`
+    const tags = await client.fetch(`
       *[_type == "tag"] | order(title asc) {
         _id,
         title,
