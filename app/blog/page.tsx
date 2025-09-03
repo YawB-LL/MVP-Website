@@ -5,10 +5,14 @@ import { Calendar, Clock, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { NewsletterSignup } from '@/components/newsletter-signup'
 
+// Force dynamic rendering to ensure fresh data
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function BlogIndexPage() {
   const [posts, categories] = await Promise.all([
-    getPosts(),
-    getCategories()
+    getPosts(true), // Use live client for fresh data
+    getCategories(true) // Use live client for fresh data
   ])
 
   const formatDate = (dateString: string) => {

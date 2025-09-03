@@ -6,9 +6,13 @@ import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { NewsletterSignup } from '@/components/newsletter-signup'
 
-// Generate static params for all blog posts
+// Force dynamic rendering to ensure fresh data
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
+// Generate static params for all blog posts (will be called at build time)
 export async function generateStaticParams() {
-  const posts = await getPosts()
+  const posts = await getPosts(true) // Use live client for fresh data
   
   return posts.map((post) => ({
     slug: post.slug.current,
@@ -17,7 +21,7 @@ export async function generateStaticParams() {
 
 // Generate metadata for each post
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug)
+  const post = await getPostBySlug(params.slug, true) // Use live client
   
   if (!post) {
     return {
@@ -32,7 +36,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug)
+  const post = await getPostBySlug(params.slug, true) // Use live client for fresh data
   
   if (!post) {
     notFound()

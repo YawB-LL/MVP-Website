@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server'
 import { sanityClient, sanityClientLive } from '@/lib/sanity'
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export async function GET(request: Request) {
   try {
     console.log('=== MAIN BLOG API ROUTE STARTED ===')
