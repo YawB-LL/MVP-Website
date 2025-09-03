@@ -74,7 +74,7 @@ export function Footer() {
   ]
 
   return (
-    <footer className="bg-base border-t border-white/10 relative overflow-hidden">
+    <footer data-footer className="bg-base border-t border-white/10 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />

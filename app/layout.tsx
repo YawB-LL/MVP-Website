@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ClientScripts } from "@/components/client-scripts"
 import { TrackingInitializer } from "@/components/tracking-initializer"
+import { PathTracker } from "@/components/layout/path-tracker"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
         >
           <ClientScripts />
           <TrackingInitializer />
+          <PathTracker />
           <Navbar />
           {children}
           <Footer />

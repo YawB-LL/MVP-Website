@@ -98,6 +98,12 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Hide footer on Sanity Studio routes */
+  body[data-path^="/studio"] footer,
+  body[data-path^="/studio"] [data-footer] {
+    display: none !important;
+  }
 
   /* Typography scale used across sections */
   .text-display {
