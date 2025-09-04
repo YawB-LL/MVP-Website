@@ -41,7 +41,7 @@ interface BlogPost {
     }
     alt: string
   }
-  tags: string[]
+  tags: { _id: string; title: string }[]
 }
 
 export function Blog() {
@@ -234,11 +234,11 @@ export function Blog() {
                           <div className="flex flex-wrap gap-2">
                             {post.tags?.slice(0, 2).map((tag) => (
                               <Badge
-                                key={tag}
+                                key={tag._id || tag.title}
                                 variant="secondary"
                                 className="text-xs bg-text-secondary/10 text-text-secondary"
                               >
-                                {tag}
+                                {tag.title}
                               </Badge>
                             ))}
                           </div>

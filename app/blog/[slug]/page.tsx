@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { NewsletterSignup } from '@/components/newsletter-signup'
+import { ReaderModeToggle } from '@/components/sections/reader-mode-toggle'
 
 // Force dynamic rendering to ensure fresh data
 export const dynamic = 'force-dynamic'
@@ -51,11 +52,15 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   }
 
   return (
-    <div className="min-h-screen bg-base">
+    <div className="min-h-screen bg-base" id="reader-scope">
+      {/* Reader mode toggle */}
+      <div className="container mx-auto px-6 pt-6 flex justify-end">
+        <ReaderModeToggle />
+      </div>
       {/* Back Button */}
       <div className="container mx-auto px-6 py-8">
         <Link 
-          href="/#blog" 
+          href="/blog" 
           className="inline-flex items-center gap-2 text-text-secondary hover:text-text transition-colors mb-8"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -163,9 +168,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
             <div className="mt-12 pt-8 border-t border-text-secondary/20">
               <h3 className="text-lg font-semibold text-text mb-4">Tags</h3>
               <div className="flex flex-wrap gap-2">
-                {post.tags.map((tag, index) => (
-                  <Badge key={index} variant="secondary" className="bg-text-secondary/10 text-text-secondary">
-                    {tag}
+                {post.tags.map((tag: any, index: number) => (
+                  <Badge key={tag._id || index} variant="secondary" className="bg-text-secondary/10 text-text-secondary">
+                    {typeof tag === 'string' ? tag : tag.title}
                   </Badge>
                 ))}
               </div>

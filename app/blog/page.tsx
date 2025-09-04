@@ -1,18 +1,20 @@
-import { getPosts, getCategories } from '@/lib/sanity'
+import { getPosts, getCategories, getTags } from '@/lib/sanity'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Calendar, Clock, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { NewsletterSignup } from '@/components/newsletter-signup'
+import { BlogExplorer } from '@/components/sections/blog-explorer'
 
 // Force dynamic rendering to ensure fresh data
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export default async function BlogIndexPage() {
-  const [posts, categories] = await Promise.all([
+  const [posts, categories, tags] = await Promise.all([
     getPosts(true), // Use live client for fresh data
-    getCategories(true) // Use live client for fresh data
+    getCategories(true), // Use live client for fresh data
+    getTags(true),
   ])
 
   const formatDate = (dateString: string) => {
@@ -38,97 +40,9 @@ export default async function BlogIndexPage() {
         </div>
       </div>
 
-      {/* Blog Posts */}
+      {/* Blog Explorer (search, filter, pagination) */}
       <div className="container mx-auto px-6 pb-16">
-        <div className="max-w-6xl mx-auto">
-          {posts.length > 0 ? (
-            <div className="grid lg:grid-cols-3 gap-8">
-              {posts.map((post) => (
-                <Link key={post._id} href={`/blog/${post.slug.current}`}>
-                  <Card className="p-0 bg-base border-text-secondary/20 overflow-hidden card-hover cursor-pointer group">
-                    <div className="relative overflow-hidden">
-                      {post.featuredImage?.asset?.url ? (
-                        <img
-                          src={post.featuredImage.asset.url}
-                          alt={post.featuredImage.alt || post.title}
-                          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="w-full h-48 bg-text-secondary/10 flex items-center justify-center">
-                          <span className="text-text-secondary/50">No Image</span>
-                        </div>
-                      )}
-                      
-                      {post.category && (
-                        <div className="absolute top-4 left-4">
-                          <Badge variant="outline" className="bg-base/90 backdrop-blur-sm border-primary/20 text-primary">
-                            {post.category.title}
-                          </Badge>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="p-6">
-                      <div className="flex items-center gap-4 text-sm text-text-secondary mb-3">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          {formatDate(post.publishedAt)}
-                        </div>
-                        {post.readTime && (
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
-                            {post.readTime} min read
-                          </div>
-                        )}
-                      </div>
-                      
-                      <h3 className="text-xl font-semibold text-text mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                        {post.title}
-                      </h3>
-                      
-                      {post.excerpt && (
-                        <p className="text-text-secondary mb-4 line-clamp-3">
-                          {post.excerpt}
-                        </p>
-                      )}
-                      
-                      <div className="flex items-center justify-between">
-                        {post.author && (
-                          <div className="flex items-center gap-3">
-                            {post.author.avatar?.asset?.url && (
-                              <img
-                                src={post.author.avatar.asset.url}
-                                alt={post.author.name}
-                                className="w-8 h-8 rounded-full object-cover"
-                              />
-                            )}
-                            <span className="text-sm text-text-secondary">
-                              {post.author.name}
-                            </span>
-                          </div>
-                        )}
-                        
-                        <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <h2 className="text-2xl font-semibold text-text mb-4">No Blog Posts Yet</h2>
-              <p className="text-text-secondary mb-8">
-                We're working on creating amazing content for you. Check back soon!
-              </p>
-              <Link href="/">
-                <Badge variant="outline" className="px-6 py-3 text-base">
-                  Back to Homepage
-                </Badge>
-              </Link>
-            </div>
-          )}
-        </div>
+        <BlogExplorer posts={posts} categories={categories} tags={tags} />
       </div>
 
       {/* Newsletter Signup */}

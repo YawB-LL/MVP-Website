@@ -105,6 +105,41 @@
     display: none !important;
   }
 
+  /* Reader mode (light) scoped to blog content */
+  #reader-scope[data-reader-mode="light"] {
+    --base: 255 255 255; /* bg white */
+    --text: 24 24 27;    /* near-black */
+    --text-secondary: 82 82 91; /* gray-500 */
+    --primary: 17 94 89; /* teal-800 */
+    --highlight: 20 184 166; /* teal-400 */
+    background-color: rgb(var(--base));
+    color: rgb(var(--text));
+  }
+  #reader-scope[data-reader-mode="light"] .prose :where(p):not(:where([class~="not-prose"] *)) {
+    color: rgb(var(--text));
+  }
+  #reader-scope[data-reader-mode="light"] .prose :where(h1,h2,h3,h4):not(:where([class~="not-prose"] *)) {
+    color: rgb(var(--text));
+  }
+  /* Improve overall text/link contrast inside reader scope */
+  #reader-scope[data-reader-mode="light"] h1,
+  #reader-scope[data-reader-mode="light"] h2,
+  #reader-scope[data-reader-mode="light"] h3,
+  #reader-scope[data-reader-mode="light"] h4 {
+    color: rgb(17 24 39) !important; /* slate-900 */
+  }
+  #reader-scope[data-reader-mode="light"] .text-text {
+    color: rgb(17 24 39) !important; /* slate-900 */
+  }
+  #reader-scope[data-reader-mode="light"] .text-text-secondary,
+  #reader-scope[data-reader-mode="light"] p,
+  #reader-scope[data-reader-mode="light"] span {
+    color: rgb(55 65 81) !important; /* gray-700 */
+  }
+  #reader-scope[data-reader-mode="light"] a {
+    color: rgb(22 101 52) !important; /* green-800 for good contrast */
+  }
+
   /* Typography scale used across sections */
   .text-display {
     @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight;
