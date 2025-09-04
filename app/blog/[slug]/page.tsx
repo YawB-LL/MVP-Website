@@ -6,6 +6,7 @@ import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { NewsletterSignup } from '@/components/newsletter-signup'
 import { ReaderModeToggle } from '@/components/sections/reader-mode-toggle'
+import { ShareButtons } from '@/components/sections/share-buttons'
 
 // Force dynamic rendering to ensure fresh data
 export const dynamic = 'force-dynamic'
@@ -30,9 +31,32 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://landledger.africa'
+  const url = `${baseUrl}/blog/${post.slug.current}`
+  const title = post.seo?.title || post.title
+  const description = post.seo?.description || post.excerpt || 'Insights from LandLedger.'
+  const imageUrl = post.featuredImage?.asset?.url
+
   return {
-    title: post.seo?.title || post.title,
-    description: post.seo?.description || post.excerpt,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: 'LandLedger',
+      type: 'article',
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
   }
 }
 
@@ -133,6 +157,14 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               </div>
             </Card>
           )}
+
+          {/* Share */}
+          <div className="mb-8">
+            <ShareButtons 
+              url={(process.env.NEXT_PUBLIC_SITE_URL || 'https://landledger.africa') + `/blog/${post.slug.current}`}
+              title={post.seo?.title || post.title}
+            />
+          </div>
 
           {/* Content */}
           <div className="prose prose-lg max-w-none">

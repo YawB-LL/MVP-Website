@@ -21,6 +21,10 @@ export function BlogExplorer({ posts, categories, tags }: Props) {
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [page, setPage] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(9)
+  const [postsState, setPostsState] = useState<SanityPost[]>(posts || [])
+  const [categoriesState, setCategoriesState] = useState<SanityCategory[]>(categories || [])
+  const [tagsState, setTagsState] = useState<SanityTag[]>(tags || [])
+  const [loading, setLoading] = useState(false)
 
   // Responsive page size: 5 on mobile, 9 on larger screens
   useEffect(() => {
@@ -50,16 +54,33 @@ export function BlogExplorer({ posts, categories, tags }: Props) {
     setPage(1)
   }, [searchQuery, selectedCategory, selectedTags])
 
-  const categoryTitles = useMemo(() => ["All", ...categories.map(c => c.title)], [categories])
+  const categoryTitles = useMemo(() => ["All", ...categoriesState.map(c => c.title)], [categoriesState])
+
+  // Fallback: if no posts arrived from server, fetch from API dynamically
+  useEffect(() => {
+    if ((postsState?.length || 0) > 0) return
+    const fetchFallback = async () => {
+      setLoading(true)
+      try {
+        const res = await fetch('/api/blog?refresh=true')
+        const data = await res.json()
+        if (data?.posts?.length) setPostsState(data.posts)
+        if (data?.categories?.length) setCategoriesState(data.categories)
+        if (data?.tags?.length) setTagsState(data.tags)
+      } catch {}
+      setLoading(false)
+    }
+    fetchFallback()
+  }, [postsState])
 
   const filtered = useMemo(() => {
     const q = searchQuery.trim().toLowerCase()
-    return posts.filter((post) => {
+    return postsState.filter((post) => {
       // Category filter
       if (selectedCategory !== "All" && post.category?.title !== selectedCategory) return false
       // Tag filter (require all selected tags be present)
       if (selectedTags.length > 0) {
-        const postTagTitles = (post.tags || []).map(t => t.title.toLowerCase())
+        const postTagTitles = (post.tags || []).map((t: any) => (t?.title || "").toLowerCase())
         const allIncluded = selectedTags.every(t => postTagTitles.includes(t.toLowerCase()))
         if (!allIncluded) return false
       }
@@ -69,13 +90,13 @@ export function BlogExplorer({ posts, categories, tags }: Props) {
           post.title,
           post.excerpt || "",
           post.category?.title || "",
-          ...(post.tags || []).map(t => t.title)
+          ...(post.tags || []).map((t: any) => t?.title || "")
         ].join(" ").toLowerCase()
         if (!haystack.includes(q)) return false
       }
       return true
     })
-  }, [posts, searchQuery, selectedCategory, selectedTags])
+  }, [postsState, searchQuery, selectedCategory, selectedTags])
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize))
   const currentPage = Math.min(page, totalPages)
@@ -125,9 +146,9 @@ export function BlogExplorer({ posts, categories, tags }: Props) {
         </div>
 
         {/* Tags */}
-        {tags.length > 0 && (
+        {tagsState.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => {
+            {tagsState.map((tag) => {
               const active = selectedTags.includes(tag.title)
               return (
                 <button
@@ -154,7 +175,20 @@ export function BlogExplorer({ posts, categories, tags }: Props) {
       </div>
 
       {/* Results */}
-      {paginated.length === 0 ? (
+      {loading ? (
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-10">
+          {Array.from({ length: pageSize }).map((_, i) => (
+            <div key={i} className="p-0 bg-base border-text-secondary/20 overflow-hidden rounded-xl">
+              <div className="w-full h-48 bg-text-secondary/10" />
+              <div className="p-6 space-y-3">
+                <div className="h-4 w-1/2 bg-text-secondary/10" />
+                <div className="h-6 w-3/4 bg-text-secondary/10" />
+                <div className="h-4 w-2/3 bg-text-secondary/10" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : paginated.length === 0 ? (
         <div className="text-center py-16">
           <h2 className="text-2xl font-semibold text-text mb-4">No matching posts</h2>
           <p className="text-text-secondary">Try adjusting your filters or search query.</p>
