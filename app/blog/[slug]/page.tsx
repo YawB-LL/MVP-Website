@@ -6,6 +6,7 @@ import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { NewsletterSignup } from '@/components/newsletter-signup'
 import { ReaderModeToggle } from '@/components/sections/reader-mode-toggle'
+import { PortableArticle } from '@/components/sections/portable-text'
 import { ShareButtons } from '@/components/sections/share-buttons'
 
 // Force dynamic rendering to ensure fresh data
@@ -169,25 +170,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           {/* Content */}
           <div className="prose prose-lg max-w-none">
             {post.content && post.content.length > 0 ? (
-              <div className="space-y-6">
-                {post.content.map((block: any, index: number) => {
-                  if (block._type === 'block') {
-                    if (block.style === 'h2') {
-                      return (
-                        <h2 key={index} className="text-2xl font-bold text-text mt-8 mb-4">
-                          {block.children?.[0]?.text}
-                        </h2>
-                      )
-                    }
-                    return (
-                      <p key={index} className="text-text-secondary leading-relaxed">
-                        {block.children?.[0]?.text}
-                      </p>
-                    )
-                  }
-                  return null
-                })}
-              </div>
+              <PortableArticle value={post.content as any[]} />
             ) : (
               <p className="text-text-secondary text-center py-12">
                 Content is being prepared...

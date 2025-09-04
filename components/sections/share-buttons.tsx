@@ -2,6 +2,7 @@
 
 import { useMemo } from "react"
 import { Twitter, Facebook, Linkedin, Link as LinkIcon, Share2 } from "lucide-react"
+import { toast } from "@/hooks/use-toast"
 
 type Props = {
   url: string
@@ -17,7 +18,11 @@ export function ShareButtons({ url, title }: Props) {
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(url)
-      // Optional: toast can be added here
+      toast({
+        title: "Link copied",
+        description: "The blog link has been copied to your clipboard.",
+        variant: "success",
+      })
     } catch {}
   }
 
