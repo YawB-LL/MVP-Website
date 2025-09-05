@@ -51,8 +51,14 @@ export function Contact() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-headline text-text mb-6">We'd Love to Hear From You</h2>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/50 text-primary text-sm font-semibold mb-6">
+              <Mail className="w-4 h-4" />
+              Contact Us
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-newsreader font-bold text-text mb-8 lg:mb-12 leading-tight px-4 tracking-tight">
+              We'd Love to Hear From You
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-5xl mx-auto leading-relaxed font-light px-4 tracking-wide">
               Have questions about LandLedger or want to learn more? Send us a message and our team will get back to you typically within 24 hours (Mon Fri, GMT)
             </p>
           </div>
