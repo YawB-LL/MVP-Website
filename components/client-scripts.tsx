@@ -5,11 +5,13 @@ import { useEffect } from "react"
 export function ClientScripts() {
   useEffect(() => {
     // Load Google Analytics
-    if (process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID) {
+    const ga4Id = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || "G-DRDMMFDCHE"
+    
+    if (ga4Id) {
       // Load GA4 script
       const script = document.createElement("script")
       script.async = true
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}`
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${ga4Id}`
       document.head.appendChild(script)
 
       // Initialize GA4
@@ -18,8 +20,13 @@ export function ClientScripts() {
         window.dataLayer.push(args)
       }
       gtag("js", new Date())
-      gtag("config", process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID)
+      gtag("config", ga4Id, {
+        page_title: document.title,
+        page_location: window.location.href,
+      })
       window.gtag = gtag
+      
+      console.log(`[GA4] Initialized with ID: ${ga4Id}`)
     }
 
     // Load Facebook Pixel
