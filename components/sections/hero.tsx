@@ -106,7 +106,7 @@ export function Hero() {
                 <button
                   type="button"
                   aria-label="Learn How it works"
-                  className="group inline-flex items-center justify-center gap-2 px-4 py-3 border border-white/25 text-text-secondary hover:text-text hover:border-primary/50 hover:bg-white/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-xl whitespace-nowrap"
+                  className="group inline-flex items-center justify-center gap-2 px-4 py-3 border border-white/25 text-white hover:text-text hover:border-primary/50 hover:bg-white/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-xl whitespace-nowrap"
                   onClick={() => {
                     trackEvent("hero_learn_how_click")
                     document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })

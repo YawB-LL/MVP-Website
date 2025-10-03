@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookiebot Test Page</title>
+    
+    <!-- Cookiebot CMP - Load first for GDPR compliance -->
+    <script 
+        id="Cookiebot" 
+        src="https://consent.cookiebot.com/uc.js" 
+        data-cbid="d8078c04-3ae5-433f-a612-a1d0824af6be" 
+        data-blockingmode="auto" 
+        data-debug="true"
+        type="text/javascript">
+    </script>
+    
+    <!-- Debug script to check Cookiebot loading -->
+    <script>
+        // Debug Cookiebot loading
+        window.addEventListener('load', function() {
+            console.log('Cookiebot loaded:', !!window.Cookiebot);
+            console.log('Cookiebot consent:', window.Cookiebot?.consent);
+            console.log('Cookiebot hasResponse:', window.Cookiebot?.hasResponse);
+            
+            // Check if banner should appear
+            if (window.Cookiebot && !window.Cookiebot.hasResponse) {
+                console.log('Cookiebot banner should be visible');
+            } else {
+                console.log('Cookiebot banner not showing - checking configuration...');
+            }
+        });
+        
+        // Listen for Cookiebot events
+        window.addEventListener('CookiebotOnLoad', function() {
+            console.log('Cookiebot OnLoad event fired');
+        });
+        
+        window.addEventListener('CookiebotOnConsentReady', function() {
+            console.log('Cookiebot OnConsentReady event fired');
+        });
+        
+        // Fallback: Force banner to show if not visible after 2 seconds
+        setTimeout(function() {
+            if (window.Cookiebot && !window.Cookiebot.hasResponse) {
+                console.log('Forcing Cookiebot banner to show...');
+                window.Cookiebot.show();
+            } else if (!window.Cookiebot) {
+                console.error('Cookiebot failed to load - check domain configuration');
+                // Show a basic cookie notice as fallback
+                const fallbackBanner = document.createElement('div');
+                fallbackBanner.innerHTML = `
+                    <div style="position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a1a; color: white; padding: 20px; text-align: center; z-index: 10000; border-top: 2px solid #3b82f6;">
+                        <p style="margin: 0 0 15px 0;">This website uses cookies to ensure you get the best experience.</p>
+                        <button onclick="this.parentElement.parentElement.remove(); localStorage.setItem('cookieConsent', 'accepted');" style="background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">Accept</button>
+                        <button onclick="this.parentElement.parentElement.remove();" style="background: transparent; color: white; border: 1px solid white; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Decline</button>
+                    </div>
+                `;
+                document.body.appendChild(fallbackBanner);
+            }
+        }, 2000);
+    </script>
+</head>
+<body>
+    <h1>Cookiebot Test Page</h1>
+    <p>This page tests the Cookiebot CMP implementation.</p>
+    <p>Check the browser console for debug messages.</p>
+    <p>You should see a cookie banner at the bottom of the page.</p>
+    
+    <h2>Debug Information</h2>
+    <div id="debug-info">
+        <p>Cookiebot Status: <span id="cookiebot-status">Loading...</span></p>
+        <p>Consent Status: <span id="consent-status">Unknown</span></p>
+        <p>Has Response: <span id="response-status">Unknown</span></p>
+    </div>
+    
+    <script>
+        // Update debug info
+        function updateDebugInfo() {
+            const statusEl = document.getElementById('cookiebot-status');
+            const consentEl = document.getElementById('consent-status');
+            const responseEl = document.getElementById('response-status');
+            
+            if (window.Cookiebot) {
+                statusEl.textContent = 'Loaded';
+                consentEl.textContent = JSON.stringify(window.Cookiebot.consent);
+                responseEl.textContent = window.Cookiebot.hasResponse ? 'Yes' : 'No';
+            } else {
+                statusEl.textContent = 'Not Loaded';
+            }
+        }
+        
+        // Update debug info every second
+        setInterval(updateDebugInfo, 1000);
+        
+        // Initial update
+        updateDebugInfo();
+    </script>
+</body>
+</html>

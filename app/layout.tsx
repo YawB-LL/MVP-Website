@@ -49,10 +49,88 @@ export default function RootLayout({
         {/* Cookiebot CMP - Load first for GDPR compliance */}
         <script 
           id="Cookiebot" 
-          src="https://consent.cookiebot.com/uc.js" 
-          data-cbid="d8078c04-3ae5-433f-a612-a1d0824af6be" 
+          src="https://consent.cookiebot.com/uc.js?cbid=d8078c04-3ae5-433f-a612-a1d0824af6be" 
           data-blockingmode="auto" 
+          data-debug="true"
           type="text/javascript"
+        />
+        
+        {/* Debug script to check Cookiebot loading */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Debug Cookiebot loading - following official documentation
+              console.log('Starting Cookiebot debug...');
+              
+              // Listen for CookiebotOnLoad event (official event)
+              window.addEventListener('CookiebotOnLoad', function() {
+                console.log('✅ Cookiebot OnLoad event fired');
+                console.log('Cookiebot object:', window.Cookiebot);
+                console.log('Consent state:', window.Cookiebot?.consent);
+                console.log('Has response:', window.Cookiebot?.hasResponse);
+                console.log('Consented:', window.Cookiebot?.consented);
+                console.log('Declined:', window.Cookiebot?.declined);
+              });
+              
+              // Listen for CookiebotOnConsentReady event (official event)
+              window.addEventListener('CookiebotOnConsentReady', function() {
+                console.log('✅ Cookiebot OnConsentReady event fired');
+                console.log('Final consent state:', window.Cookiebot?.consent);
+                console.log('Has response:', window.Cookiebot?.hasResponse);
+              });
+              
+              // Listen for CookiebotOnAccept event
+              window.addEventListener('CookiebotOnAccept', function() {
+                console.log('✅ User accepted cookies');
+              });
+              
+              // Listen for CookiebotOnDecline event
+              window.addEventListener('CookiebotOnDecline', function() {
+                console.log('✅ User declined cookies');
+              });
+              
+              // Check Cookiebot status after page load
+              window.addEventListener('load', function() {
+                console.log('Page loaded, checking Cookiebot status...');
+                console.log('Cookiebot loaded:', !!window.Cookiebot);
+                
+                if (window.Cookiebot) {
+                  console.log('Consent object:', window.Cookiebot.consent);
+                  console.log('Has response:', window.Cookiebot.hasResponse);
+                  console.log('Consented:', window.Cookiebot.consented);
+                  console.log('Declined:', window.Cookiebot.declined);
+                  
+                  // Check if banner should be visible
+                  if (!window.Cookiebot.hasResponse) {
+                    console.log('⚠️ Banner should be visible - user has not responded');
+                    // Force banner to show using official method
+                    setTimeout(function() {
+                      if (!window.Cookiebot.hasResponse) {
+                        console.log('🔄 Forcing banner to show...');
+                        window.Cookiebot.show();
+                      }
+                    }, 1000);
+                  } else {
+                    console.log('ℹ️ User has already responded to cookie consent');
+                  }
+                } else {
+                  console.error('❌ Cookiebot failed to load - check domain configuration');
+                  // Show fallback banner
+                  setTimeout(function() {
+                    const fallbackBanner = document.createElement('div');
+                    fallbackBanner.innerHTML = \`
+                      <div style="position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a1a; color: white; padding: 20px; text-align: center; z-index: 10000; border-top: 2px solid #3b82f6;">
+                        <p style="margin: 0 0 15px 0;">This website uses cookies to ensure you get the best experience.</p>
+                        <button onclick="this.parentElement.parentElement.remove(); localStorage.setItem('cookieConsent', 'accepted');" style="background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">Accept</button>
+                        <button onclick="this.parentElement.parentElement.remove();" style="background: transparent; color: white; border: 1px solid white; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Decline</button>
+                      </div>
+                    \`;
+                    document.body.appendChild(fallbackBanner);
+                  }, 3000);
+                }
+              });
+            `,
+          }}
         />
         
         {/* Resource hints for performance optimization */}
@@ -67,20 +145,29 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               
-              // Wait for Cookiebot consent before initializing GA
+              // Initialize GA only after Cookiebot consent is ready
               window.addEventListener('CookiebotOnConsentReady', function () {
-                gtag('js', new Date());
-                gtag('config', 'G-DRDMMFDCHE', {
-                  page_title: document.title,
-                  page_location: window.location.href,
-                  anonymize_ip: true,
-                  cookie_flags: 'secure;samesite=strict'
-                });
+                console.log('🔧 Initializing Google Analytics after consent...');
+                
+                // Check if user consented to statistics cookies
+                if (window.Cookiebot && window.Cookiebot.consent.statistics) {
+                  gtag('js', new Date());
+                  gtag('config', 'G-DRDMMFDCHE', {
+                    page_title: document.title,
+                    page_location: window.location.href,
+                    anonymize_ip: true,
+                    cookie_flags: 'secure;samesite=strict'
+                  });
+                  console.log('✅ Google Analytics initialized with consent');
+                } else {
+                  console.log('ℹ️ Google Analytics not initialized - user did not consent to statistics cookies');
+                }
               });
               
               // Fallback initialization if Cookiebot doesn't load
               setTimeout(function() {
                 if (!window.Cookiebot) {
+                  console.log('⚠️ Cookiebot not loaded, initializing GA as fallback...');
                   gtag('js', new Date());
                   gtag('config', 'G-DRDMMFDCHE', {
                     page_title: document.title,
@@ -89,7 +176,7 @@ export default function RootLayout({
                     cookie_flags: 'secure;samesite=strict'
                   });
                 }
-              }, 3000);
+              }, 5000);
             `,
           }}
         />
