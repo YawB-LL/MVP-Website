@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "createdAt": "2025-10-03T08:29:29.999Z",
+  "workspaces": [
+    {
+      "name": "default",
+      "title": "LandLedger CMS",
+      "basePath": "/studio",
+      "projectId": "c2l4eenw",
+      "dataset": "production",
+      "icon": "<style data-styled=\"true\" data-styled-version=\"6.1.19\">.pFsrG{font-family:Inter,-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",\"Liberation Sans\",Helvetica,Arial,system-ui,sans-serif;font-weight:500;font-size:13px;transform:translateY(1px);}/*!sc*/\ndata-styled.g394[id=\"sc-fwDEoq\"]{content:\"pFsrG,\"}/*!sc*/\n</style><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><rect width=\"32\" height=\"32\" rx=\"2\" fill=\"#024950\"></rect><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" alignment-baseline=\"middle\" fill=\"hsla(185, 95%, 56%, 1)\" class=\"sc-fwDEoq pFsrG\">LC</text></svg>",
+      "mediaLibrary": {
+        "enabled": false
+      },
+      "schema": "02b04871.create-schema.json",
+      "tools": "56d5dc66.create-tools.json"
+    }
+  ]
+}

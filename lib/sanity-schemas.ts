@@ -84,6 +84,33 @@ export const postSchema = {
               type: "string",
               title: "Caption",
             },
+            {
+              name: "alignment",
+              type: "string",
+              title: "Alignment",
+              options: {
+                list: [
+                  { title: "Left", value: "left" },
+                  { title: "Center", value: "center" },
+                  { title: "Right", value: "right" },
+                  { title: "Full Width", value: "full" },
+                ],
+              },
+              initialValue: "center",
+            },
+            {
+              name: "size",
+              type: "string",
+              title: "Size",
+              options: {
+                list: [
+                  { title: "Small", value: "small" },
+                  { title: "Medium", value: "medium" },
+                  { title: "Large", value: "large" },
+                ],
+              },
+              initialValue: "medium",
+            },
           ],
         },
         {

@@ -46,6 +46,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${newsreader.variable} antialiased`} suppressHydrationWarning>
       <head>
+        {/* Cookiebot - Load first for GDPR compliance */}
+        <script 
+          id="Cookiebot" 
+          src="https://consent.cookiebot.com/uc.js" 
+          data-cbid="d8078c04-3ae5-433f-a612-a1d0824af6be" 
+          data-blockingmode="auto" 
+          type="text/javascript"
+        />
+        
         {/* Resource hints for performance optimization */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

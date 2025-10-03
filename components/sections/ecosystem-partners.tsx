@@ -217,10 +217,10 @@ export function EcosystemPartners() {
                  </p>
                 <button 
                   onClick={openModal}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary to-highlight hover:from-primary/90 hover:to-highlight/90 text-white font-bold text-sm sm:text-base rounded-xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20 hover:border-primary/40 whitespace-nowrap"
                 >
                   <span>Engage With Us</span>
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4 flex-shrink-0" />
                 </button>
                 <p className="text-sm text-text-secondary mt-4">Join the dialogue. Shape Ghana's housing future.</p>
               </div>

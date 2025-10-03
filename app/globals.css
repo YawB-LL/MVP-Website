@@ -1,5 +1,8 @@
 @import "../styles/globals.css";
 @import "../styles/design-system.css";
+@import "../styles/spacing-system.css";
+@import "../styles/responsive-design.css";
+@import "../styles/accessibility.css";
 @import "../styles/performance.css";
 
 

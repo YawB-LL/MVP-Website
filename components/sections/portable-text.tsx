@@ -2,6 +2,10 @@
 
 import type { PortableTextComponents } from "@portabletext/react"
 import { PortableText } from "@portabletext/react"
+import { CodeBlock } from "@/components/ui/code-block"
+import { PullQuote } from "@/components/ui/pull-quote"
+import { RichTable } from "@/components/ui/rich-table"
+import { RichImage } from "@/components/ui/rich-image"
 
 type Props = {
   value: any[]
@@ -60,14 +64,67 @@ const components: PortableTextComponents = {
     image: ({ value }) => {
       const url = (value as any)?.url || (value as any)?.asset?.url
       const alt = (value as any)?.alt || ""
+      const caption = (value as any)?.caption
+      const alignment = (value as any)?.alignment || "center"
+      const size = (value as any)?.size || "medium"
+      
       if (!url) return null
+      
       return (
-        <figure className="my-6">
-          <img src={url} alt={alt} className="rounded-md w-full" />
-          {(value as any)?.caption && (
-            <figcaption className="text-sm text-text-secondary mt-2">{(value as any).caption}</figcaption>
-          )}
-        </figure>
+        <RichImage
+          src={url}
+          alt={alt}
+          caption={caption}
+          alignment={alignment}
+          size={size}
+        />
+      )
+    },
+    codeBlock: ({ value }) => {
+      const code = (value as any)?.code || ""
+      const language = (value as any)?.language || "text"
+      const filename = (value as any)?.filename
+      const showLineNumbers = (value as any)?.showLineNumbers || false
+      
+      if (!code) return null
+      
+      return (
+        <CodeBlock
+          code={code}
+          language={language}
+          filename={filename}
+          showLineNumbers={showLineNumbers}
+        />
+      )
+    },
+    pullQuote: ({ value }) => {
+      const quote = (value as any)?.quote || ""
+      const attribution = (value as any)?.attribution
+      const style = (value as any)?.style || "default"
+      
+      if (!quote) return null
+      
+      return (
+        <PullQuote
+          quote={quote}
+          attribution={attribution}
+          style={style}
+        />
+      )
+    },
+    table: ({ value }) => {
+      const headers = (value as any)?.headers || []
+      const rows = (value as any)?.rows || []
+      const caption = (value as any)?.caption
+      
+      if (!headers.length || !rows.length) return null
+      
+      return (
+        <RichTable
+          headers={headers}
+          rows={rows}
+          caption={caption}
+        />
       )
     },
     callout: ({ value }) => {

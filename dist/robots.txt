@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://landledger.africa/sitemap.xml
+
+# Disallow admin/studio areas
+Disallow: /studio/
+Disallow: /api/
+Disallow: /test-*
+
+# Allow important pages
+Allow: /blog/
+Allow: /careers/
+Allow: /contact/
+Allow: /press/
+Allow: /privacy-policy
+Allow: /terms-of-service
+Allow: /cookie-policy
+Allow: /disclaimer-risk-notice
+Allow: /faqs
+
+# Crawl delay (optional)
+Crawl-delay: 1

@@ -211,11 +211,11 @@ export function CTASections() {
                     <div className="text-center">
                       <button
                         onClick={() => openModal(section.id, section.headline, section.formId)}
-                        className={`inline-flex items-center gap-3 px-6 py-3 ${getCtaBgClass(section.color)} text-white font-semibold text-base rounded-xl shadow-lg ${getCtaShadowClass(section.color)} transform hover:scale-105 transition-all duration-300 border-2 ${getCtaBorderClass(section.color)}`}
+                        className={`inline-flex items-center justify-center gap-2 px-4 py-3 ${getCtaBgClass(section.color)} text-white font-semibold text-sm sm:text-base rounded-xl shadow-lg ${getCtaShadowClass(section.color)} transform hover:scale-105 transition-all duration-300 border-2 ${getCtaBorderClass(section.color)} whitespace-nowrap`}
                       >
-                        <Sparkles className="w-4 h-4" />
-                        {section.ctaText}
-                        <ArrowRight className="w-4 h-4" />
+                        <Sparkles className="w-4 h-4 flex-shrink-0" />
+                        <span>{section.ctaText}</span>
+                        <ArrowRight className="w-4 h-4 flex-shrink-0" />
                       </button>
                     </div>
                   </Card>
