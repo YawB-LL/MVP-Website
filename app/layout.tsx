@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${newsreader.variable} antialiased`} suppressHydrationWarning>
       <head>
-        {/* Cookiebot - Load first for GDPR compliance */}
+        {/* Cookiebot CMP - Load first for GDPR compliance */}
         <script 
           id="Cookiebot" 
           src="https://consent.cookiebot.com/uc.js" 
@@ -59,18 +59,37 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* Google Analytics 4 */}
+        {/* Google Analytics 4 - Configured to work with Cookiebot */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRDMMFDCHE"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-DRDMMFDCHE', {
-                page_title: document.title,
-                page_location: window.location.href,
+              
+              // Wait for Cookiebot consent before initializing GA
+              window.addEventListener('CookiebotOnConsentReady', function () {
+                gtag('js', new Date());
+                gtag('config', 'G-DRDMMFDCHE', {
+                  page_title: document.title,
+                  page_location: window.location.href,
+                  anonymize_ip: true,
+                  cookie_flags: 'secure;samesite=strict'
+                });
               });
+              
+              // Fallback initialization if Cookiebot doesn't load
+              setTimeout(function() {
+                if (!window.Cookiebot) {
+                  gtag('js', new Date());
+                  gtag('config', 'G-DRDMMFDCHE', {
+                    page_title: document.title,
+                    page_location: window.location.href,
+                    anonymize_ip: true,
+                    cookie_flags: 'secure;samesite=strict'
+                  });
+                }
+              }, 3000);
             `,
           }}
         />
