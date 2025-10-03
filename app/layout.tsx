@@ -73,17 +73,28 @@ export default function RootLayout({
                 console.log('Consented:', window.Cookiebot?.consented);
                 console.log('Declined:', window.Cookiebot?.declined);
                 
-                // Force consent popup to show for all users, regardless of location
-                if (window.Cookiebot && !window.Cookiebot.hasResponse) {
+                // Always force consent popup to show for all users, regardless of location
+                if (window.Cookiebot) {
                   console.log('🔄 Forcing consent popup to show for all users...');
+                  
+                  // Clear any existing consent first
+                  window.Cookiebot.deleteConsentCookie();
+                  
                   // Override geographic restrictions
                   window.Cookiebot.regulations.gdprApplies = true;
                   window.Cookiebot.isOutOfRegion = false;
                   window.Cookiebot.isOutsideEU = false;
-                  // Show the banner
-                  window.Cookiebot.show();
-                } else if (window.Cookiebot && window.Cookiebot.hasResponse) {
-                  console.log('ℹ️ User has already responded to cookie consent');
+                  
+                  // Reset consent state
+                  window.Cookiebot.hasResponse = false;
+                  window.Cookiebot.consented = false;
+                  window.Cookiebot.declined = false;
+                  
+                  // Force show the banner
+                  setTimeout(function() {
+                    window.Cookiebot.show();
+                    console.log('🔄 Banner should now be visible');
+                  }, 500);
                 }
               });
               
@@ -115,30 +126,75 @@ export default function RootLayout({
                   console.log('Consented:', window.Cookiebot.consented);
                   console.log('Declined:', window.Cookiebot.declined);
                   
-                  // Force consent popup for all users (including Ghana)
-                  if (!window.Cookiebot.hasResponse) {
-                    console.log('🔄 Forcing consent popup to show for all users...');
-                    // Override geographic restrictions
-                    window.Cookiebot.regulations.gdprApplies = true;
-                    window.Cookiebot.isOutOfRegion = false;
-                    window.Cookiebot.isOutsideEU = false;
-                    // Show the banner
-                    window.Cookiebot.show();
-                  } else {
-                    console.log('ℹ️ User has already responded to cookie consent');
-                    
-                    // Add test button for development (only in development mode)
-                    if (window.location.hostname === 'localhost' || window.location.hostname.includes('dev')) {
-                      const testButton = document.createElement('div');
-                      testButton.innerHTML = \`
-                        <div style="position: fixed; top: 10px; right: 10px; background: #1a1a1a; color: white; padding: 10px; border-radius: 5px; z-index: 10000; font-size: 12px;">
-                          <button onclick="window.Cookiebot.renew();" style="background: #3b82f6; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-right: 5px;">Test Consent</button>
-                          <button onclick="window.Cookiebot.withdraw();" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-right: 5px;">Withdraw</button>
-                        </div>
-                      \`;
-                      document.body.appendChild(testButton);
+                  // Always force consent popup to show for all users, regardless of location
+                  console.log('🔄 Forcing consent popup to show for all users...');
+                  
+                  // Clear any existing consent first
+                  window.Cookiebot.deleteConsentCookie();
+                  
+                  // Override geographic restrictions
+                  window.Cookiebot.regulations.gdprApplies = true;
+                  window.Cookiebot.isOutOfRegion = false;
+                  window.Cookiebot.isOutsideEU = false;
+                  
+                  // Reset consent state
+                  window.Cookiebot.hasResponse = false;
+                  window.Cookiebot.consented = false;
+                  window.Cookiebot.declined = false;
+                  
+                  // Force show the banner with multiple attempts
+                  function forceShowBanner() {
+                    if (window.Cookiebot && !window.Cookiebot.hasResponse) {
+                      window.Cookiebot.show();
+                      console.log('🔄 Banner should now be visible');
+                    } else {
+                      console.log('🔄 Retrying to show banner...');
+                      setTimeout(forceShowBanner, 500);
                     }
                   }
+                  
+                  // Also create a custom banner as backup
+                  function createCustomBanner() {
+                    const existingBanner = document.querySelector('.cookiebot-banner');
+                    if (!existingBanner) {
+                      const customBanner = document.createElement('div');
+                      customBanner.className = 'cookiebot-banner';
+                      customBanner.innerHTML = \`
+                        <div style="position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a1a; color: white; padding: 20px; text-align: center; z-index: 10000; border-top: 2px solid #3b82f6; font-family: Arial, sans-serif;">
+                          <h3 style="margin: 0 0 10px 0; font-size: 18px;">Cookie Consent</h3>
+                          <p style="margin: 0 0 15px 0; font-size: 14px;">This website uses cookies to ensure you get the best experience. We respect your privacy and comply with GDPR regulations.</p>
+                          <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                            <button onclick="
+                              // Accept all cookies
+                              if (window.Cookiebot) {
+                                window.Cookiebot.submitCustomConsent(true, true, true, false);
+                              }
+                              this.closest('.cookiebot-banner').remove();
+                            " style="background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px;">Accept All</button>
+                            <button onclick="
+                              // Accept only necessary
+                              if (window.Cookiebot) {
+                                window.Cookiebot.submitCustomConsent(false, false, false, false);
+                              }
+                              this.closest('.cookiebot-banner').remove();
+                            " style="background: #6b7280; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px;">Necessary Only</button>
+                            <button onclick="
+                              // Customize
+                              if (window.Cookiebot) {
+                                window.Cookiebot.renew();
+                              }
+                              this.closest('.cookiebot-banner').remove();
+                            " style="background: #10b981; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px;">Customize</button>
+                          </div>
+                        </div>
+                      \`;
+                      document.body.appendChild(customBanner);
+                      console.log('🔄 Custom banner created as backup');
+                    }
+                  }
+                  
+                  setTimeout(forceShowBanner, 1000);
+                  setTimeout(createCustomBanner, 2000);
                 } else {
                   console.error('❌ Cookiebot failed to load - check domain configuration');
                   // Show fallback banner
