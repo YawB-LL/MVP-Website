@@ -52,6 +52,8 @@ export default function RootLayout({
           src="https://consent.cookiebot.com/uc.js?cbid=d8078c04-3ae5-433f-a612-a1d0824af6be" 
           data-blockingmode="auto" 
           data-debug="true"
+          data-level="strict"
+          data-type="optin"
           type="text/javascript"
         />
         
@@ -62,7 +64,7 @@ export default function RootLayout({
               // Debug Cookiebot loading - following official documentation
               console.log('Starting Cookiebot debug...');
               
-              // Listen for CookiebotOnLoad event (official event)
+              // Force consent popup for all users (including Ghana)
               window.addEventListener('CookiebotOnLoad', function() {
                 console.log('✅ Cookiebot OnLoad event fired');
                 console.log('Cookiebot object:', window.Cookiebot);
@@ -70,6 +72,19 @@ export default function RootLayout({
                 console.log('Has response:', window.Cookiebot?.hasResponse);
                 console.log('Consented:', window.Cookiebot?.consented);
                 console.log('Declined:', window.Cookiebot?.declined);
+                
+                // Force consent popup to show for all users, regardless of location
+                if (window.Cookiebot && !window.Cookiebot.hasResponse) {
+                  console.log('🔄 Forcing consent popup to show for all users...');
+                  // Override geographic restrictions
+                  window.Cookiebot.regulations.gdprApplies = true;
+                  window.Cookiebot.isOutOfRegion = false;
+                  window.Cookiebot.isOutsideEU = false;
+                  // Show the banner
+                  window.Cookiebot.show();
+                } else if (window.Cookiebot && window.Cookiebot.hasResponse) {
+                  console.log('ℹ️ User has already responded to cookie consent');
+                }
               });
               
               // Listen for CookiebotOnConsentReady event (official event)
@@ -100,18 +115,29 @@ export default function RootLayout({
                   console.log('Consented:', window.Cookiebot.consented);
                   console.log('Declined:', window.Cookiebot.declined);
                   
-                  // Check if banner should be visible
+                  // Force consent popup for all users (including Ghana)
                   if (!window.Cookiebot.hasResponse) {
-                    console.log('⚠️ Banner should be visible - user has not responded');
-                    // Force banner to show using official method
-                    setTimeout(function() {
-                      if (!window.Cookiebot.hasResponse) {
-                        console.log('🔄 Forcing banner to show...');
-                        window.Cookiebot.show();
-                      }
-                    }, 1000);
+                    console.log('🔄 Forcing consent popup to show for all users...');
+                    // Override geographic restrictions
+                    window.Cookiebot.regulations.gdprApplies = true;
+                    window.Cookiebot.isOutOfRegion = false;
+                    window.Cookiebot.isOutsideEU = false;
+                    // Show the banner
+                    window.Cookiebot.show();
                   } else {
                     console.log('ℹ️ User has already responded to cookie consent');
+                    
+                    // Add test button for development (only in development mode)
+                    if (window.location.hostname === 'localhost' || window.location.hostname.includes('dev')) {
+                      const testButton = document.createElement('div');
+                      testButton.innerHTML = \`
+                        <div style="position: fixed; top: 10px; right: 10px; background: #1a1a1a; color: white; padding: 10px; border-radius: 5px; z-index: 10000; font-size: 12px;">
+                          <button onclick="window.Cookiebot.renew();" style="background: #3b82f6; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-right: 5px;">Test Consent</button>
+                          <button onclick="window.Cookiebot.withdraw();" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-right: 5px;">Withdraw</button>
+                        </div>
+                      \`;
+                      document.body.appendChild(testButton);
+                    }
                   }
                 } else {
                   console.error('❌ Cookiebot failed to load - check domain configuration');

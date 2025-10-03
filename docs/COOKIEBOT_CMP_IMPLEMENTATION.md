@@ -56,7 +56,10 @@ setTimeout(function() {
 
 ### 4. GDPR Compliance Features
 
-#### Automatic Cookie Blocking
+#### Universal Consent Popup
+- **`data-type="optin"`** ensures consent popup shows for ALL users, regardless of location
+- **`data-level="strict"`** enforces strict consent requirements
+- **Geographic Override**: Forces GDPR compliance for all users, including those in Ghana
 - **`data-blockingmode="auto"`** ensures all cookies are blocked until user consent
 - Prevents any tracking scripts from executing before consent
 
@@ -72,6 +75,7 @@ Cookiebot automatically categorizes cookies into:
 - Users can customize their cookie preferences
 - Users can withdraw consent at any time
 - Clear information about what each cookie category does
+- **Universal Transparency**: All users see the same consent interface regardless of location
 
 ### 5. Implementation Benefits
 
