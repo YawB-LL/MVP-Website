@@ -64,36 +64,37 @@ export default function RootLayout({
               // Cookiebot analytics integration for LandLedger
               console.log('🍪 Cookiebot integration loaded for landledger.africa');
               
-              // Force banner for localhost testing
-              const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-              
-              if (isLocalhost) {
-                console.log('🔧 Localhost detected - forcing Cookiebot banner for testing');
-                
-                // Override geographic detection for localhost
-                window.addEventListener('CookiebotOnLoad', function() {
-                  if (window.Cookiebot) {
-                    window.Cookiebot.regulations.gdprApplies = true;
-                    window.Cookiebot.isOutOfRegion = false;
-                    window.Cookiebot.isOutsideEU = false;
-                    window.Cookiebot.hasResponse = false;
-                    window.Cookiebot.consented = false;
-                    window.Cookiebot.declined = false;
-                    
-                    console.log('🌍 Override geographic restrictions for localhost testing');
-                    
-                    // Show banner after a short delay
-                    setTimeout(() => {
-                      try {
-                        window.Cookiebot.show();
-                        console.log('🔄 Forced Cookiebot banner for localhost testing');
-                      } catch (e) {
-                        console.log('❌ Error showing banner:', e);
-                      }
-                    }, 1000);
-                  }
-                });
-              }
+              // Force banner for ALL users (production + localhost)
+              // This ensures the banner shows for all users regardless of geographic location
+              window.addEventListener('CookiebotOnLoad', function() {
+                if (window.Cookiebot) {
+                  console.log('🔧 Cookiebot loaded - forcing banner for all users');
+                  
+                  // Override geographic detection to show banner for all users
+                  window.Cookiebot.regulations.gdprApplies = true;
+                  window.Cookiebot.regulations.ccpaApplies = true;
+                  window.Cookiebot.regulations.lgpdApplies = true;
+                  window.Cookiebot.isOutOfRegion = false;
+                  window.Cookiebot.isOutsideEU = false;
+                  
+                  // Clear any existing consent to force banner display
+                  window.Cookiebot.hasResponse = false;
+                  window.Cookiebot.consented = false;
+                  window.Cookiebot.declined = false;
+                  
+                  console.log('🌍 Override geographic restrictions - banner will show for all users');
+                  
+                  // Show banner after a short delay
+                  setTimeout(() => {
+                    try {
+                      window.Cookiebot.show();
+                      console.log('🔄 Forced Cookiebot banner for all users');
+                    } catch (e) {
+                      console.log('❌ Error showing banner:', e);
+                    }
+                  }, 1000);
+                }
+              });
               
               // Track consent events for analytics
               window.addEventListener('CookiebotOnAccept', function() {
