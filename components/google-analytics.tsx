@@ -23,16 +23,23 @@ export function GoogleAnalytics() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             
-            // Initialize GA4
+            // Initialize GA4 with enhanced configuration
             gtag('js', new Date());
             gtag('config', 'G-DRDMMFDCHE', {
               page_title: document.title,
               page_location: window.location.href,
               anonymize_ip: true,
-              cookie_flags: 'secure;samesite=strict'
+              cookie_flags: 'secure;samesite=strict',
+              send_page_view: true,
+              custom_map: {
+                'custom_parameter_1': 'landledger_platform'
+              }
             });
             
-            console.log('✅ Google Analytics initialized with consent');
+            // Set global gtag function
+            window.gtag = gtag;
+            
+            console.log('📊 Google Analytics initialized for LandLedger');
           `,
         }}
       />
