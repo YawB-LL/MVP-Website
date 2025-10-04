@@ -6,6 +6,15 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // C15T CMP API rewrites
+  async rewrites() {
+    return [
+      {
+        source: '/api/c15t/:path*',
+        destination: `${process.env.NEXT_PUBLIC_C15T_URL || 'https://api.c15t.com'}/:path*`,
+      },
+    ];
+  },
   // Enable image optimization for better performance
   images: {
     formats: ['image/webp', 'image/avif'],

@@ -19,6 +19,7 @@
     "sanity:deploy-studio": "sanity deploy"
   },
   "dependencies": {
+    "@c15t/react": "^1.6.1",
     "@emotion/is-prop-valid": "^1.2.2",
     "@hookform/resolvers": "^3.9.1",
     "@portabletext/react": "^4.0.1",

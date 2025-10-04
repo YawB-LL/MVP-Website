@@ -10,7 +10,6 @@ import { trackNewsletterSubscribe } from "@/lib/analytics"
 import { motion, AnimatePresence } from "framer-motion"
 import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
-import { PrivacySettingsButton } from "@/components/privacy-settings-button"
 
 export function Footer() {
   const [email, setEmail] = useState("")
@@ -238,12 +237,6 @@ export function Footer() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <PrivacySettingsButton 
-                    variant="outline" 
-                    size="sm"
-                    className="text-sm"
-                  />
-                  
                   <button
                     onClick={scrollToTop}
                     className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20 hover:border-primary/40 hover:bg-primary/20 transition-all duration-300 group"
