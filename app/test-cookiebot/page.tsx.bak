@@ -1,0 +1,165 @@
+'use client';
+
+import { useCookieConsent } from '@/hooks/use-cookie-consent';
+import { ConsentAwareScript } from '@/components/consent-aware-script';
+import { PrivacySettingsButton } from '@/components/privacy-settings-button';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+
+export default function TestCookiebotPage() {
+  const { consent, showConsentBanner, isLoading } = useCookieConsent();
+
+  return (
+    <div className="min-h-screen bg-base text-text p-8">
+      <div className="container mx-auto max-w-4xl">
+        <h1 className="text-4xl font-bold mb-8 text-center">
+          Cookiebot CMP Test Page
+        </h1>
+        
+        <div className="grid gap-6">
+          {/* Consent Status */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Current Consent Status</CardTitle>
+              <CardDescription>
+                Real-time consent state from Cookiebot
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {isLoading ? (
+                <p>Loading consent status...</p>
+              ) : (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span>Necessary:</span>
+                    <Badge variant={consent.necessary ? "default" : "destructive"}>
+                      {consent.necessary ? "Allowed" : "Denied"}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Preferences:</span>
+                    <Badge variant={consent.preferences ? "default" : "destructive"}>
+                      {consent.preferences ? "Allowed" : "Denied"}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Statistics:</span>
+                    <Badge variant={consent.statistics ? "default" : "destructive"}>
+                      {consent.statistics ? "Allowed" : "Denied"}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Marketing:</span>
+                    <Badge variant={consent.marketing ? "default" : "destructive"}>
+                      {consent.marketing ? "Allowed" : "Denied"}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Has Response:</span>
+                    <Badge variant={consent.hasResponse ? "default" : "secondary"}>
+                      {consent.hasResponse ? "Yes" : "No"}
+                    </Badge>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Test Scripts */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Consent-Aware Scripts</CardTitle>
+              <CardDescription>
+                These scripts only load if user has consented to the respective category
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">Statistics Script (Google Analytics)</h4>
+                  <ConsentAwareScript
+                    src="https://www.googletagmanager.com/gtag/js?id=G-DRDMMFDCHE"
+                    category="statistics"
+                    id="test-ga-script"
+                    onLoad={() => console.log('GA script loaded with consent')}
+                  />
+                  <p className="text-sm text-muted-foreground">
+                    Only loads if user consented to statistics cookies
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-2">Marketing Script (Example)</h4>
+                  <ConsentAwareScript
+                    src="https://example.com/marketing-script.js"
+                    category="marketing"
+                    id="test-marketing-script"
+                    onLoad={() => console.log('Marketing script loaded with consent')}
+                  />
+                  <p className="text-sm text-muted-foreground">
+                    Only loads if user consented to marketing cookies
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Controls */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Cookie Controls</CardTitle>
+              <CardDescription>
+                Test the cookie consent functionality
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <PrivacySettingsButton />
+                <Button onClick={showConsentBanner} variant="outline">
+                  Show Consent Banner
+                </Button>
+                <div className="text-sm text-muted-foreground">
+                  <p>• Privacy Settings Button: Opens Cookiebot settings dialog</p>
+                  <p>• Show Consent Banner: Reopens the consent banner</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Links */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Cookie Pages</CardTitle>
+              <CardDescription>
+                Access cookie-related pages
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <a 
+                  href="/cookie-declaration" 
+                  className="block text-primary hover:underline"
+                >
+                  Cookie Declaration Page
+                </a>
+                <a 
+                  href="/cookie-policy" 
+                  className="block text-primary hover:underline"
+                >
+                  Cookie Policy
+                </a>
+                <a 
+                  href="/privacy-policy" 
+                  className="block text-primary hover:underline"
+                >
+                  Privacy Policy
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}

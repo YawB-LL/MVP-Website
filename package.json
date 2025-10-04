@@ -69,6 +69,7 @@
     "next-sanity": "^10.0.13",
     "next-themes": "^0.4.0",
     "react": "^18",
+    "react-cookiebot": "^1.0.10",
     "react-day-picker": "9.8.0",
     "react-dom": "^18",
     "react-hook-form": "^7.54.1",

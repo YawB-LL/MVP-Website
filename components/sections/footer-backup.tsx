@@ -65,14 +65,14 @@ export function Footer() {
       { name: "Terms of Service", href: "/terms-of-service" },
       { name: "Disclaimer & Risk Notice", href: "/disclaimer-risk-notice" },
     ],
-  };
+  }
 
   const socialLinks = [
     { name: "LinkedIn", href: "#", icon: Linkedin },
     { name: "X", href: "#", icon: Twitter },
     { name: "Instagram", href: "#", icon: Instagram },
     { name: "Facebook", href: "#", icon: Facebook },
-  ];
+  ]
 
   return (
     <footer className="bg-base border-t border-white/10 relative overflow-hidden">
@@ -128,21 +128,21 @@ export function Footer() {
                 </p>
                 <form onSubmit={handleNewsletterSubmit} className="space-y-4">
                   <div className="flex gap-3">
-                    <Input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                  <Input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
                       className="flex-1 bg-white/5 border-white/20 text-text placeholder:text-text-secondary/50 focus:border-primary"
-                      required
-                    />
-                    <Button
-                      type="submit"
-                      disabled={isSubscribing}
+                    required
+                  />
+                  <Button
+                    type="submit"
+                    disabled={isSubscribing}
                       className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary px-6 rounded-xl shadow-lg shadow-primary/30 transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
-                    >
+                  >
                       {isSubscribing ? "Subscribing..." : "Subscribe"}
-                    </Button>
+                  </Button>
                   </div>
                 </form>
               </div>
@@ -212,6 +212,7 @@ export function Footer() {
               ))}
             </div>
           </div>
+        </div>
 
           {/* Bottom Section */}
           <motion.div 
@@ -222,35 +223,34 @@ export function Footer() {
               <div className="text-text-secondary text-sm">
                 <p>Disclaimer: LandLedger is a technology platform in development. We are not an issuer, broker, or licensed Virtual Asset Service Provider (VASP), and do not currently offer tokens, securities, or investment products. See our Disclaimer & Risk Notice for details.</p>
                 <p className="mt-2">© 2025 LandLedger Technologies All rights reserved</p>
+            </div>
+
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                      className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 hover:border-primary/30 hover:bg-primary/10 transition-all duration-300 group"
+                  >
+                      <social.icon className="w-5 h-5 text-text-secondary group-hover:text-primary transition-colors" />
+                  </a>
+                ))}
               </div>
 
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 hover:border-primary/30 hover:bg-primary/10 transition-all duration-300 group"
-                    >
-                      <social.icon className="w-5 h-5 text-text-secondary group-hover:text-primary transition-colors" />
-                    </a>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <PrivacySettingsButton 
-                    variant="outline" 
-                    size="sm"
-                    className="text-sm"
-                  />
-                  
-                  <button
-                    onClick={scrollToTop}
-                    className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20 hover:border-primary/40 hover:bg-primary/20 transition-all duration-300 group"
-                  >
-                    <ArrowUp className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                  </button>
-                </div>
+              <div className="flex items-center gap-4">
+                <PrivacySettingsButton 
+                  variant="outline" 
+                  size="sm"
+                  className="text-sm"
+                />
+                
+                <button
+                onClick={scrollToTop}
+                  className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20 hover:border-primary/40 hover:bg-primary/20 transition-all duration-300 group"
+              >
+                  <ArrowUp className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                </button>
               </div>
             </div>
           </motion.div>
@@ -259,3 +259,5 @@ export function Footer() {
     </footer>
   )
 }
+
+
