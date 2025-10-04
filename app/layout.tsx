@@ -64,36 +64,73 @@ export default function RootLayout({
               // Cookiebot analytics integration for LandLedger
               console.log('🍪 Cookiebot integration loaded for landledger.africa');
               
-              // Force banner for ALL users (production + localhost)
-              // This ensures the banner shows for all users regardless of geographic location
-              window.addEventListener('CookiebotOnLoad', function() {
+              // Simple, direct approach to force banner
+              function forceBanner() {
+                console.log('🚀 FORCE BANNER: Starting banner forcing process...');
+                
                 if (window.Cookiebot) {
-                  console.log('🔧 Cookiebot loaded - forcing banner for all users');
+                  console.log('✅ Cookiebot object found, proceeding...');
                   
-                  // Override geographic detection to show banner for all users
+                  // Clear existing consent
+                  try {
+                    window.Cookiebot.deleteConsentCookie();
+                    console.log('🗑️ Cleared existing consent cookie');
+                  } catch (e) {
+                    console.log('⚠️ Could not clear consent cookie:', e);
+                  }
+                  
+                  // Override geographic detection
                   window.Cookiebot.regulations.gdprApplies = true;
                   window.Cookiebot.regulations.ccpaApplies = true;
                   window.Cookiebot.regulations.lgpdApplies = true;
                   window.Cookiebot.isOutOfRegion = false;
                   window.Cookiebot.isOutsideEU = false;
                   
-                  // Clear any existing consent to force banner display
+                  // Reset consent state
                   window.Cookiebot.hasResponse = false;
                   window.Cookiebot.consented = false;
                   window.Cookiebot.declined = false;
                   
-                  console.log('🌍 Override geographic restrictions - banner will show for all users');
+                  console.log('🌍 Geographic restrictions overridden');
+                  console.log('🔄 Consent state reset');
                   
-                  // Show banner after a short delay
-                  setTimeout(() => {
-                    try {
-                      window.Cookiebot.show();
-                      console.log('🔄 Forced Cookiebot banner for all users');
-                    } catch (e) {
-                      console.log('❌ Error showing banner:', e);
-                    }
-                  }, 1000);
+                  // Force show banner
+                  try {
+                    window.Cookiebot.show();
+                    console.log('🔄 Called Cookiebot.show()');
+                    
+                    // Check if banner appeared
+                    setTimeout(() => {
+                      const banner = document.querySelector('#CybotCookiebotDialog');
+                      const bannerActive = document.querySelector('#CybotCookiebotDialogActive');
+                      
+                      if (banner || bannerActive) {
+                        console.log('✅ SUCCESS: Cookiebot banner is visible!');
+                      } else {
+                        console.log('❌ FAILED: Banner not visible after show() call');
+                      }
+                    }, 2000);
+                  } catch (e) {
+                    console.log('❌ Error calling Cookiebot.show():', e);
+                  }
+                } else {
+                  console.log('❌ Cookiebot object not available');
                 }
+              }
+              
+              // Try immediately when script loads
+              setTimeout(forceBanner, 1000);
+              
+              // Also try when Cookiebot loads
+              window.addEventListener('CookiebotOnLoad', function() {
+                console.log('✅ Cookiebot OnLoad event fired');
+                setTimeout(forceBanner, 500);
+              });
+              
+              // Also try on window load
+              window.addEventListener('load', function() {
+                console.log('🔄 Window loaded');
+                setTimeout(forceBanner, 2000);
               });
               
               // Track consent events for analytics
