@@ -75,7 +75,7 @@ export function HowItWorks() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(195,61,143,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(195,61,143,0.02)_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="max-w-7xl mx-auto"
           initial="initial"
@@ -114,7 +114,7 @@ export function HowItWorks() {
                 <div className="h-full bg-gradient-to-r from-primary via-highlight to-primary rounded-full w-0 transition-all duration-1000 ease-out" id="progress-line"></div>
               </div>
 
-              <div className="grid grid-cols-5 gap-8">
+              <div className="grid grid-cols-5 gap-6 lg:gap-8 xl:gap-12">
                 {steps.map((step, index) => (
                   <motion.div 
                     key={index} 
@@ -128,7 +128,7 @@ export function HowItWorks() {
                     </div>
 
                     {/* Enhanced Step Content */}
-                    <Card className={`p-8 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-${step.color}/40 transition-all duration-300 group-hover:scale-105 text-center h-full`}>
+                    <Card className={`p-6 md:p-8 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-${step.color}/40 transition-all duration-300 group-hover:scale-105 text-center h-full`}>
                       <div className={`w-16 h-16 bg-gradient-to-br from-${step.color}/20 to-${step.color}/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
                         <step.icon className={`w-8 h-8 text-${step.color}`} />
                       </div>
@@ -169,7 +169,7 @@ export function HowItWorks() {
                 </div>
 
                 {/* Enhanced Step Content */}
-                <Card className={`flex-1 p-6 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-${step.color}/40 transition-all duration-300`}>
+                <Card className={`flex-1 p-5 md:p-6 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-${step.color}/40 transition-all duration-300`}>
                   <div className="flex items-center gap-4 mb-4">
                     <div className={`w-12 h-12 bg-gradient-to-br from-${step.color}/20 to-${step.color}/10 rounded-xl flex items-center justify-center`}>
                       <step.icon className={`w-6 h-6 text-${step.color}`} />
@@ -195,7 +195,7 @@ export function HowItWorks() {
             className="text-center mt-20"
             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
           >
-            <div className="max-w-2xl mx-auto p-8 rounded-3xl bg-gradient-to-r from-primary/10 via-highlight/10 to-primary/10 border border-white/15 backdrop-blur-xl">
+            <div className="max-w-2xl mx-auto p-6 md:p-8 rounded-3xl bg-gradient-to-r from-primary/10 via-highlight/10 to-primary/10 border border-white/15 backdrop-blur-xl">
               <h3 className="text-2xl font-bold text-text mb-4">Your Ownership Journey Starts Here</h3>
               <p className="text-text-secondary/90 tracking-wide text-lg mb-6">
                 From verified projects to secure onboarding, instant equity uplift, and a clear resale pathway LandLedger gives you the confidence to invest in Ghanaian property with clarity and control.

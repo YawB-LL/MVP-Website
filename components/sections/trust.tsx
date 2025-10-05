@@ -84,49 +84,90 @@ export function Trust() {
             </p>
           </motion.div>
 
-          {/* Affiliations Grid */}
+          {/* Enhanced Logo Carousel */}
           <motion.div 
             className="mb-20"
             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
-              {affiliations.map((affiliation, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card className="p-6 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-highlight/40 transition-all duration-300 group text-center h-full">
-                    <div className="mx-auto mb-4">
-                      <NextImage
-                        src={affiliation.logo}
-                        alt={affiliation.alt}
-                        width={80}
-                        height={80}
-                        sizes="(max-width: 768px) 60px, 80px"
-                        className="w-16 h-16 md:w-20 md:h-20 object-contain grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-110"
-                        priority={index < 4}
-                        quality={85}
-                      />
-                    </div>
-                    <h4 className="text-sm font-medium text-text leading-tight">{affiliation.name}</h4>
-                  </Card>
-                </motion.div>
-              ))}
+           
+
+            {/* Enhanced Logo Carousel Container */}
+            <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-4 md:p-6">
+              <div className="flex animate-marquee-slow hover:pause-marquee">
+                {/* First set of logos with proper spacing */}
+                <div className="flex space-x-4 md:space-x-8 shrink-0">
+                  {affiliations.map((affiliation, index) => (
+                    <motion.div
+                      key={`first-${index}`}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1, duration: 0.6 }}
+                      whileHover={{ scale: 1.15, y: -8 }}
+                      className="group flex-shrink-0"
+                    >
+                      <div className="flex items-center justify-center w-24 h-16 md:w-28 md:h-20 px-3 md:px-4 py-2 md:py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl hover:border-primary/40 transition-all duration-500 hover:bg-white/15 hover:shadow-xl hover:shadow-primary/20">
+                        <NextImage
+                          src={affiliation.logo}
+                          alt={affiliation.alt}
+                          width={100}
+                          height={50}
+                          sizes="(max-width: 768px) 60px, 100px"
+                          className="w-auto h-6 md:h-8 lg:h-10 object-contain grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:brightness-125"
+                          priority={index < 3}
+                          quality={90}
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                
+                {/* Spacer to prevent logos touching */}
+                <div className="w-8 md:w-16 shrink-0" />
+                
+                {/* Duplicate set for seamless loop */}
+                <div className="flex space-x-4 md:space-x-8 shrink-0">
+                  {affiliations.map((affiliation, index) => (
+                    <motion.div
+                      key={`second-${index}`}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1, duration: 0.6 }}
+                      whileHover={{ scale: 1.15, y: -8 }}
+                      className="group flex-shrink-0"
+                    >
+                      <div className="flex items-center justify-center w-24 h-16 md:w-28 md:h-20 px-3 md:px-4 py-2 md:py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl hover:border-primary/40 transition-all duration-500 hover:bg-white/15 hover:shadow-xl hover:shadow-primary/20">
+                        <NextImage
+                          src={affiliation.logo}
+                          alt={affiliation.alt}
+                          width={100}
+                          height={50}
+                          sizes="(max-width: 768px) 60px, 100px"
+                          className="w-auto h-6 md:h-8 lg:h-10 object-contain grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:brightness-125"
+                          priority={index < 3}
+                          quality={90}
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                
+                {/* Final spacer to prevent logos touching */}
+                <div className="w-8 md:w-16 shrink-0" />
+              </div>
+              
+              {/* Enhanced gradient overlays */}
+              <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-highlight/10 to-transparent pointer-events-none z-10 rounded-l-2xl" />
+              <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-primary/10 to-transparent pointer-events-none z-10 rounded-r-2xl" />
             </div>
-            
-            {/* Disclaimer */}
-            <motion.div 
-              className="text-center mt-8"
-              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
-            >
-              <p className="text-sm text-text-secondary/80 max-w-2xl mx-auto">
+
+            {/* Enhanced Disclaimer */}
+            <div className="text-center mt-6">
+              <p className="text-xs text-text-secondary/70 max-w-xl mx-auto leading-relaxed">
                 <strong>Disclaimer:</strong> We're currently not licensed, regulated or approved by any of these institutions. 
                 Logos shown for context only. Formal approvals pending.
               </p>
-            </motion.div>
-                     </motion.div>
+            </div>
+          </motion.div>
          </motion.div>
        </div>
      </section>

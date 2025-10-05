@@ -21,7 +21,7 @@ export function About() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(195,61,143,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(195,61,143,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
       </div>
 
-      <div className="container-production relative z-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="max-w-7xl mx-auto"
           initial="initial"
@@ -37,18 +37,18 @@ export function About() {
               <Award className="w-4 h-4" />
               About LandLedger
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-newsreader font-bold text-text mb-8 lg:mb-12 leading-tight px-4 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-newsreader font-bold text-text mb-8 lg:mb-12 leading-tight px-4 md:px-6 tracking-tight">
               Democratising Access to{" "}
               <span className="bg-gradient-to-r from-highlight via-primary to-highlight bg-clip-text text-transparent">
                 Prime Real Estate
               </span>
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-5xl mx-auto leading-relaxed font-light px-4 tracking-wide">
+            <p className="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-5xl mx-auto leading-relaxed font-light px-4 md:px-6 tracking-wide">
               LandLedger is a Ghanaian born digital platform making participation in property markets more open, transparent, and inclusive. By leveraging blockchain based tokenisation, we create new pathways for Ghanaians and the diaspora to take part in fractional ownership of verified properties with governance and investor protection built into the foundation.
             </p>
           </motion.div>
 
-                     <div className="grid lg:grid-cols-2 gap-20 lg:gap-24 items-start">
+                     <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 xl:gap-24 items-start px-4 md:px-6">
              {/* Mission & Vision */}
              <motion.div 
                className="space-y-16 lg:space-y-20"
@@ -126,7 +126,7 @@ export function About() {
              className="mt-16 lg:mt-24 mb-16 lg:mb-24"
              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
            >
-             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 px-4 md:px-6">
                {[
                  { label: "Token Titans on Waitlist", value: "500+", icon: Building, tooltip: "Engaged subscribers registered for early access to projects and platform updates" },
                  { label: "Developers in Talks", value: "5+", icon: Building, tooltip: "Active conversations with developers exploring pilots, NDAs, or MoUs" },
@@ -157,7 +157,7 @@ export function About() {
              variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
            >
              <motion.div 
-               className="flex items-start gap-4 lg:gap-6 group mb-8 lg:mb-12"
+               className="flex items-start gap-4 lg:gap-6 group mb-8 lg:mb-12 px-4 md:px-6"
                whileHover={{ x: 8 }}
                transition={{ type: "spring", stiffness: 300 }}
              >
@@ -172,7 +172,7 @@ export function About() {
                  </div>
              </motion.div>
 
-             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 px-4 md:px-6">
                <motion.div 
                  className="p-4 lg:p-6 rounded-xl bg-gradient-to-br from-primary/20 to-primary/12 backdrop-blur-xl border border-primary/40 hover:border-primary/60 transition-all duration-300 group"
                  whileHover={{ y: -4, scale: 1.02 }}

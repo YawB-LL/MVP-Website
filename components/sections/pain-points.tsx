@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MapPin, DollarSign, FileText, Clock, Shield, TrendingUp, Zap, Globe, CheckCircle, ArrowRight, AlertTriangle, Users, Building } from "lucide-react"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerChildren, getMotionVariant } from "@/lib/motion"
@@ -112,7 +111,7 @@ export function PainPoints() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(195,61,143,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(195,61,143,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="max-w-7xl mx-auto"
           initial="initial"
@@ -144,76 +143,110 @@ export function PainPoints() {
             className="mb-20"
             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
           >
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-16 bg-white/5 backdrop-blur-xl border border-white/20 p-1 rounded-2xl">
-                <TabsTrigger
-                  value="local"
-                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-highlight data-[state=active]:to-highlight/90 data-[state=active]:text-base text-text-secondary rounded-xl transition-all duration-300"
-                >
-                  <Users className="w-4 h-4 mr-2" />
-                  Local Investors
-                </TabsTrigger>
-                <TabsTrigger
-                  value="diaspora"
-                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary/90 data-[state=active]:text-base text-text-secondary rounded-xl transition-all duration-300"
-                >
-                  <Globe className="w-4 h-4 mr-2" />
-                  Diaspora Investors
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="local" className="space-y-0">
-                <div className="grid md:grid-cols-3 gap-8">
-                  {localPainPoints.map((point, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-highlight/40 transition-all duration-300 group h-full">
-                        <div className="w-16 h-16 bg-gradient-to-br from-highlight/20 to-highlight/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-highlight/30">
-                          <point.icon className="w-8 h-8 text-highlight" />
-                        </div>
-                        <h3 className="text-xl font-bold text-text mb-2">{point.title}</h3>
-                        <p className="text-sm text-highlight mb-4 font-medium">{point.subline}</p>
-                        <p className="text-text-secondary tracking-wide text-base mb-4 leading-relaxed">{point.description}</p>
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-highlight/10 border border-highlight/20 text-highlight text-sm font-medium">
-                          <AlertTriangle className="w-3 h-3" />
-                          {point.impact}
-                        </div>
-                      </Card>
-                    </motion.div>
-                  ))}
+            {/* Custom Tab Switcher */}
+            <div className="max-w-md mx-auto mb-16">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/20 p-2 rounded-2xl">
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => setActiveTab("local")}
+                    className={`
+                      flex items-center justify-center gap-2 py-3 px-4 rounded-xl
+                      transition-all duration-300 font-medium whitespace-nowrap
+                      ${activeTab === "local" 
+                        ? "bg-gradient-to-r from-highlight to-highlight/90 text-base shadow-lg shadow-highlight/20" 
+                        : "text-text-secondary hover:text-text hover:bg-white/5"
+                      }
+                    `}
+                  >
+                    <Users className="w-4 h-4 flex-shrink-0" />
+                    <span>Local Investors</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("diaspora")}
+                    className={`
+                      flex items-center justify-center gap-2 py-3 px-4 rounded-xl
+                      transition-all duration-300 font-medium whitespace-nowrap
+                      ${activeTab === "diaspora" 
+                        ? "bg-gradient-to-r from-primary to-primary/90 text-base shadow-lg shadow-primary/20" 
+                        : "text-text-secondary hover:text-text hover:bg-white/5"
+                      }
+                    `}
+                  >
+                    <Globe className="w-4 h-4 flex-shrink-0" />
+                    <span>Diaspora Investors</span>
+                  </button>
                 </div>
-              </TabsContent>
+              </div>
+            </div>
 
-              <TabsContent value="diaspora" className="space-y-0">
-                <div className="grid md:grid-cols-3 gap-8">
-                  {diasporaPainPoints.map((point, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-primary/40 transition-all duration-300 group h-full">
-                        <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
-                          <point.icon className="w-8 h-8 text-primary" />
-                        </div>
-                        <h3 className="text-xl font-bold text-text mb-2">{point.title}</h3>
-                        <p className="text-sm text-primary mb-4 font-medium">{point.subline}</p>
-                        <p className="text-text-secondary tracking-wide text-base mb-4 leading-relaxed">{point.description}</p>
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
-                          <AlertTriangle className="w-3 h-3" />
-                          {point.impact}
-                        </div>
-                      </Card>
-                    </motion.div>
-                  ))}
-                </div>
-              </TabsContent>
-            </Tabs>
+            {/* Tab Content - Direct Grid Layout */}
+            {/* Local Investors Content */}
+            {activeTab === "local" && (
+              <motion.div
+                key="local"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid md:grid-cols-3 gap-6 md:gap-8"
+              >
+                {localPainPoints.map((point, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Card className="p-6 md:p-8 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-highlight/40 transition-all duration-300 group h-full hover-lift">
+                      <div className="w-16 h-16 bg-gradient-to-br from-highlight/20 to-highlight/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-highlight/30">
+                        <point.icon className="w-8 h-8 text-highlight" />
+                      </div>
+                      <h3 className="text-xl font-bold text-text mb-2">{point.title}</h3>
+                      <p className="text-sm text-highlight mb-4 font-medium">{point.subline}</p>
+                      <p className="text-text-secondary tracking-wide text-base mb-4 leading-relaxed">{point.description}</p>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-highlight/10 border border-highlight/20 text-highlight text-sm font-medium">
+                        <AlertTriangle className="w-3 h-3" />
+                        {point.impact}
+                      </div>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+
+            {/* Diaspora Investors Content */}
+            {activeTab === "diaspora" && (
+              <motion.div
+                key="diaspora"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid md:grid-cols-3 gap-6 md:gap-8"
+              >
+                {diasporaPainPoints.map((point, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Card className="p-6 md:p-8 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-primary/40 transition-all duration-300 group h-full hover-lift">
+                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
+                        <point.icon className="w-8 h-8 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-bold text-text mb-2">{point.title}</h3>
+                      <p className="text-sm text-primary mb-4 font-medium">{point.subline}</p>
+                      <p className="text-text-secondary tracking-wide text-base mb-4 leading-relaxed">{point.description}</p>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
+                        <AlertTriangle className="w-3 h-3" />
+                        {point.impact}
+                      </div>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Solutions Section */}
@@ -233,7 +266,7 @@ export function PainPoints() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {solutions.map((solution, index) => (
                 <motion.div
                   key={index}
@@ -241,7 +274,7 @@ export function PainPoints() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="p-8 bg-base border border-white/20 hover:border-primary/40 transition-all duration-300 group h-full text-center shadow-xl">
+                  <Card className="p-6 md:p-8 bg-base border border-white/20 hover:border-primary/40 transition-all duration-300 group h-full text-center shadow-xl">
                     <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
                       <solution.icon className="w-8 h-8 text-primary" />
                     </div>
@@ -263,7 +296,7 @@ export function PainPoints() {
             className="text-center"
             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
           >
-            <div className="max-w-3xl mx-auto p-10 rounded-3xl bg-gradient-to-r from-primary/10 via-highlight/10 to-primary/10 border border-white/15 backdrop-blur-xl">
+            <div className="max-w-3xl mx-auto p-6 md:p-10 rounded-3xl bg-gradient-to-r from-primary/10 via-highlight/10 to-primary/10 border border-white/15 backdrop-blur-xl">
               <h3 className="text-3xl font-bold text-text mb-6">From Dream to Access: The Future Starts Here</h3>
               <p className="text-text-secondary/90 tracking-wide text-xl mb-8 leading-relaxed">
                 Whether in Accra, Kumasi, London or New York, secure access to prime Ghanaian real estate is no longer just a pipe dream. LandLedger is building a platform that bridges the gap designed in Ghana, for Ghanaians everywhere, built on institutional grade blockchain architecture and aligned with global standards of trust.
@@ -284,7 +317,7 @@ export function PainPoints() {
             className="mt-20 text-center"
             variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
           >
-            <div className="max-w-3xl mx-auto p-8 rounded-3xl bg-gradient-to-r from-slate-800/80 to-slate-900/80 backdrop-blur-xl border border-slate-700/50 hover:border-primary/30 transition-all duration-300">
+            <div className="max-w-3xl mx-auto p-6 md:p-8 rounded-3xl bg-gradient-to-r from-slate-800/80 to-slate-900/80 backdrop-blur-xl border border-slate-700/50 hover:border-primary/30 transition-all duration-300">
               <div className="w-16 h-16 bg-gradient-to-r from-highlight to-primary rounded-2xl mx-auto flex items-center justify-center mb-6 shadow-lg shadow-highlight/25">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
