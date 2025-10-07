@@ -108,7 +108,7 @@ import { enhanceFormDataWithTracking, trackCustomEvent } from '@/lib/tracking-ap
 const enhancedData = enhanceFormDataWithTracking(
   formData,
   'waitlist_signup',
-  'https://api.landledger.com/tracking'
+  'https://api.landledger.africa/tracking'
 )
 
 // Track custom events

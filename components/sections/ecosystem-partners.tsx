@@ -126,22 +126,20 @@ export function EcosystemPartners() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-highlight/40 transition-all duration-300 group h-full flex flex-col text-center hover-lift">
-                      {/* Centered Icon */}
-                      <div className="flex justify-center mb-6">
-                        <div className="w-16 h-16 bg-gradient-to-br from-highlight/20 to-highlight/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 border border-highlight/30">
-                          <reality.icon className="w-8 h-8 text-highlight" />
-                        </div>
+                    <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-highlight/40 transition-all duration-300 group h-full flex flex-col hover-lift">
+                      {/* Left-aligned Icon */}
+                      <div className="w-16 h-16 bg-gradient-to-br from-highlight/20 to-highlight/10 rounded-2xl flex items-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-highlight/30">
+                        <reality.icon className="w-8 h-8 text-highlight" />
                       </div>
                       
-                      {/* Centered Content */}
+                      {/* Left-aligned Content */}
                       <div className="flex flex-col flex-grow">
                         <h3 className="text-xl font-bold text-text mb-2">{reality.title}</h3>
                         <p className="text-sm text-highlight mb-4 font-medium">{reality.subline}</p>
                         <p className="text-text-secondary tracking-wide text-base mb-6 leading-relaxed flex-grow">{reality.description}</p>
                         
-                        {/* Centered Badge */}
-                        <div className="flex justify-center mt-auto">
+                        {/* Left-aligned Badge */}
+                        <div className="mt-auto">
                           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-highlight/10 border border-highlight/20 text-highlight text-sm font-medium">
                             <AlertTriangle className="w-3 h-3" />
                             {reality.impact}
@@ -194,22 +192,20 @@ export function EcosystemPartners() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Card className="p-8 bg-base border border-white/20 hover:border-primary/40 transition-all duration-300 group h-full flex flex-col text-center shadow-xl hover-lift">
-                      {/* Centered Icon */}
-                      <div className="flex justify-center mb-6">
-                        <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 border border-primary/30">
-                          <approach.icon className="w-8 h-8 text-primary" />
-                        </div>
+                    <Card className="p-8 bg-base border border-white/20 hover:border-primary/40 transition-all duration-300 group h-full flex flex-col shadow-xl hover-lift">
+                      {/* Left-aligned Icon */}
+                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
+                        <approach.icon className="w-8 h-8 text-primary" />
                       </div>
                       
-                      {/* Centered Content */}
+                      {/* Left-aligned Content */}
                       <div className="flex flex-col flex-grow">
                         <h4 className="text-xl font-bold text-white mb-2">{approach.title}</h4>
                         <p className="text-sm text-primary mb-4 font-medium">{approach.subline}</p>
                         <p className="text-white tracking-wide text-base mb-6 leading-relaxed flex-grow">{approach.description}</p>
                         
-                        {/* Centered Badge */}
-                        <div className="flex justify-center mt-auto">
+                        {/* Left-aligned Badge */}
+                        <div className="mt-auto">
                           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-white text-sm font-medium">
                             <CheckCircle className="w-3 h-3" />
                             {approach.benefit}

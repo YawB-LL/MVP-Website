@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
 
     // Send notification email via Brevo
     const brevoResult = await brevoService.sendTransactionalEmail({
-      to: [{ email: "hello@landledger.com", name: "LandLedger Team" }],
+      to: [{ email: "hello@landledger.africa", name: "LandLedger Team" }],
       templateId: Number.parseInt(process.env.BREVO_CONTACT_NOTIFICATION_TEMPLATE_ID || "3"),
       params: {
         name: data.name,

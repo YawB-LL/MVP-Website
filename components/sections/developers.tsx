@@ -182,8 +182,8 @@ export function Developers() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Card className="p-8 bg-base border border-white/20 hover:border-primary/40 transition-all duration-300 group h-full text-center shadow-xl">
-                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
+                    <Card className="p-8 bg-base border border-white/20 hover:border-primary/40 transition-all duration-300 group h-full shadow-xl">
+                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
                         <solution.icon className="w-8 h-8 text-primary" />
                       </div>
                       <h4 className="text-xl font-bold text-white mb-2">{solution.title}</h4>

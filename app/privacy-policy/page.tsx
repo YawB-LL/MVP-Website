@@ -181,36 +181,36 @@ export default function PrivacyPolicyPage() {
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-gradient-to-r from-primary/10 to-highlight/10 border border-primary/20 backdrop-blur-xl">
-                <h2 className="text-2xl font-bold text-text mb-6 text-center">Key Facts Summary</h2>
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
+                <h2 className="text-2xl font-bold text-white mb-6 text-center">Key Facts Summary</h2>
                 <div className="grid md:grid-cols-4 gap-8">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Shield className="w-8 h-8 text-primary" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Shield className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">We Collect</h3>
-                    <p className="text-text-secondary">Data you share with us (like contact details and preferences)</p>
+                    <h3 className="text-xl font-bold text-white mb-2">We Collect</h3>
+                    <p className="text-slate-300">Data you share with us (like contact details and preferences)</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-highlight/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Eye className="w-8 h-8 text-highlight" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-highlight to-highlight/80 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Eye className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">We Don't Sell</h3>
-                    <p className="text-text-secondary">Your data to third parties</p>
+                    <h3 className="text-xl font-bold text-white mb-2">We Don't Sell</h3>
+                    <p className="text-slate-300">Your data to third parties</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Globe className="w-8 h-8 text-text" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-slate-600 to-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Globe className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Future KYC/AML</h3>
-                    <p className="text-text-secondary">Future services may require KYC/AML checks</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Future KYC/AML</h3>
+                    <p className="text-slate-300">Future services may require KYC/AML checks</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="w-8 h-8 text-green-500" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <CheckCircle className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Your Rights</h3>
-                    <p className="text-text-secondary">You can ask us to access, correct, or delete your data</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Your Rights</h3>
+                    <p className="text-slate-300">You can ask us to access, correct, or delete your data</p>
                   </div>
                 </div>
               </Card>
@@ -222,8 +222,8 @@ export default function PrivacyPolicyPage() {
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
               <div className="space-y-8">
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">1. Data we collect</h2>
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">1. Data we collect</h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
@@ -264,8 +264,8 @@ export default function PrivacyPolicyPage() {
                   </div>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">2. How we use your data</h2>
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">2. How we use your data</h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
@@ -306,16 +306,16 @@ export default function PrivacyPolicyPage() {
                   </div>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">3. KYC/AML compliance</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">3. KYC/AML compliance</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-4">
                     If you choose to participate in future products, you may be required to undergo Know-Your-Customer (KYC) and Anti-Money Laundering (AML) checks in line with Ghana's Anti-Money Laundering Act, 2020 (Act 1044), Bank of Ghana's tiered KYC framework, and international FATF standards.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">4. Sharing your data</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">4. Sharing your data</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-4">
                     We do not sell your data. We may share it with:
                   </p>
                   <div className="space-y-3">
@@ -349,30 +349,30 @@ export default function PrivacyPolicyPage() {
                   </div>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">5. Data storage and retention</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">5. Data storage and retention</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     Data is kept only as long as necessary, in compliance with Act 843. If data is transferred outside Ghana, we use safeguards such as contractual clauses and secure providers to protect your rights.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">6. Children's data</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">6. Children's data</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     Our Site and Services are intended for adults (18+). We do not knowingly collect data from children under 18. If you believe a child has submitted data, please contact us for immediate deletion.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">7. Your rights</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">7. Your rights</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     You may request access, correction, or deletion of your personal data by contacting us at [Insert Contact Email].
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">8. Updates</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">8. Updates</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     This Privacy Policy may be updated periodically. Please review it regularly for the latest version.
                   </p>
                 </Card>
@@ -387,13 +387,13 @@ export default function PrivacyPolicyPage() {
               <h2 className="text-3xl font-bold text-text mb-8 text-center">Your Data Rights</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {dataRights.map((right, index) => (
-                  <Card key={index} className="p-6 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <Card key={index} className="p-6 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
                     <div className="text-center mb-4">
-                      <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                        <right.icon className="w-6 h-6 text-primary" />
+                      <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                        <right.icon className="w-6 h-6 text-white" />
                       </div>
-                      <h3 className="text-lg font-semibold text-text mb-1">{right.title}</h3>
-                      <p className="text-text-secondary text-sm">{right.description}</p>
+                      <h3 className="text-lg font-semibold text-white mb-1">{right.title}</h3>
+                      <p className="text-slate-300 text-sm">{right.description}</p>
                     </div>
                     <div className="text-center">
                       <span className="px-3 py-1 bg-highlight/10 text-highlight text-xs rounded-full">
@@ -410,34 +410,34 @@ export default function PrivacyPolicyPage() {
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-gradient-to-r from-highlight/10 to-primary/10 border border-highlight/20 backdrop-blur-xl">
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
                 <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-text mb-4">Contact Our Privacy Team</h2>
-                  <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+                  <h2 className="text-3xl font-bold text-white mb-4">Contact Our Privacy Team</h2>
+                  <p className="text-slate-300 text-lg max-w-2xl mx-auto leading-relaxed">
                     Have questions about your privacy rights or want to exercise them? Our dedicated privacy team is here to help.
                   </p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <Mail className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                      <Mail className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Email</h3>
-                    <p className="text-text-secondary">privacy@landledger.com</p>
+                    <h3 className="font-semibold text-white mb-1">Email</h3>
+                    <p className="text-slate-300">privacy@landledger.africa</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <Phone className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                      <Phone className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Phone</h3>
-                    <p className="text-text-secondary">+233 XX XXX XXXX</p>
+                    <h3 className="font-semibold text-white mb-1">Phone</h3>
+                    <p className="text-slate-300">+233 XX XXX XXXX</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <MapPin className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                      <MapPin className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Address</h3>
-                    <p className="text-text-secondary">Haatso, Accra, Ghana</p>
+                    <h3 className="font-semibold text-white mb-1">Address</h3>
+                    <p className="text-slate-300">Haatso, Accra, Ghana</p>
                   </div>
                 </div>
               </Card>
@@ -448,19 +448,19 @@ export default function PrivacyPolicyPage() {
               className="text-center"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                <h2 className="text-2xl font-bold text-text mb-4">Need More Information?</h2>
-                <p className="text-text-secondary mb-6">
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
+                <h2 className="text-2xl font-bold text-white mb-4">Need More Information?</h2>
+                <p className="text-slate-300 mb-6 leading-relaxed">
                   Download our complete privacy policy or contact us for specific questions.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all duration-300">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <button className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transform hover:scale-105 whitespace-nowrap">
                     <Download className="w-4 h-4" />
                     Download Full Policy
                   </button>
                   <Link 
-                    href="mailto:privacy@landledger.com" 
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/20 text-text font-semibold rounded-xl transition-all duration-300"
+                    href="mailto:privacy@landledger.africa" 
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/20 hover:bg-white/30 border border-white/40 text-white font-semibold rounded-xl transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20 whitespace-nowrap"
                   >
                     Contact Privacy Team
                   </Link>

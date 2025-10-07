@@ -14,7 +14,7 @@ The sitemap implementation includes:
 
 ### 1. Static Sitemap (`public/sitemap.xml`)
 - Contains all static pages with proper priorities and change frequencies
-- Immediately accessible at `https://landledger.com/sitemap.xml`
+- Immediately accessible at `https://landledger.africa/sitemap.xml`
 - Includes main pages, legal pages, and contact information
 
 ### 2. Dynamic Sitemap (`app/sitemap.ts`)

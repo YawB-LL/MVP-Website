@@ -4,7 +4,7 @@ import React from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ArrowUp, Mail, Phone, MapPin, Twitter, Linkedin, Facebook, Instagram, Globe, Shield, TrendingUp, Users, ChevronDown } from "lucide-react"
+import { ArrowUp, Mail, Phone, MapPin, Twitter, Linkedin, Facebook, Instagram, Globe, Shield, TrendingUp, Users, ChevronDown, Youtube } from "lucide-react"
 import { useState } from "react"
 import { trackNewsletterSubscribe } from "@/lib/analytics"
 import { motion, AnimatePresence } from "framer-motion"
@@ -48,14 +48,14 @@ export function Footer() {
       { name: "How It Works", href: "#how-it-works" },
       { name: "Investors", href: "#pain-points" },
       { name: "Developers", href: "#developers" },
-      { name: "Ecosystem", href: "#ecosystem" },
+      { name: "Ecosystem", href: "#ecosystem-partners" },
       { name: "Roadmap", href: "#roadmap" },
-      { name: "Blog (The Ledger)", href: "#blog" },
+      { name: "Blog (The Ledger)", href: "/blog" },
     ],
     company: [
       { name: "About", href: "#about" },
-      { name: "Careers", href: "#careers" },
-      { name: "Contact", href: "#contact" },
+      { name: "Careers", href: "/careers" },
+      { name: "Contact", href: "/contact" },
     ],
     trust: [
       { name: "FAQs", href: "/faqs" },
@@ -67,10 +67,10 @@ export function Footer() {
   };
 
   const socialLinks = [
-    { name: "LinkedIn", href: "#", icon: Linkedin },
-    { name: "X", href: "#", icon: Twitter },
-    { name: "Instagram", href: "#", icon: Instagram },
-    { name: "Facebook", href: "#", icon: Facebook },
+    { name: "LinkedIn", href: "https://www.linkedin.com/company/landledgerafrica", icon: Linkedin },
+    { name: "X", href: "https://x.com/LandLedgerHQ", icon: Twitter },
+    { name: "Instagram", href: "https://www.instagram.com/landledgerafrica", icon: Instagram },
+    { name: "YouTube", href: "https://youtube.com/@landledgerafrica", icon: Youtube },
   ];
 
   return (
@@ -108,7 +108,7 @@ export function Footer() {
                     <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
-                    <span className="text-text-secondary">hello@landledger.com</span>
+                    <span className="text-text-secondary">info@landledger.africa</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20">

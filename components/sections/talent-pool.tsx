@@ -235,6 +235,7 @@ export function TalentPool() {
                     </div>
                     
                     <Button 
+                      onClick={openModal}
                       className={`mt-6 w-full px-6 py-2 rounded-lg font-medium ${
                         dept.color === 'orange' ? 'bg-orange-500 hover:bg-orange-600' :
                         'bg-pink-500 hover:bg-pink-600'

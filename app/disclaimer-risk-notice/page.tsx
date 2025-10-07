@@ -208,36 +208,36 @@ export default function DisclaimerRiskNoticePage() {
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 backdrop-blur-xl">
-                <h2 className="text-2xl font-bold text-text mb-6 text-center">Key Facts Summary</h2>
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
+                <h2 className="text-2xl font-bold text-white mb-6 text-center">Key Facts Summary</h2>
                 <div className="grid md:grid-cols-4 gap-8">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <AlertTriangle className="w-8 h-8 text-red-500" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <AlertTriangle className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Informational Only</h3>
-                    <p className="text-text-secondary">The Site is informational only — no tokens are for sale</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Informational Only</h3>
+                    <p className="text-slate-300">The Site is informational only — no tokens are for sale</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Shield className="w-8 h-8 text-yellow-500" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Shield className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Future KYC/AML</h3>
-                    <p className="text-text-secondary">Future participation will require KYC/AML checks</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Future KYC/AML</h3>
+                    <p className="text-slate-300">Future participation will require KYC/AML checks</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <TrendingDown className="w-8 h-8 text-red-500" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <TrendingDown className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">High Risk</h3>
-                    <p className="text-text-secondary">All investments carry risk, including the possibility of losing your entire capital</p>
+                    <h3 className="text-xl font-bold text-white mb-2">High Risk</h3>
+                    <p className="text-slate-300">All investments carry risk, including the possibility of losing your entire capital</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Scale className="w-8 h-8 text-blue-500" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Scale className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Regulatory Status</h3>
-                    <p className="text-text-secondary">Platform does not constitute a regulated investment marketplace</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Regulatory Status</h3>
+                    <p className="text-slate-300">Platform does not constitute a regulated investment marketplace</p>
                   </div>
                 </div>
               </Card>
@@ -249,16 +249,16 @@ export default function DisclaimerRiskNoticePage() {
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
               <div className="space-y-8">
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">1. Informational purpose only</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">1. Informational purpose only</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     LandLedger Technologies is a technology company in development. This Site is for educational and informational purposes only. We do not currently issue, sell, or broker tokens, securities, or investment products.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">2. Regulatory engagement</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">2. Regulatory engagement</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-4">
                     LandLedger is engaging with:
                   </p>
                   <div className="space-y-3">
@@ -290,17 +290,17 @@ export default function DisclaimerRiskNoticePage() {
                       </div>
                     </div>
                   </div>
-                  <p className="text-text-secondary text-lg leading-relaxed mt-4">
+                  <p className="text-slate-300 text-lg leading-relaxed mt-4">
                     We are also closely monitoring Ghana's forthcoming Virtual Asset Service Provider (VASP) regulations and intend to align fully with the framework once implemented.
                   </p>
-                  <p className="text-text-secondary text-lg leading-relaxed mt-4">
+                  <p className="text-slate-300 text-lg leading-relaxed mt-4">
                     Until regulatory processes are complete, our platform does not constitute a regulated investment marketplace.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">3. Future compliance & KYC/AML</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">3. Future compliance & KYC/AML</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-4">
                     If future products are launched, participation will require Know-Your-Customer (KYC) and Anti-Money Laundering (AML) verification. This will be implemented in line with:
                   </p>
                   <div className="space-y-3">
@@ -337,9 +337,9 @@ export default function DisclaimerRiskNoticePage() {
                   </div>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">4. Risk Factors</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">4. Risk Factors</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-4">
                     Investing in real estate and emerging technologies involves significant risks, including:
                   </p>
                   <div className="space-y-3">
@@ -420,16 +420,16 @@ export default function DisclaimerRiskNoticePage() {
                     <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <AlertTriangle className="w-8 h-8 text-red-500" />
                     </div>
-                    <h2 className="text-2xl font-bold text-text mb-4">⚠️ Risk Warning</h2>
-                    <p className="text-text-secondary text-lg leading-relaxed">
+                    <h2 className="text-2xl font-bold text-white mb-4">⚠️ Risk Warning</h2>
+                    <p className="text-slate-300 text-lg leading-relaxed">
                       Investments in tokenised real estate are high-risk. You may lose your entire investment. Tokens, if and when offered, will not be insured deposits and will be subject to market, liquidity, regulatory, and platform risks. Only invest money you can afford to lose. Seek independent professional advice before making financial decisions.
                     </p>
                   </div>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">5. Updates</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">5. Updates</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     This Disclaimer & Risk Notice may be updated periodically. Please review it regularly for the latest version.
                   </p>
                 </Card>
@@ -441,34 +441,34 @@ export default function DisclaimerRiskNoticePage() {
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-gradient-to-r from-highlight/10 to-primary/10 border border-highlight/20 backdrop-blur-xl">
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
                 <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-text mb-4">Questions About Risks?</h2>
-                  <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+                  <h2 className="text-3xl font-bold text-white mb-4">Questions About Risks?</h2>
+                  <p className="text-slate-300 text-lg max-w-2xl mx-auto leading-relaxed">
                     Our compliance team is available to discuss risk factors and regulatory matters related to our platform.
                   </p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <Mail className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                      <Mail className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Email</h3>
-                    <p className="text-text-secondary">compliance@landledger.com</p>
+                    <h3 className="font-semibold text-white mb-1">Email</h3>
+                    <p className="text-slate-300">compliance@landledger.africa</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <Phone className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                      <Phone className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Phone</h3>
-                    <p className="text-text-secondary">+233 XX XXX XXXX</p>
+                    <h3 className="font-semibold text-white mb-1">Phone</h3>
+                    <p className="text-slate-300">+233 XX XXX XXXX</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <MapPin className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                      <MapPin className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Address</h3>
-                    <p className="text-text-secondary">Haatso, Accra, Ghana</p>
+                    <h3 className="font-semibold text-white mb-1">Address</h3>
+                    <p className="text-slate-300">Haatso, Accra, Ghana</p>
                   </div>
                 </div>
               </Card>
@@ -479,19 +479,19 @@ export default function DisclaimerRiskNoticePage() {
               className="text-center"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                <h2 className="text-2xl font-bold text-text mb-4">Need More Information?</h2>
-                <p className="text-text-secondary mb-6">
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
+                <h2 className="text-2xl font-bold text-white mb-4">Need More Information?</h2>
+                <p className="text-slate-300 mb-6 leading-relaxed">
                   Download our complete risk disclosure document or contact our compliance team for detailed information.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all duration-300">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <button className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transform hover:scale-105 whitespace-nowrap">
                     <Download className="w-4 h-4" />
                     Download Risk Document
                   </button>
                   <Link 
-                    href="mailto:compliance@landledger.com" 
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/20 text-text font-semibold rounded-xl transition-all duration-300"
+                    href="mailto:compliance@landledger.africa" 
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/20 hover:bg-white/30 border border-white/40 text-white font-semibold rounded-xl transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20 whitespace-nowrap"
                   >
                     Contact Compliance Team
                   </Link>

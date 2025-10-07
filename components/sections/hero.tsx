@@ -104,17 +104,17 @@ export function Hero() {
                 </button>
 
                 <button
-                  type="button"
-                  aria-label="Learn How it works"
-                  className="group inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/15 backdrop-blur-sm border border-white/40 text-white hover:text-text hover:border-primary/70 hover:bg-white/25 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-xl whitespace-nowrap shadow-lg hover:shadow-xl font-semibold"
-                  onClick={() => {
-                    trackEvent("hero_learn_how_click")
-                    document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
-                  }}
-                >
-                  <span className="text-sm sm:text-base">Learn How it works</span>
-                  <ArrowRight className="w-4 h-4 flex-shrink-0 transition-transform group-hover:translate-x-1" />
-                </button>
+  type="button"
+  aria-label="Learn How it works"
+  className="group inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/15 backdrop-blur-sm border border-white/40 !text-white hover:bg-white/25 hover:border-white/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-xl whitespace-nowrap shadow-lg hover:shadow-xl font-semibold"
+  onClick={() => {
+    trackEvent("hero_learn_how_click")
+    document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
+  }}
+>
+  <span className="text-sm sm:text-base !text-white">Learn How it works</span>
+  <ArrowRight className="w-4 h-4 flex-shrink-0 !text-white transition-transform group-hover:translate-x-1" />
+</button>
               </div>
             </motion.div>
 

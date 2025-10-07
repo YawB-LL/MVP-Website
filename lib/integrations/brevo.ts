@@ -163,7 +163,7 @@ class BrevoService {
       params: {
         name: name.split(" ")[0],
         segment,
-        dashboardUrl: "https://landledger.com/dashboard",
+        dashboardUrl: "https://landledger.africa/dashboard",
       },
     })
   }
@@ -176,7 +176,7 @@ class BrevoService {
       to: [{ email }],
       templateId,
       params: {
-        unsubscribeUrl: `https://landledger.com/unsubscribe?email=${encodeURIComponent(email)}`,
+        unsubscribeUrl: `https://landledger.africa/unsubscribe?email=${encodeURIComponent(email)}`,
       },
     })
   }

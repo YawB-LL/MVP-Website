@@ -389,7 +389,7 @@ Privacy note: We’ll only use your information to respond.
 Button
 Send Message
 Cards
-Email → hello@landledger.com [copy button]
+Email → info@landledger.africa [copy button]
 
 
 Location → Haatso, Accra, Ghana

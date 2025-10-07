@@ -49,14 +49,14 @@ export function Footer() {
       { name: "How It Works", href: "#how-it-works" },
       { name: "Investors", href: "#pain-points" },
       { name: "Developers", href: "#developers" },
-      { name: "Ecosystem", href: "#ecosystem" },
+      { name: "Ecosystem", href: "#ecosystem-partners" },
       { name: "Roadmap", href: "#roadmap" },
-      { name: "Blog (The Ledger)", href: "#blog" },
+      { name: "Blog (The Ledger)", href: "/blog" },
     ],
     company: [
       { name: "About", href: "#about" },
-      { name: "Careers", href: "#careers" },
-      { name: "Contact", href: "#contact" },
+      { name: "Careers", href: "/careers" },
+      { name: "Contact", href: "/contact" },
     ],
     trust: [
       { name: "FAQs", href: "/faqs" },
@@ -109,7 +109,7 @@ export function Footer() {
                     <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
-                    <span className="text-text-secondary">hello@landledger.com</span>
+                    <span className="text-text-secondary">info@landledger.africa</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center border border-primary/20">

@@ -200,36 +200,36 @@ export default function TermsOfServicePage() {
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-gradient-to-r from-primary/10 to-highlight/10 border border-primary/20 backdrop-blur-xl">
-                <h2 className="text-2xl font-bold text-text mb-6 text-center">Key Facts Summary</h2>
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
+                <h2 className="text-2xl font-bold text-white mb-6 text-center">Key Facts Summary</h2>
                 <div className="grid md:grid-cols-4 gap-8">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Shield className="w-8 h-8 text-primary" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Shield className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">No Tokens Yet</h3>
-                    <p className="text-text-secondary">We are not currently offering, brokering, or issuing tokens</p>
+                    <h3 className="text-xl font-bold text-white mb-2">No Tokens Yet</h3>
+                    <p className="text-slate-300">We are not currently offering, brokering, or issuing tokens</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-highlight/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Scale className="w-8 h-8 text-highlight" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-highlight to-highlight/80 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Scale className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Not Financial Advice</h3>
-                    <p className="text-text-secondary">Nothing here is financial advice or an offer of securities</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Not Financial Advice</h3>
+                    <p className="text-slate-300">Nothing here is financial advice or an offer of securities</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Users className="w-8 h-8 text-text" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-slate-600 to-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Users className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Informational Only</h3>
-                    <p className="text-text-secondary">The Site is informational only</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Informational Only</h3>
+                    <p className="text-slate-300">The Site is informational only</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="w-8 h-8 text-green-500" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <CheckCircle className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Future Compliance</h3>
-                    <p className="text-text-secondary">We will align with VASP regulations when implemented</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Future Compliance</h3>
+                    <p className="text-slate-300">We will align with VASP regulations when implemented</p>
                   </div>
                 </div>
               </Card>
@@ -241,62 +241,62 @@ export default function TermsOfServicePage() {
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
               <div className="space-y-8">
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">1. Current status</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">1. Current status</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     LandLedger is an early-stage technology platform. We are not currently offering, brokering, or issuing tokens, securities, or investment products. Our Services are limited to providing information, collecting waitlist registrations, and engaging stakeholders.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">2. Eligibility</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">2. Eligibility</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     Our Services are available to individuals aged 18 and above.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">3. No financial advice or offer</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">3. No financial advice or offer</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     Nothing on this Site constitutes investment advice, legal advice, or an offer to sell securities under Ghana's Securities Industry Act, 2016 (Act 929) or any international securities law.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">4. Future Compliance</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed mb-4">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">4. Future Compliance</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-4">
                     We are closely monitoring Ghana's forthcoming Virtual Asset Service Provider (VASP) regulations. While our platform is not currently operational as a trading or issuing service, LandLedger intends to align fully with the applicable VASP framework once implemented.
                   </p>
                   <h3 className="text-xl font-bold text-text mb-3">4a. Currency risk and settlement</h3>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     All LandLedger tokens will be issued and settled in Ghana Cedis (GHS), which is the sole legal tender under the Foreign Exchange Act, 2006 (Act 723) and Bank of Ghana directives. Certain developer leases may reference USD values, but any USD figures provided on this Site are for guidance only. All payments will be made in GHS, converted at the official Bank of Ghana reference rate at the time of settlement.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">5. Intellectual property</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">5. Intellectual property</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     All content, branding, and materials on this Site are the property of LandLedger Technologies.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">6. Limitation of liability</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">6. Limitation of liability</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     To the fullest extent permitted by Ghana's Contracts Act, 1960 (Act 25), LandLedger is not liable for losses or damages arising from your use of this Site.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">7. Governing law and jurisdiction</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">7. Governing law and jurisdiction</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     These Terms are governed by the laws of Ghana, including the Electronic Transactions Act, 2008 (Act 772). Disputes shall be subject to the exclusive jurisdiction of the courts of Accra, Ghana.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">8. Updates</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">8. Updates</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     These Terms may be updated periodically. Please review them regularly for the latest version.
                   </p>
                 </Card>
@@ -311,7 +311,7 @@ export default function TermsOfServicePage() {
               <h2 className="text-3xl font-bold text-text mb-8 text-center">Legal Framework</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {legalJurisdictions.map((jurisdiction, index) => (
-                  <Card key={index} className="p-6 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <Card key={index} className="p-6 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="text-3xl flex-shrink-0">{jurisdiction.icon}</div>
                       <div className="flex-1">
@@ -338,34 +338,34 @@ export default function TermsOfServicePage() {
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-gradient-to-r from-highlight/10 to-primary/10 border border-highlight/20 backdrop-blur-xl">
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
                 <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-text mb-4">Questions About These Terms?</h2>
-                  <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+                  <h2 className="text-3xl font-bold text-white mb-4">Questions About These Terms?</h2>
+                  <p className="text-slate-300 text-lg max-w-2xl mx-auto leading-relaxed">
                     Our legal team is available to clarify any terms or address your concerns about our services.
                   </p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <Mail className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                      <Mail className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Email</h3>
-                    <p className="text-text-secondary">legal@landledger.com</p>
+                    <h3 className="font-semibold text-white mb-1">Email</h3>
+                    <p className="text-slate-300">legal@landledger.africa</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <Phone className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                      <Phone className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Phone</h3>
-                    <p className="text-text-secondary">+233 XX XXX XXXX</p>
+                    <h3 className="font-semibold text-white mb-1">Phone</h3>
+                    <p className="text-slate-300">+233 XX XXX XXXX</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                      <MapPin className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
+                      <MapPin className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="font-semibold text-text mb-1">Address</h3>
-                    <p className="text-text-secondary">Haatso, Accra, Ghana</p>
+                    <h3 className="font-semibold text-white mb-1">Address</h3>
+                    <p className="text-slate-300">Haatso, Accra, Ghana</p>
                   </div>
                 </div>
               </Card>
@@ -376,19 +376,19 @@ export default function TermsOfServicePage() {
               className="text-center"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                <h2 className="text-2xl font-bold text-text mb-4">Need the Full Terms?</h2>
-                <p className="text-text-secondary mb-6">
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
+                <h2 className="text-2xl font-bold text-white mb-4">Need the Full Terms?</h2>
+                <p className="text-slate-300 mb-6 leading-relaxed">
                   Download our complete terms of service or contact our legal team for specific questions.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all duration-300">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <button className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transform hover:scale-105 whitespace-nowrap">
                     <Download className="w-4 h-4" />
                     Download Full Terms
                   </button>
                   <Link 
-                    href="mailto:legal@landledger.com" 
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/20 text-text font-semibold rounded-xl transition-all duration-300"
+                    href="mailto:legal@landledger.africa" 
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/20 hover:bg-white/30 border border-white/40 text-white font-semibold rounded-xl transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20 whitespace-nowrap"
                   >
                     Contact Legal Team
                   </Link>

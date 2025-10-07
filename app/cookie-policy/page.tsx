@@ -142,29 +142,29 @@ export default function CookiePolicyPage() {
               className="mb-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-gradient-to-r from-primary/10 to-highlight/10 border border-primary/20 backdrop-blur-xl">
-                <h2 className="text-2xl font-bold text-text mb-6 text-center">Key Facts Summary</h2>
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
+                <h2 className="text-2xl font-bold text-white mb-6 text-center">Key Facts Summary</h2>
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Shield className="w-8 h-8 text-primary" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Shield className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Essential Only</h3>
-                    <p className="text-text-secondary">We use cookies to keep the site secure and functional</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Essential Only</h3>
+                    <p className="text-slate-300">We use cookies to keep the site secure and functional</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-highlight/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Settings className="w-8 h-8 text-highlight" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-highlight to-highlight/80 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Settings className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Consent Required</h3>
-                    <p className="text-text-secondary">Non-essential cookies (analytics, advertising) require your consent</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Consent Required</h3>
+                    <p className="text-slate-300">Non-essential cookies (analytics, advertising) require your consent</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Eye className="w-8 h-8 text-text" />
+                    <div className="w-16 h-16 bg-gradient-to-r from-slate-600 to-slate-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Eye className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-text mb-2">Full Control</h3>
-                    <p className="text-text-secondary">You can disable cookies in your browser settings at any time</p>
+                    <h3 className="text-xl font-bold text-white mb-2">Full Control</h3>
+                    <p className="text-slate-300">You can disable cookies in your browser settings at any time</p>
                   </div>
                 </div>
               </Card>
@@ -176,14 +176,14 @@ export default function CookiePolicyPage() {
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
               <div className="space-y-8">
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">1. What are cookies?</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">1. What are cookies?</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     Cookies are small text files placed on your device when you visit a website. They help us recognise your device, store preferences, and improve your experience.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
                   <h2 className="text-2xl font-bold text-text mb-6">2. Types of cookies we use</h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
@@ -225,23 +225,23 @@ export default function CookiePolicyPage() {
                   </div>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">3. Consent</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">3. Consent</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     We only use non-essential cookies with your explicit consent, in line with Act 843 and GDPR requirements.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">4. Managing cookies</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">4. Managing cookies</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     Most browsers allow you to control cookies through settings. Disabling cookies may affect site functionality.
                   </p>
                 </Card>
 
-                <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                  <h2 className="text-2xl font-bold text-text mb-4">5. Updates</h2>
-                  <p className="text-text-secondary text-lg leading-relaxed">
+                <Card className="p-8 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
+                  <h2 className="text-2xl font-bold text-white mb-4">5. Updates</h2>
+                  <p className="text-slate-300 text-lg leading-relaxed">
                     This Cookie Policy may be updated periodically. Please review it regularly for the latest version.
                   </p>
                 </Card>
@@ -256,7 +256,7 @@ export default function CookiePolicyPage() {
               <h2 className="text-3xl font-bold text-text mb-8 text-center">Compliance Framework</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {complianceInfo.map((item, index) => (
-                  <Card key={index} className="p-6 bg-white/5 backdrop-blur-xl border border-white/20">
+                  <Card key={index} className="p-6 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 shadow-xl">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                         <item.icon className="w-6 h-6 text-green-500" />
@@ -281,19 +281,19 @@ export default function CookiePolicyPage() {
               className="text-center"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20">
-                <h2 className="text-2xl font-bold text-text mb-4">Questions About Cookies?</h2>
-                <p className="text-text-secondary mb-6">
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
+                <h2 className="text-2xl font-bold text-white mb-4">Questions About Cookies?</h2>
+                <p className="text-slate-300 mb-6 leading-relaxed">
                   Our privacy team is here to help with any questions about our cookie policy.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <Link 
-                    href="mailto:privacy@landledger.com" 
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all duration-300"
+                    href="mailto:privacy@landledger.africa" 
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transform hover:scale-105 whitespace-nowrap"
                   >
                     Contact Privacy Team
                   </Link>
-                  <button className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/20 text-text font-semibold rounded-xl transition-all duration-300">
+                  <button className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/20 hover:bg-white/30 border border-white/40 text-white font-semibold rounded-xl transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20 whitespace-nowrap">
                     <Download className="w-4 h-4" />
                     Download PDF
                   </button>

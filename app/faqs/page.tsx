@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Shield, HelpCircle, ChevronDown, ChevronUp, ArrowLeft, Search, BookOpen, MessageCircle, Clock, Star } from "lucide-react"
+import { Shield, HelpCircle, ChevronDown, ChevronUp, ArrowLeft, Search, BookOpen, MessageCircle, Clock, Star, Mail } from "lucide-react"
 import { useState, useMemo } from "react"
 import { Footer } from "@/components/sections/footer"
 import { Navbar } from "@/components/ui/navbar"
@@ -312,26 +312,28 @@ export default function FAQPage() {
               className="mt-16"
               variants={getMotionVariant(fadeInUp, prefersReducedMotion)}
             >
-              <Card className="p-8 bg-gradient-to-r from-primary/10 to-highlight/10 border border-primary/20 backdrop-blur-xl">
+              <Card className="p-8 bg-gradient-to-r from-slate-800/90 to-slate-900/90 border border-slate-700/50 backdrop-blur-xl shadow-2xl">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <MessageCircle className="w-8 h-8 text-primary" />
+                  <div className="w-16 h-16 bg-gradient-to-r from-primary to-highlight rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <MessageCircle className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-3xl font-bold text-text mb-4">Still need help?</h2>
-                  <p className="text-text-secondary text-lg mb-8 max-w-2xl mx-auto">
+                  <h2 className="text-3xl font-bold text-white mb-4">Still need help?</h2>
+                  <p className="text-slate-300 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
                     Can't find what you're looking for? Our expert support team is here to help you with any questions or concerns.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <Link 
-                      href="#contact" 
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transform hover:scale-105"
+                      href="/contact" 
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transform hover:scale-105 whitespace-nowrap"
                     >
+                      <MessageCircle className="w-5 h-5" />
                       Contact Support
                     </Link>
                     <Link 
-                      href="mailto:hello@landledger.com" 
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 text-text font-semibold rounded-xl transition-all duration-300"
+                      href="mailto:info@landledger.africa" 
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/20 hover:bg-white/30 border border-white/40 text-white font-semibold rounded-xl transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20 whitespace-nowrap"
                     >
+                      <Mail className="w-5 h-5" />
                       Send Email
                     </Link>
                   </div>

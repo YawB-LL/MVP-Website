@@ -71,7 +71,7 @@ export function Trust() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-highlight/10 border border-highlight/20 text-highlight text-sm font-medium mb-6">
               <Shield className="w-4 h-4" />
-              Members & Affiliations
+              Memberships & Affiliations
             </div>
             <h2 className="text-4xl md:text-6xl font-newsreader font-bold text-text mb-8 leading-tight">
               Members &{" "}

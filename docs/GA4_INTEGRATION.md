@@ -75,7 +75,7 @@ NEXT_PUBLIC_GA4_MEASUREMENT_ID=G-XXXXXXXXXX
 
 When a user visits with UTM parameters:
 ```
-https://landledger.com/?utm_source=facebook&utm_medium=cpc&utm_campaign=ghana_launch&ref=xyz123
+https://landledger.africa/?utm_source=facebook&utm_medium=cpc&utm_campaign=ghana_launch&ref=xyz123
 ```
 
 The system automatically:
