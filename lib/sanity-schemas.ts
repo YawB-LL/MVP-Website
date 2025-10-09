@@ -37,16 +37,23 @@ export const postSchema = {
           type: "block",
           styles: [
             { title: "Normal", value: "normal" },
+            { title: "H1", value: "h1" },
             { title: "H2", value: "h2" },
             { title: "H3", value: "h3" },
             { title: "H4", value: "h4" },
             { title: "Quote", value: "blockquote" },
+          ],
+          lists: [
+            { title: "Bullet", value: "bullet" },
+            { title: "Numbered", value: "number" },
           ],
           marks: {
             decorators: [
               { title: "Strong", value: "strong" },
               { title: "Emphasis", value: "em" },
               { title: "Code", value: "code" },
+              { title: "Underline", value: "underline" },
+              { title: "Strike", value: "strike-through" },
             ],
             annotations: [
               {
@@ -58,11 +65,13 @@ export const postSchema = {
                     name: "href",
                     type: "url",
                     title: "URL",
+                    validation: (Rule: any) => Rule.required(),
                   },
                   {
                     name: "blank",
                     type: "boolean",
                     title: "Open in new tab",
+                    initialValue: false,
                   },
                 ],
               },
@@ -137,6 +146,14 @@ export const postSchema = {
               title: "Content",
             },
           ],
+        },
+        {
+          type: "table",
+          title: "Table",
+        },
+        {
+          type: "embed",
+          title: "Embed",
         },
       ],
     },
@@ -665,6 +682,111 @@ export const companyInfoSchema = {
   },
 }
 
+export const tableSchema = {
+  name: "table",
+  title: "Table",
+  type: "object",
+  fields: [
+    {
+      name: "headers",
+      title: "Headers",
+      type: "array",
+      of: [{ type: "string" }],
+      validation: (Rule: any) => Rule.required().min(1),
+    },
+    {
+      name: "rows",
+      title: "Rows",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "cells",
+              title: "Cells",
+              type: "array",
+              of: [{ type: "string" }],
+            },
+          ],
+        },
+      ],
+      validation: (Rule: any) => Rule.required().min(1),
+    },
+    {
+      name: "caption",
+      title: "Caption",
+      type: "string",
+      description: "Optional caption for the table",
+    },
+  ],
+  preview: {
+    select: {
+      headers: "headers",
+      rows: "rows",
+    },
+    prepare(selection: any) {
+      const { headers, rows } = selection
+      const headerText = headers ? headers.join(", ") : "No headers"
+      const rowCount = rows ? rows.length : 0
+      return {
+        title: `Table: ${headerText}`,
+        subtitle: `${rowCount} rows`,
+      }
+    },
+  },
+}
+
+export const embedSchema = {
+  name: "embed",
+  title: "Embed",
+  type: "object",
+  fields: [
+    {
+      name: "url",
+      title: "URL",
+      type: "url",
+      validation: (Rule: any) => Rule.required(),
+      description: "URL to embed (YouTube, Vimeo, etc.)",
+    },
+    {
+      name: "title",
+      title: "Title",
+      type: "string",
+      description: "Optional title for the embed",
+    },
+    {
+      name: "type",
+      title: "Embed Type",
+      type: "string",
+      options: {
+        list: [
+          { title: "YouTube", value: "youtube" },
+          { title: "Vimeo", value: "vimeo" },
+          { title: "Twitter", value: "twitter" },
+          { title: "Instagram", value: "instagram" },
+          { title: "Other", value: "other" },
+        ],
+      },
+      initialValue: "other",
+    },
+  ],
+  preview: {
+    select: {
+      url: "url",
+      title: "title",
+      type: "type",
+    },
+    prepare(selection: any) {
+      const { url, title, type } = selection
+      return {
+        title: title || url || "Untitled Embed",
+        subtitle: type ? `${type} embed` : "Embed",
+      }
+    },
+  },
+}
+
 // Export all schemas for Sanity Studio
 export const schemas = [
   postSchema, 
@@ -673,5 +795,7 @@ export const schemas = [
   tagSchema,
   pressReleaseSchema, 
   mediaKitSchema, 
-  companyInfoSchema
+  companyInfoSchema,
+  tableSchema,
+  embedSchema
 ]

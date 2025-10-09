@@ -128,7 +128,7 @@ export function EcosystemPartners() {
                   >
                     <Card className="p-8 bg-white/5 backdrop-blur-xl border border-white/20 hover:border-highlight/40 transition-all duration-300 group h-full flex flex-col hover-lift">
                       {/* Left-aligned Icon */}
-                      <div className="w-16 h-16 bg-gradient-to-br from-highlight/20 to-highlight/10 rounded-2xl flex items-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-highlight/30">
+                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
                         <reality.icon className="w-8 h-8 text-highlight" />
                       </div>
                       
@@ -194,7 +194,7 @@ export function EcosystemPartners() {
                   >
                     <Card className="p-8 bg-base border border-white/20 hover:border-primary/40 transition-all duration-300 group h-full flex flex-col shadow-xl hover-lift">
                       {/* Left-aligned Icon */}
-                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
+                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/30">
                         <approach.icon className="w-8 h-8 text-primary" />
                       </div>
                       

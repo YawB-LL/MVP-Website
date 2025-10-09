@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Shield, AlertTriangle, Clock, CheckCircle, Download, ArrowLeft, TrendingUp, TrendingDown, BarChart3, DollarSign, Globe, Scale, FileText, Mail, Phone, MapPin, AlertCircle, Info } from "lucide-react"
+import { Shield, AlertTriangle, Clock, CheckCircle, Download, ArrowLeft, TrendingUp, TrendingDown, BarChart3, DollarSign, Globe, Scale, FileText, Mail, MapPin, AlertCircle, Info } from "lucide-react"
 import { Footer } from "@/components/sections/footer"
 import { Navbar } from "@/components/ui/navbar"
 import Link from "next/link"
@@ -448,20 +448,13 @@ export default function DisclaimerRiskNoticePage() {
                     Our compliance team is available to discuss risk factors and regulatory matters related to our platform.
                   </p>
                 </div>
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 gap-8">
                   <div className="text-center">
                     <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
                       <Mail className="w-6 h-6 text-white" />
                     </div>
                     <h3 className="font-semibold text-white mb-1">Email</h3>
                     <p className="text-slate-300">compliance@landledger.africa</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
-                      <Phone className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="font-semibold text-white mb-1">Phone</h3>
-                    <p className="text-slate-300">+233 XX XXX XXXX</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">

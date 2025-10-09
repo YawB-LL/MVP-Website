@@ -192,7 +192,37 @@ export const POST_BY_SLUG_QUERY = `
     title,
     slug,
     excerpt,
-    content,
+    content[]{
+      ...,
+      _type == "image" => {
+        ...,
+        asset->{
+          _id,
+          url,
+          metadata{
+            dimensions,
+            lqip,
+            hasAlpha,
+            isOpaque
+          },
+          altText
+        }
+      },
+      _type == "table" => {
+        ...,
+        headers,
+        rows[]{
+          cells
+        },
+        caption
+      },
+      _type == "embed" => {
+        ...,
+        url,
+        title,
+        type
+      }
+    },
     author->{
       name,
       bio,

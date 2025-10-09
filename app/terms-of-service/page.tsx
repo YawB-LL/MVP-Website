@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Shield, FileText, Clock, CheckCircle, AlertTriangle, Download, ArrowLeft, Users, Lock, Globe, Scale, BookOpen, Mail, Phone, MapPin, ChevronDown, ChevronUp } from "lucide-react"
+import { Shield, FileText, Clock, CheckCircle, AlertTriangle, Download, ArrowLeft, Users, Lock, Globe, Scale, BookOpen, Mail, MapPin, ChevronDown, ChevronUp } from "lucide-react"
 import { Footer } from "@/components/sections/footer"
 import { Navbar } from "@/components/ui/navbar"
 import Link from "next/link"
@@ -345,20 +345,13 @@ export default function TermsOfServicePage() {
                     Our legal team is available to clarify any terms or address your concerns about our services.
                   </p>
                 </div>
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 gap-8">
                   <div className="text-center">
                     <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
                       <Mail className="w-6 h-6 text-white" />
                     </div>
                     <h3 className="font-semibold text-white mb-1">Email</h3>
                     <p className="text-slate-300">legal@landledger.africa</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">
-                      <Phone className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="font-semibold text-white mb-1">Phone</h3>
-                    <p className="text-slate-300">+233 XX XXX XXXX</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-gradient-to-r from-primary to-highlight rounded-xl flex items-center justify-center mx-auto mb-3 shadow-lg">

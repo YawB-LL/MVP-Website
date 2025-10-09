@@ -13,6 +13,9 @@ type Props = {
 
 const components: PortableTextComponents = {
   block: {
+    h1: ({ children }) => (
+      <h1 className="text-3xl font-bold text-text mt-10 mb-6">{children}</h1>
+    ),
     h2: ({ children }) => (
       <h2 className="text-2xl font-bold text-text mt-8 mb-4">{children}</h2>
     ),
@@ -43,8 +46,10 @@ const components: PortableTextComponents = {
     strong: ({ children }) => <strong className="text-text font-semibold">{children}</strong>,
     em: ({ children }) => <em className="italic">{children}</em>,
     code: ({ children }) => (
-      <code className="px-1.5 py-0.5 rounded bg-text-secondary/10 text-text text-sm">{children}</code>
+      <code className="px-1.5 py-0.5 rounded bg-text-secondary/10 text-text text-sm font-mono">{children}</code>
     ),
+    underline: ({ children }) => <span className="underline">{children}</span>,
+    "strike-through": ({ children }) => <span className="line-through">{children}</span>,
     link: ({ children, value }) => {
       const href = (value as any)?.href || "#"
       const blank = (value as any)?.blank
@@ -53,7 +58,7 @@ const components: PortableTextComponents = {
           href={href}
           target={blank ? "_blank" : undefined}
           rel={blank ? "noopener noreferrer" : undefined}
-          className="underline underline-offset-2 decoration-primary/60 hover:text-primary"
+          className="underline underline-offset-2 decoration-primary/60 hover:text-primary transition-colors"
         >
           {children}
         </a>
@@ -62,13 +67,18 @@ const components: PortableTextComponents = {
   },
   types: {
     image: ({ value }) => {
-      const url = (value as any)?.url || (value as any)?.asset?.url
-      const alt = (value as any)?.alt || ""
+      // Handle different Sanity image data structures
+      const asset = (value as any)?.asset
+      const url = asset?.url || (value as any)?.url
+      const alt = (value as any)?.alt || asset?.altText || ""
       const caption = (value as any)?.caption
       const alignment = (value as any)?.alignment || "center"
       const size = (value as any)?.size || "medium"
       
-      if (!url) return null
+      if (!url) {
+        console.warn('Image missing URL:', value)
+        return null
+      }
       
       return (
         <RichImage
@@ -119,10 +129,18 @@ const components: PortableTextComponents = {
       
       if (!headers.length || !rows.length) return null
       
+      // Ensure rows are in the correct format
+      const formattedRows = rows.map((row: any) => {
+        if (Array.isArray(row)) {
+          return row
+        }
+        return row.cells || []
+      })
+      
       return (
         <RichTable
           headers={headers}
-          rows={rows}
+          rows={formattedRows}
           caption={caption}
         />
       )
@@ -140,6 +158,54 @@ const components: PortableTextComponents = {
       return (
         <div className={`my-6 p-4 border rounded-lg ${classes}`}>
           <p className="text-text-secondary">{content}</p>
+        </div>
+      )
+    },
+    embed: ({ value }) => {
+      const url = (value as any)?.url || ""
+      const title = (value as any)?.title || ""
+      
+      if (!url) return null
+      
+      // Check if it's a YouTube URL
+      const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+      const youtubeMatch = url.match(youtubeRegex)
+      
+      if (youtubeMatch) {
+        const videoId = youtubeMatch[1]
+        return (
+          <div className="my-8">
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title={title || "YouTube video"}
+                className="absolute top-0 left-0 w-full h-full rounded-lg"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            {title && (
+              <p className="mt-2 text-sm text-text-secondary text-center">{title}</p>
+            )}
+          </div>
+        )
+      }
+      
+      // For other embeds, try to render as iframe
+      return (
+        <div className="my-8">
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              src={url}
+              title={title || "Embedded content"}
+              className="absolute top-0 left-0 w-full h-full rounded-lg"
+              frameBorder="0"
+            />
+          </div>
+          {title && (
+            <p className="mt-2 text-sm text-text-secondary text-center">{title}</p>
+          )}
         </div>
       )
     },
